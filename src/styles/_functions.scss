@@ -1,0 +1,3 @@
+@function colourWithHexAlpha($colour, $alpha) {
+  @return #{$colour}#{$alpha};
+}
