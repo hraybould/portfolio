@@ -1,0 +1,13 @@
+header {
+  padding: 0 1rem;
+  background-color: $headingColour;
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .MeMoji {
+    padding: 0.5rem 0.5rem;
+    height: 100%;
+  }
+}
