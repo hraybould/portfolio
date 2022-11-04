@@ -1,0 +1,44 @@
+/* Generic transition mixin
+ * 
+ * Usage:
+ * Include the mixin inside a Selector
+ * Pass the arguments using the standard format
+ * https://developer.mozilla.org/en-US/docs/Web/CSS/transition
+ * 
+ * Example:
+ * a {
+ *   @include transition(
+ *     (
+ *       opacity $transitionTime $transitionTiming,
+ *       color $transitionTime $transitionTiming
+ *     )
+ *   );
+ *   &:hover {
+ *     opacity: 0.5 !important;
+ *     color: red !important;
+ *   }
+ * }
+**/
+@mixin transition($transitionProperties) {
+  -webkit-transition: $transitionProperties;
+  -moz-transition: $transitionProperties;
+  -o-transition: $transitionProperties;
+  transition: $transitionProperties;
+}
+
+// Add in hover functionality
+@mixin hover-behaviour {
+  &:not(.NoHover):not(:disabled):hover {
+    @content;
+  }
+}
+
+// Provides opcaity functionality when a user hovers on an element. Because
+// opacity changes are quite common, this also includes transition mixin
+@mixin hover-opacity {
+  @include transition(opacity $transitionTime $transitionTiming);
+  @include hover-behaviour {
+    @content;
+    opacity: 0.6;
+  }
+}

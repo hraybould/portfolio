@@ -1,7 +1,13 @@
-import Home from "components/Home";
+import { Header } from "components/Header";
+import Sections from "components/Sections";
 
 const App = () => {
-  return <Home />;
+  return (
+    <div className="App">
+      <Header />
+      <Sections />
+    </div>
+  );
 };
 
 export default App;

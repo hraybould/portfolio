@@ -1,8 +1,10 @@
 @import "./reset";
 @import "./constants";
 @import "./colours";
+@import "./mixins";
 @import "./functions";
 @import "./global";
 
 @import "components/Header/Header";
 @import "components/Navigation/Navigation";
+@import "components/Sections/Sections";

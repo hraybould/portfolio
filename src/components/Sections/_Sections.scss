@@ -1,0 +1,13 @@
+.SectionsWrapper {
+  margin-top: $navbarHeight;
+
+  section {
+    min-height: 100vh;
+    &:nth-child(odd) {
+      background-color: $white85;
+    }
+    &:nth-child(even) {
+      background-color: $white80;
+    }
+  }
+}
