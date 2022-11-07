@@ -2,12 +2,28 @@
   // margin-top: $navbarHeight;
 
   section {
-    min-height: 100vh;
+    padding: 1rem 1rem;
+    min-height: calc(100vh - $navbarHeight);
     &:nth-child(odd) {
       background-color: $white85;
     }
     &:nth-child(even) {
       background-color: $white80;
+    }
+
+    .ContactSection {
+      .Link {
+        color: unset;
+      }
+      .ContactLink {
+        padding: 0.25rem 0.5rem;
+        border: 1px solid $white60;
+        border-radius: $smallBorderRadius;
+        text-decoration: none;
+      }
+      // .TextLink {
+      //   text-decoration: underline;
+      // }
     }
   }
 }

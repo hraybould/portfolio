@@ -10,7 +10,8 @@ export const SectionsBuilder: React.FC = () => {
       {(Object.keys(Sections) as Array<keyof typeof Sections>).map(
         (section) => (
           <section id={section} key={section}>
-            {getSection(section)}
+            <h2>{section}</h2>
+            {getSectionContent(section)}
           </section>
         )
       )}
@@ -18,7 +19,9 @@ export const SectionsBuilder: React.FC = () => {
   );
 };
 
-const getSection = (section: keyof typeof Sections): JSX.Element | null => {
+const getSectionContent = (
+  section: keyof typeof Sections
+): JSX.Element | null => {
   switch (section) {
     case "About Me":
       return <AboutMe />;

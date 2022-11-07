@@ -1,7 +1,7 @@
 header {
   position: sticky;
   top: 0;
-  padding: 0 0.5rem;
+  padding: 0.5rem 1rem;
   background-color: $headingColour;
   height: $navbarHeight;
   gap: 0.5rem;
@@ -9,7 +9,6 @@ header {
   align-items: center;
 
   .MeMoji {
-    padding: 0.5rem 0.5rem;
     height: 100%;
   }
 }

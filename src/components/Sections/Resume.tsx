@@ -1,7 +1,5 @@
-export const Resume: React.FC = () => {
-  return (
-    <>
-      <h3>Resume</h3>
-    </>
-  );
+interface ResumeProps {}
+
+export const Resume: React.FC<ResumeProps> = () => {
+  return <div></div>;
 };

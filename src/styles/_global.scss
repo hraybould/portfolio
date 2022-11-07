@@ -1,3 +1,5 @@
+$navbarHeight: 5rem;
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -7,4 +9,16 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-$navbarHeight: 5rem;
+.DisplayFlex {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
