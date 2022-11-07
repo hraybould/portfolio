@@ -9,7 +9,9 @@ export const SectionsBuilder: React.FC = () => {
     <div className="SectionsWrapper">
       {(Object.keys(Sections) as Array<keyof typeof Sections>).map(
         (section) => (
-          <section id={`#${Sections[section]}`}>{getSection(section)}</section>
+          <section id={section} key={section}>
+            {getSection(section)}
+          </section>
         )
       )}
     </div>
@@ -27,6 +29,7 @@ const getSection = (section: keyof typeof Sections): JSX.Element | null => {
     case "Skills":
       return <Skills />;
     default:
+      console.warn("No component to render");
       return null;
   }
 };

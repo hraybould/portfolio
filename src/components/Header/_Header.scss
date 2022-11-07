@@ -1,12 +1,11 @@
 header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   background-color: $headingColour;
   height: $navbarHeight;
-  width: 100%;
+  gap: 0.5rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 
   .MeMoji {
