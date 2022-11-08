@@ -13,6 +13,9 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
+  &.FlexColumn {
+    flex-direction: column;
+  }
 }
 
 h2 {
@@ -21,4 +24,12 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
+}
+
+.LargeText {
+  font-size: 200%;
+}
+
+.CursiveFont {
+  font-family: Lucida Handwriting;
 }
