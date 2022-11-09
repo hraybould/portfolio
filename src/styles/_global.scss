@@ -18,6 +18,10 @@ body {
   }
 }
 
+h1 {
+  font-size: 3rem;
+}
+
 h2 {
   font-size: 2rem;
 }
@@ -32,4 +36,9 @@ h3 {
 
 .CursiveFont {
   font-family: Lucida Handwriting;
+}
+
+.ClosingTag {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 600;
 }
