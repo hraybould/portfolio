@@ -5,6 +5,14 @@ nav {
     display: flex;
     gap: 1rem;
 
+    .NavSpacer {
+      color: $white100;
+      display: none;
+      @include media-min-width($laptopBreakpoint) {
+        display: block;
+      }
+    }
+
     li {
       position: relative;
       text-align: center;

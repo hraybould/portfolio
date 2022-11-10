@@ -46,6 +46,7 @@ const ALLS_SKILLS: SkillType[] = [
     name: "JavaScript",
     start: new Date("2018-09-01"),
     end: new Date("2021-05-05"),
+    detail: "ECMAScript",
   },
   {
     name: "JQuery",

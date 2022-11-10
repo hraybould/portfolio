@@ -1,18 +1,22 @@
 import { headerId } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
+import React from "react";
 
 export const Navigation: React.FC<{}> = () => {
   return (
     <nav>
       <ul>
         {(Object.keys(ALL_SECTIONS) as Array<keyof typeof ALL_SECTIONS>).map(
-          (section) =>
+          (section, index) =>
             ALL_SECTIONS[section].sectionVisible && (
-              <li key={section}>
-                <span className="NavLink" onClick={scrollIntoView(section)}>
-                  {section}
-                </span>
-              </li>
+              <React.Fragment key={section}>
+                {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
+                <li>
+                  <span className="NavLink" onClick={scrollIntoView(section)}>
+                    {section}
+                  </span>
+                </li>
+              </React.Fragment>
             )
         )}
       </ul>

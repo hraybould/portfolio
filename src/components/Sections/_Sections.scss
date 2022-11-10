@@ -23,7 +23,11 @@
       //   background-color: $white100;
       // }
       .ImText {
-        margin-left: 10rem;
+        margin-left: 2rem;
+        flex: 1 0 auto;
+        @include media-min-width($laptopBreakpoint) {
+          margin-left: 10rem;
+        }
       }
       .InfoText {
         font-weight: 600;
