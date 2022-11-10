@@ -11,7 +11,11 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
   return (
     <div className="AboutMeSection">
       <h1 className="HiText CursiveFont">Hi</h1>
-      <img className="ClippedImg" src={wave} alt="Memoji of Me, Harrison" />
+      <img
+        // className="ClippedImg"
+        src={wave}
+        alt="Memoji of Me, Harrison"
+      />
       <div className="DisplayFlex">
         <div className="ImText CursiveFont LargeText">I'm &#8230;</div>
         <div>

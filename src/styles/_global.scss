@@ -16,6 +16,9 @@ body {
   &.FlexColumn {
     flex-direction: column;
   }
+  &.JustifySpaceBetween {
+    justify-content: space-between;
+  }
 }
 
 h1 {

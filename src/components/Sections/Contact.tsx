@@ -10,21 +10,19 @@ interface ContactProps {}
 export const Contact: React.FC<ContactProps> = () => {
   return (
     <div className="ContactSection">
-      <p>Fell free to get in touch, click the link below.</p>
+      <div className="DisplayFlex JustifySpaceBetween">
+        <div>Feel free to get in touch:</div>
+        <div className="TextLink">
+          <a className="Link ContactLink" href={emailLinkFull}>
+            Contact Me
+          </a>
+        </div>
+      </div>
 
-      <a className="Link ContactLink" href={emailLinkFull}>
-        Contact Me
-      </a>
-
-      <p>Email:</p>
-      <p
-      // className="TextLink"
-      >
-        {emailAddres}
-      </p>
-      {/* <a className="Link" href={emailLinkHref}>
-        {emailAddres}
-      </a> */}
+      <div className="DisplayFlex JustifySpaceBetween">
+        <div>Email:</div>
+        <div className="TextLink">{emailAddres}</div>
+      </div>
     </div>
   );
 };

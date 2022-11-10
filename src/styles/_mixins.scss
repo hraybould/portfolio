@@ -39,6 +39,6 @@
   @include transition(opacity $transitionTime $transitionTiming);
   @include hover-behaviour {
     @content;
-    opacity: 0.6;
+    opacity: 0.7;
   }
 }

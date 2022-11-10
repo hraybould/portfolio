@@ -18,10 +18,10 @@
       .HiText {
         margin: 1rem 0rem -4rem 0rem;
       }
-      .ClippedImg {
-        clip-path: ellipse(50% 75% at 50% 90%);
-        background-color: $white100;
-      }
+      // .ClippedImg {
+      //   clip-path: ellipse(50% 75% at 50% 90%);
+      //   background-color: $white100;
+      // }
       .ImText {
         margin-left: 10rem;
       }
@@ -40,9 +40,10 @@
         border-radius: $smallBorderRadius;
         text-decoration: none;
       }
-      // .TextLink {
-      //   text-decoration: underline;
-      // }
+      .TextLink {
+        // text-decoration: underline;
+        user-select: text;
+      }
     }
   }
 }
