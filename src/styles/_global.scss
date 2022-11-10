@@ -24,21 +24,21 @@ body {
 h1 {
   font-size: 200%;
   @include media-min-width($laptopBreakpoint) {
-    font-size: 300%;
+    font-size: 250%;
   }
 }
 
 h2 {
-  font-size: 150%;
+  font-size: 125%;
   @include media-min-width($laptopBreakpoint) {
-    font-size: 200%;
+    font-size: 150%;
   }
 }
 
 h3 {
-  font-size: 125%;
+  font-size: 110%;
   @include media-min-width($laptopBreakpoint) {
-    font-size: 150%;
+    font-size: 125%;
   }
 }
 
@@ -53,4 +53,8 @@ h3 {
 .ClosingTag {
   font-family: "Courier New", Courier, monospace;
   font-weight: 600;
+}
+
+.Clickable {
+  cursor: pointer;
 }
