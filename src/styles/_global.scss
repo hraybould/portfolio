@@ -13,12 +13,32 @@ body {
   display: flex;
   align-items: center;
   gap: 2rem;
+  &.SmallGap {
+    gap: 0.5rem;
+  }
+  &.FlexRow {
+    flex-direction: column;
+    @include media-min-width($tabletBreakpoint) {
+      flex-direction: row;
+    }
+  }
   &.FlexColumn {
     flex-direction: column;
   }
   &.JustifySpaceBetween {
     justify-content: space-between;
   }
+  &.JustifySpaceAround {
+    justify-content: space-around;
+  }
+
+  .Flex {
+    flex: 1 1 50%;
+  }
+}
+
+.FullWidth {
+  width: 100%;
 }
 
 h1 {

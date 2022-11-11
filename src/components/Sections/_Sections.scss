@@ -35,6 +35,11 @@
     }
 
     .ContactSection {
+      // max-width: 60vw;
+      @include media-min-width($desktopBreakpoint) {
+        max-width: 60vw;
+      }
+      margin: auto;
       .Link {
         color: unset;
       }
