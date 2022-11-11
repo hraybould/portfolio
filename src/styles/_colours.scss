@@ -1,12 +1,13 @@
 // Main Colour
-$mainColour: #0178c6;
-$mainColourLight: #c5e3f9;
-$mainColourDark: #095a91;
+// $mainColour: #0178c6;
+// $mainColourLight: #c5e3f9;
+// $mainColourDark: #095a91;
 
 // Secondary Colour
-$secondaryColour: #e1e1e1;
-$headingColour: #1d1f1d;
-$offWhite: #f2f2f2;
+// $secondaryColour: #e1e1e1;
+$headingColour: #e1e1e1;
+$headingColourReverse: #1d1f1d;
+// $offWhite: #f2f2f2;
 
 // Most Common Text Colour
 $textColour: #3b3b3b;
@@ -21,3 +22,14 @@ $white80: #cccccc;
 // ...
 $white65: #a6a6a6;
 $white60: #999999;
+
+$black60: #666666;
+$black65: #595959;
+$black80: #333333;
+$black85: #262626;
+$black90: #1a1a1a;
+$black95: #1a1a1a;
+$black100: #000000;
+
+@media (prefers-color-scheme: dark) {
+}

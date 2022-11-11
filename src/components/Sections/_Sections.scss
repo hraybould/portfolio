@@ -5,10 +5,10 @@
     padding: 1rem 1rem;
     min-height: calc(100vh - $navbarHeight);
     &:nth-child(odd) {
-      background-color: $white85;
+      @include media-colour-scheme(background-color, $white85, $black85);
     }
     &:nth-child(even) {
-      background-color: $white80;
+      @include media-colour-scheme(background-color, $white80, $black80);
     }
 
     .AboutMeSection {

@@ -43,8 +43,18 @@
   }
 }
 
+// Adds in CSS when a min-width media query is met
 @mixin media-min-width($breakPoint) {
   @media (min-width: $breakPoint) {
     @content;
+  }
+}
+
+// Adds in dark mode functionality for a given property
+// Namely used for background-color and color.
+@mixin media-colour-scheme($property, $lightMode, $darkMode) {
+  #{$property}: $lightMode;
+  @media (prefers-color-scheme: dark) {
+    #{$property}: $darkMode;
   }
 }
