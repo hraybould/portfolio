@@ -7,5 +7,3 @@ export type Section = {
   sectionContent: React.ReactNode;
   sectionVisible: boolean;
 };
-
-export type SectionsStructure = Record<SectionName, Section>;
