@@ -2,18 +2,22 @@ import { headerId } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
 import React from "react";
 
-export const Navigation: React.FC<{}> = () => {
+export const Navigation: React.FC = () => {
   return (
     <nav>
       <ul>
-        {(Object.keys(ALL_SECTIONS) as Array<keyof typeof ALL_SECTIONS>).map(
+        {ALL_SECTIONS.map(
           (section, index) =>
-            ALL_SECTIONS[section].sectionVisible && (
-              <React.Fragment key={section}>
+            section.sectionVisible && (
+              <React.Fragment key={section.id}>
+                {/* Add Spacer if index greater than 0 */}
                 {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
                 <li>
-                  <span className="NavLink" onClick={scrollIntoView(section)}>
-                    {section}
+                  <span
+                    className="NavLink"
+                    onClick={scrollIntoView(section.id)}
+                  >
+                    {section.titleText}
                   </span>
                 </li>
               </React.Fragment>
@@ -24,7 +28,7 @@ export const Navigation: React.FC<{}> = () => {
   );
 };
 
-const scrollIntoView = (section: keyof typeof ALL_SECTIONS) => () => {
+const scrollIntoView = (section: typeof ALL_SECTIONS[number]["id"]) => () => {
   // Find Section element
   const sectionElement = document.getElementById(section);
   const top = sectionElement ? sectionElement.getBoundingClientRect().top : 0;

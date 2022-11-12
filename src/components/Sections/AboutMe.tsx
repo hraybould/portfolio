@@ -9,7 +9,7 @@ const ClosingTag = () => <span className="ClosingTag">&#x20;&#x2F;&#x3E;</span>;
 
 export const AboutMe: React.FC<AboutMeProps> = () => {
   return (
-    <div className="AboutMeSection">
+    <div className="SectionInner AboutMeSection">
       <h1 className="HiText CursiveFont">Hi</h1>
       <img
         // className="ClippedImg"
@@ -17,20 +17,20 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
         alt="Memoji of Me, Harrison"
       />
       <div className="DisplayFlex">
-        <div className="ImText CursiveFont LargeText">I'm &#8230;</div>
+        <h2 className="ImText CursiveFont">I'm &#8230;</h2>
         <div>
-          <h3 className="InfoText">
+          <div className="MediumText InfoText">
             Harrison
             <ClosingTag />
-          </h3>
-          <h3 className="InfoText">
+          </div>
+          <div className="MediumText InfoText">
             {durationFormatter({ start: DATE_OF_BIRTH, format: ["years"] })} old
             <ClosingTag />
-          </h3>
-          <h3 className="InfoText">
+          </div>
+          <div className="MediumText InfoText">
             a UK-based Web Developer
             <ClosingTag />
-          </h3>
+          </div>
         </div>
       </div>
     </div>

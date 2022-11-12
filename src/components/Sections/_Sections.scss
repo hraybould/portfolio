@@ -10,48 +10,49 @@
     &:nth-child(even) {
       @include media-colour-scheme(background-color, $white80, $black80);
     }
-
-    .AboutMeSection {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .HiText {
-        margin: 1rem 0rem -4rem 0rem;
+    .SectionInner {
+      margin: auto;
+      @include media-min-width($desktopBreakpoint) {
+        max-width: 65vw;
       }
-      // .ClippedImg {
-      //   clip-path: ellipse(50% 75% at 50% 90%);
-      //   background-color: $white100;
-      // }
-      .ImText {
-        margin-left: 2rem;
-        flex: 1 0 auto;
-        @include media-min-width($laptopBreakpoint) {
-          margin-left: 10rem;
+
+      .AboutMeSection {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .HiText {
+          margin: 1rem 0rem -4rem 0rem;
+        }
+        // .ClippedImg {
+        //   clip-path: ellipse(50% 75% at 50% 90%);
+        //   background-color: $white100;
+        // }
+        .ImText {
+          margin-left: 2rem;
+          flex: 1 0 auto;
+          @include media-min-width($laptopBreakpoint) {
+            margin-left: 10rem;
+          }
+        }
+        .InfoText {
+          font-weight: 600;
         }
       }
-      .InfoText {
-        font-weight: 600;
-      }
-    }
 
-    .ContactSection {
-      // max-width: 60vw;
-      @include media-min-width($desktopBreakpoint) {
-        max-width: 60vw;
-      }
-      margin: auto;
-      .Link {
-        color: unset;
-      }
-      .ContactLink {
-        padding: 0.25rem 0.5rem;
-        border: 1px solid $white60;
-        border-radius: $smallBorderRadius;
-        text-decoration: none;
-      }
-      .TextLink {
-        // text-decoration: underline;
-        user-select: text;
+      .ContactSection {
+        .Link {
+          color: unset;
+        }
+        .ContactLink {
+          padding: 0.25rem 0.5rem;
+          border: 1px solid $white60;
+          border-radius: $smallBorderRadius;
+          text-decoration: none;
+        }
+        .TextLink {
+          // text-decoration: underline;
+          user-select: text;
+        }
       }
     }
   }

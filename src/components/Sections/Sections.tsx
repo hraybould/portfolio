@@ -1,18 +1,20 @@
 import { AboutMe } from "./AboutMe";
 import { Contact } from "./Contact";
-import { SectionsStructure } from "./models";
+import { Section } from "./models";
 import { Resume } from "./Resume";
 import { Skills } from "./Skills";
 
 export const SectionsBuilder: React.FC = () => {
   return (
     <div className="SectionsWrapper">
-      {(Object.keys(ALL_SECTIONS) as Array<keyof typeof ALL_SECTIONS>).map(
+      {ALL_SECTIONS.map(
         (section) =>
-          ALL_SECTIONS[section].sectionVisible && (
-            <section id={section} key={section}>
-              {ALL_SECTIONS[section].titleVisible && <h2>{section}</h2>}
-              {ALL_SECTIONS[section].content}
+          section.sectionVisible && (
+            <section id={section.id} key={section.titleText}>
+              <div className="SectionInner">
+                {section.titleVisible && <h2>{section.titleText}</h2>}
+                {section.sectionContent}
+              </div>
             </section>
           )
       )}
@@ -20,29 +22,33 @@ export const SectionsBuilder: React.FC = () => {
   );
 };
 
-export const ALL_SECTIONS: SectionsStructure = {
-  "About Me": {
+export const ALL_SECTIONS: Section[] = [
+  {
     id: "about-me",
+    titleText: "About Me",
     titleVisible: false,
-    content: <AboutMe />,
+    sectionContent: <AboutMe />,
     sectionVisible: true,
   },
-  Skills: {
+  {
     id: "skills",
+    titleText: "Skills",
     titleVisible: true,
-    content: <Skills />,
+    sectionContent: <Skills />,
     sectionVisible: true,
   },
-  Resume: {
+  {
     id: "resume",
     titleVisible: true,
-    content: <Resume />,
+    titleText: "Resume",
+    sectionContent: <Resume />,
     sectionVisible: false,
   },
-  Contact: {
-    id: "contact",
+  {
+    id: "contact-me",
+    titleText: "Contact",
     titleVisible: true,
-    content: <Contact />,
+    sectionContent: <Contact />,
     sectionVisible: true,
   },
-};
+];

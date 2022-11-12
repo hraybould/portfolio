@@ -3,7 +3,7 @@ import mac from "assets/memoji/mac.png";
 import { headerId } from "./models";
 import React, { useEffect, useState } from "react";
 
-export const Header: React.FC<{}> = () => {
+export const Header: React.FC = () => {
   // Determines if a user has scrolled from the top of the page
   // A user may click the Image to scroll to the top
   // This is done my adding the Clickable class

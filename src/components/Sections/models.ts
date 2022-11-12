@@ -1,9 +1,10 @@
 type SectionName = "About Me" | "Skills" | "Resume" | "Contact";
 
-type Section = {
+export type Section = {
   id: string;
+  titleText: SectionName;
   titleVisible: boolean;
-  content: React.ReactNode;
+  sectionContent: React.ReactNode;
   sectionVisible: boolean;
 };
 

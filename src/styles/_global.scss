@@ -41,29 +41,36 @@ body {
   width: 100%;
 }
 
-h1 {
+h1,
+.XXLargeText {
   font-size: 200%;
   @include media-min-width($laptopBreakpoint) {
     font-size: 250%;
   }
 }
 
-h2 {
+h2,
+.XLargeText {
+  font-size: 200%;
+  @include media-min-width($laptopBreakpoint) {
+    font-size: 250%;
+  }
+}
+
+h3,
+.LargeText {
   font-size: 125%;
   @include media-min-width($laptopBreakpoint) {
     font-size: 150%;
   }
 }
 
-h3 {
+h4,
+.MediumText {
   font-size: 110%;
   @include media-min-width($laptopBreakpoint) {
     font-size: 125%;
   }
-}
-
-.LargeText {
-  font-size: 200%;
 }
 
 .CursiveFont {
