@@ -9,8 +9,8 @@
  * a {
  *   @include transition(
  *     (
- *       opacity $transitionTime $transitionTiming,
- *       color $transitionTime $transitionTiming
+ *       opacity $transitionShort $transitionTiming,
+ *       color $transitionShort $transitionTiming
  *     )
  *   );
  *   &:hover {
@@ -36,7 +36,7 @@
 // Provides opcaity functionality when a user hovers on an element. Because
 // opacity changes are quite common, this also includes transition mixin
 @mixin hover-opacity {
-  @include transition(opacity $transitionTime $transitionTiming);
+  @include transition(opacity $transitionShort $transitionTiming);
   @include hover-behaviour {
     @content;
     opacity: 0.7;

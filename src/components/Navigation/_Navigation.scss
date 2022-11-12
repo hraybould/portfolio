@@ -34,7 +34,8 @@ nav {
           // opacity: 0;
           transform: scale(0);
           transform-origin: center;
-          transition: opacity 300ms, transform 300ms;
+          @include transition(opacity $transitionShort $transitionTiming);
+          @include transition(transform $transitionShort $transitionTiming);
         }
         // Underline effect on hover
         @include hover-opacity {

@@ -1,7 +1,10 @@
 $smallBorderRadius: 3px;
 $mediumBorderRadius: 10px;
+$circleBorderRadius: 50%;
 
-$transitionTime: 0.3s;
+$transitionShort: 0.3s;
+$transitionMedium: 0.6s;
+$transitionLong: 0.9s;
 $transitionTiming: ease-in-out;
 
 $tabletBreakpoint: 480px;

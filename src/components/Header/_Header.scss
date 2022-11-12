@@ -14,5 +14,12 @@ header {
 
   .MeMoji {
     height: 100%;
+    background-color: $headingColour;
+    @include transition(border-radius $transitionLong $transitionTiming);
+    @include media-colour-scheme(
+      border-radius,
+      $smallBorderRadius,
+      $circleBorderRadius
+    );
   }
 }
