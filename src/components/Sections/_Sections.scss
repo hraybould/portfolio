@@ -16,6 +16,10 @@
         max-width: 65vw;
       }
 
+      .SectionHeading {
+        margin-bottom: 0.5rem;
+      }
+
       .AboutMeSection {
         display: flex;
         flex-direction: column;
@@ -40,6 +44,7 @@
       }
 
       .ContactSection {
+        margin-top: 1rem;
         .Link {
           color: unset;
         }

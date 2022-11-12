@@ -74,8 +74,10 @@ export const Contact: React.FC<ContactProps> = () => {
           </a>
         </div>
       </div>
+      {/* <div> */}
       <a href="https://stackoverflow.com/users/15291770/harrison">
         <img
+          className="MarginAuto"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
             isDarkMode ? "dark" : "light"
           }`}
@@ -85,6 +87,7 @@ export const Contact: React.FC<ContactProps> = () => {
           title="Profile for Harrison at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
         />
       </a>
+      {/* </div> */}
     </div>
   );
 };

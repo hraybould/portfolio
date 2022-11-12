@@ -11,13 +11,9 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
   return (
     <div className="SectionInner AboutMeSection">
       <h1 className="HiText CursiveFont">Hi</h1>
-      <img
-        // className="ClippedImg"
-        src={wave}
-        alt="Memoji of Me, Harrison"
-      />
+      <img className="MarginAuto" src={wave} alt="Memoji of Me, Harrison" />
       <div className="DisplayFlex">
-        <h2 className="ImText CursiveFont">I'm &#8230;</h2>
+        <div className="XLargeText ImText CursiveFont">I'm &#8230;</div>
         <div>
           <div className="MediumText InfoText">
             Harrison

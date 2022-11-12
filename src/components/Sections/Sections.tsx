@@ -12,7 +12,9 @@ export const SectionsBuilder: React.FC = () => {
           section.sectionVisible && (
             <section id={section.id} key={section.titleText}>
               <div className="SectionInner">
-                {section.titleVisible && <h2>{section.titleText}</h2>}
+                {section.titleVisible && (
+                  <h2 className="SectionHeading">{section.titleText}</h2>
+                )}
                 {section.sectionContent}
               </div>
             </section>

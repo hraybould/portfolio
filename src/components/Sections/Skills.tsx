@@ -19,7 +19,7 @@ interface SkillProps {
 const Skill: React.FC<SkillProps> = ({ skill }) => {
   return (
     <div className="DisplayFlex">
-      <h3>{skill.name}</h3>
+      <div className="LargeText">{skill.name}</div>
       <div>
         {durationFormatter({
           start: skill.start,

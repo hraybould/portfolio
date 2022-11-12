@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
   return (
     <header id={headerId}>
       <img
-        className={`MeMoji ${hasScrolled ? "Clickable" : ""}`}
+        className={`MeMoji MarginAuto ${hasScrolled ? "Clickable" : ""}`}
         src={mac}
         alt="MeMoji Icon of me"
         onClick={() => {
