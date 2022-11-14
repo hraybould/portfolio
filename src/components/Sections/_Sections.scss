@@ -20,6 +20,18 @@
         margin-bottom: 0.5rem;
       }
 
+      .SkillsSection {
+        .swiper {
+          width: 100%;
+          height: 100%;
+          margin-bottom: 2rem;
+        }
+
+        .swiper-slide {
+          padding: 2rem 0rem;
+        }
+      }
+
       .AboutMeSection {
         display: flex;
         flex-direction: column;

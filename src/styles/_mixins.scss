@@ -58,3 +58,9 @@
     #{$property}: $darkMode;
   }
 }
+
+@mixin prefers-colour-scheme($scheme) {
+  @media (prefers-color-scheme: #{$scheme}) {
+    @content;
+  }
+}

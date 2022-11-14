@@ -7,6 +7,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  @include prefers-colour-scheme(light) {
+    color: $textColour;
+  }
 }
 
 .DisplayFlex {
@@ -15,6 +19,9 @@ body {
   gap: 2rem;
   &.SmallGap {
     gap: 0.5rem;
+  }
+  &.MediumGap {
+    gap: 1rem;
   }
   &.FlexRow {
     flex-direction: column;
