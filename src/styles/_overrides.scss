@@ -1,0 +1,9 @@
+// Swiper Overrides
+// z-index values
+.swiper {
+  z-index: auto;
+  .swiper-wrapper,
+  .swiper-pagination {
+    z-index: auto;
+  }
+}

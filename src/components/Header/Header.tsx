@@ -27,6 +27,8 @@ export const Header: React.FC = () => {
         className={`MeMoji MarginAuto ${hasScrolled ? "Clickable" : ""}`}
         src={mac}
         alt="MeMoji Icon of me"
+        height="64"
+        width="64"
         onClick={() => {
           if (hasScrolled) {
             window.scrollTo({ top: 0 });

@@ -8,7 +8,7 @@ nav {
     .NavSpacer {
       @include media-colour-scheme(color, $black100, $white100);
       display: none;
-      @include media-min-width($laptopBreakpoint) {
+      @include media-min-width($largerThanTablet) {
         display: block;
       }
     }

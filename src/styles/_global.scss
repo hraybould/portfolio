@@ -25,12 +25,15 @@ body {
   }
   &.FlexRow {
     flex-direction: column;
-    @include media-min-width($tabletBreakpoint) {
+    @include media-min-width($largerThanMobile) {
       flex-direction: row;
     }
   }
   &.FlexColumn {
     flex-direction: column;
+  }
+  &.FlexWrap {
+    flex-wrap: wrap;
   }
   &.JustifySpaceBetween {
     justify-content: space-between;
@@ -38,7 +41,6 @@ body {
   &.JustifySpaceAround {
     justify-content: space-around;
   }
-
   .Flex {
     flex: 1 1 50%;
   }
@@ -51,7 +53,7 @@ body {
 h1,
 .XXLargeText {
   font-size: 200%;
-  @include media-min-width($laptopBreakpoint) {
+  @include media-min-width($largerThanTablet) {
     font-size: 250%;
   }
 }
@@ -59,7 +61,7 @@ h1,
 h2,
 .XLargeText {
   font-size: 200%;
-  @include media-min-width($laptopBreakpoint) {
+  @include media-min-width($largerThanTablet) {
     font-size: 250%;
   }
 }
@@ -67,7 +69,7 @@ h2,
 h3,
 .LargeText {
   font-size: 125%;
-  @include media-min-width($laptopBreakpoint) {
+  @include media-min-width($largerThanTablet) {
     font-size: 150%;
   }
 }
@@ -75,8 +77,15 @@ h3,
 h4,
 .MediumText {
   font-size: 110%;
-  @include media-min-width($laptopBreakpoint) {
+  @include media-min-width($largerThanTablet) {
     font-size: 125%;
+  }
+}
+
+.SmallText {
+  font-size: 90%;
+  @include media-min-width($largerThanTablet) {
+    font-size: 95%;
   }
 }
 
@@ -91,6 +100,9 @@ h4,
 
 .Clickable {
   cursor: pointer;
+}
+.Hoverable {
+  @include hover-opacity;
 }
 
 .MarginAuto {

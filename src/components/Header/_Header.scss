@@ -2,6 +2,8 @@ header {
   position: sticky;
   top: 0;
   padding: 0.5rem 1rem;
+  // Needed to override the z-index from Swiper
+  z-index: 1;
   @include media-colour-scheme(
     #{background-color},
     $headingColour,

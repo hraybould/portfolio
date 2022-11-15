@@ -45,6 +45,8 @@ import "swiper/scss";
 import "swiper/scss/pagination";
 import "swiper/scss/navigation";
 import "swiper/scss/autoplay";
+import useMedia from "use-media";
+import { TABLET_BREAKPOINT } from "appHelpers";
 
 interface SkillsProps {}
 
@@ -52,21 +54,9 @@ export const Skills: React.FC<SkillsProps> = () => {
   return (
     <div className="SkillsSection">
       <KeySkills />
-      <h3>All Skills</h3>
-      Click **here** to see a full list of skills
+      <AllSkills />
     </div>
   );
-  // return (
-  //   <div className="DisplayFlex FlexColumn MediumGap">
-  //     {Object.keys(ALL_SKILLS).map((skillGroup) => (
-  //       <React.Fragment key={skillGroup}>
-  //         {ALL_SKILLS[skillGroup].map((skill, index) => (
-  //           <Skill key={`${skillGroup}_${index}`} skill={skill} />
-  //         ))}
-  //       </React.Fragment>
-  //     ))}
-  //   </div>
-  // );
 };
 
 interface SkillProps {
@@ -75,9 +65,12 @@ interface SkillProps {
 
 const Skill: React.FC<SkillProps> = ({ skill }) => {
   return (
-    <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth">
+    <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth SkillTitle">
       <div className="XXLargeText">{skill.icon}</div>
-      <div className="LargeText">{skill.name}</div>
+      <div>
+        <div className="LargeText">{skill.name}</div>
+        {skill.subName && <div className="SmallText">({skill.subName})</div>}
+      </div>
       <div className="MediumText">
         {durationFormatter({
           start: skill.start,
@@ -91,7 +84,7 @@ const Skill: React.FC<SkillProps> = ({ skill }) => {
 };
 
 const KeySkills: React.FC = () => {
-  const keySkills = getKeySkillsArray(ALL_SKILLS, true);
+  const keySkills = getSkillsArray(ALL_SKILLS, true, true);
   return (
     <>
       <h3>Key Skills</h3>
@@ -122,7 +115,6 @@ const KeySkills: React.FC = () => {
         // Loop Props - END
         // onSlideChange={() => console.log("slide change")}
         // onSwiper={(swiper) => console.log(swiper)}
-        className="mySwiper"
       >
         {keySkills.map((keySkill, keySkillIndex) => (
           <SwiperSlide key={keySkillIndex}>
@@ -130,6 +122,31 @@ const KeySkills: React.FC = () => {
           </SwiperSlide>
         ))}
       </Swiper>
+    </>
+  );
+};
+
+const AllSkills: React.FC = () => {
+  const skills = getSkillsArray(ALL_SKILLS);
+  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  return (
+    <>
+      <h3>All Skills</h3>
+      <div
+        className={`DisplayFlex ${
+          largerThanTablet ? "" : "MediumGap"
+        } FlexWrap`}
+      >
+        {skills.map((skill, skillIndex) => (
+          <div
+            className={largerThanTablet ? "XLargeText" : "LargeText"}
+            title={buildSkillTitle(skill)}
+            key={skillIndex}
+          >
+            {skill.icon}
+          </div>
+        ))}
+      </div>
     </>
   );
 };
@@ -145,23 +162,31 @@ const KeySkills: React.FC = () => {
 // };
 
 const pushToResult =
-  (arrayToPushTo: ReturnType<typeof getKeySkillsArray>) =>
-  (skill: SkillValue | NonNullable<SkillValue["libraries"]>[number]) => {
-    if (skill.keySkill) {
+  (
+    arrayToPushTo: ReturnType<typeof getSkillsArray>,
+    whichSkillsToGet: boolean | undefined
+  ) =>
+  (skill: SkillValue) => {
+    if (whichSkillsToGet === undefined) {
       arrayToPushTo.push(skill);
+    } else {
+      if (skill.keySkill === whichSkillsToGet) {
+        arrayToPushTo.push(skill);
+      }
     }
     if (skill.libraries) {
-      skill.libraries.forEach(pushToResult(arrayToPushTo));
+      skill.libraries.forEach(pushToResult(arrayToPushTo, whichSkillsToGet));
     }
   };
 
-const getKeySkillsArray = (
+const getSkillsArray = (
   allSkills: SkillObject,
+  whichSkillsToGet: boolean | undefined = undefined,
   sortByTimeFrame: boolean = false
 ): SkillValue[] => {
-  let keySkills: ReturnType<typeof getKeySkillsArray> = [];
+  let keySkills: ReturnType<typeof getSkillsArray> = [];
   Object.keys(allSkills).forEach((skillGroup) => {
-    ALL_SKILLS[skillGroup].forEach(pushToResult(keySkills));
+    ALL_SKILLS[skillGroup].forEach(pushToResult(keySkills, whichSkillsToGet));
   });
   if (sortByTimeFrame) {
     keySkills.sort((a, b) => {
@@ -182,16 +207,14 @@ const getKeySkillsArray = (
   return keySkills;
 };
 
-// List of Skills and Experience
-// type SkillType = {
-//   name: string;
-//   icon: React.ReactNode;
-//   iconPath?: string;
-//   detail?: string;
-//   start: Date;
-//   end: Date;
-// };
+const buildSkillTitle = (skill: SkillValue): string => {
+  if (skill.subName) {
+    return `${skill.name} (${skill.subName})`;
+  }
+  return skill.name;
+};
 
+// List of Skills and Experience
 const STARTED_STORMFRONT_RETAIL = new Date("2016-11-01");
 const STARTED_MTC = new Date("2017-09-23");
 const STARTED_CO2 = new Date("2018-01-15");
@@ -208,7 +231,7 @@ type SkillValue = {
   name: string;
   subName?: string;
   libraries?: SkillValue[];
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
   start: Date;
   end: Date;
   // stillInterestedIn: "Yes" | "No" | "Actively working on"
@@ -254,7 +277,6 @@ const ALL_SKILLS: SkillObject = {
         },
         {
           name: "TypeScript",
-          subName: "A superset of JavaScript",
           icon: <SiTypescript />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
@@ -286,7 +308,7 @@ const ALL_SKILLS: SkillObject = {
       libraries: [
         {
           name: "SCSS",
-          subName: "Sass-Dart",
+          subName: "Dart Sass",
           icon: <SiSass />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,

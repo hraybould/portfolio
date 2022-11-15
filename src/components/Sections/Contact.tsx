@@ -1,6 +1,8 @@
 import { BsGithub, BsStackOverflow, BsLinkedin } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
-import { useMediaQuery } from "hooks";
+import { HiOutlineClipboardCopy } from "react-icons/hi";
+import useMedia from "use-media";
+import { Link } from "components/Link";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
 const EMAIL_SUBJECT = "Hi";
@@ -12,70 +14,72 @@ const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BOD
 interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
-  const isDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+  const isDarkMode = useMedia("(prefers-color-scheme: dark)");
   return (
     <div className="ContactSection DisplayFlex FlexColumn">
       {/* Email Shortcut */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div>Feel free to get in touch:</div>
-        <div className="TextLink ContactLink">
-          <a className="Link" href={EMAIL_LINK_FULL}>
+        <div className="ContactLink">
+          <Link href={EMAIL_LINK_FULL} style={{ textDecoration: "none" }}>
             Contact Me
-          </a>
+          </Link>
         </div>
       </div>
       {/* Email */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <AiOutlineMail />
+          <AiOutlineMail className="LargeText" />
           Email:
         </div>
-        <div className="TextLink">{EMAIL_ADDRESS}</div>
+        <div className="TextLink DisplayFlex SmallGap">
+          {EMAIL_ADDRESS}
+
+          {/* TODO: make a popover - popper.js? */}
+          <HiOutlineClipboardCopy
+            className="LargeText Clickable Hoverable"
+            onClick={() => {
+              navigator.clipboard.writeText(EMAIL_ADDRESS);
+            }}
+          />
+        </div>
       </div>
       {/* GitHub */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsGithub />
+          <BsGithub className="LargeText" />
           GitHub:
         </div>
         <div>
-          <a className="Link" href="https://github.com/hraybould">
-            harrisonr
-          </a>
+          <Link href="https://github.com/hraybould">harrisonr</Link>
         </div>
       </div>
       {/* LinkedIn */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsLinkedin />
+          <BsLinkedin className="LargeText" />
           LinkedIn:
         </div>
         <div>
-          <a
-            className="Link"
-            href="https://www.linkedin.com/in/harrison-raybould/"
-          >
+          <Link href="https://www.linkedin.com/in/harrison-raybould/">
             harrison-raybould
-          </a>
+          </Link>
         </div>
       </div>
       {/* Stack Overflow */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsStackOverflow />
+          <BsStackOverflow className="LargeText" />
           Stack Overflow:
         </div>
         <div>
-          <a
-            className="Link"
-            href="https://stackoverflow.com/users/15291770/harrison"
-          >
+          <Link href="https://stackoverflow.com/users/15291770/harrison">
             harrison
-          </a>
+          </Link>
         </div>
       </div>
       {/* <div> */}
-      <a href="https://stackoverflow.com/users/15291770/harrison">
+      <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
           className="MarginAuto"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
@@ -86,7 +90,8 @@ export const Contact: React.FC<ContactProps> = () => {
           alt="Profile for Harrison at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
           title="Profile for Harrison at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
         />
-      </a>
+      </Link>
+
       {/* </div> */}
     </div>
   );
