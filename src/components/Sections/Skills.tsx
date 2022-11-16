@@ -1,5 +1,4 @@
 import { durationFormatter } from "helpers/durationFormatter";
-import React from "react";
 import {
   SiAtom,
   SiBootstrap,
@@ -46,15 +45,20 @@ import "swiper/scss/pagination";
 import "swiper/scss/navigation";
 import "swiper/scss/autoplay";
 import useMedia from "use-media";
-import { TABLET_BREAKPOINT } from "appHelpers";
+import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
+import { shuffle } from "lodash";
 
 interface SkillsProps {}
 
 export const Skills: React.FC<SkillsProps> = () => {
+  const skills = getSkillsArray(ALL_SKILLS, undefined, true);
+  const halfSkillsShuffled = shuffle(
+    skills.slice(0, Math.floor(skills.length / 2))
+  );
   return (
     <div className="SkillsSection">
-      <KeySkills />
-      <AllSkills />
+      <KeySkills keySkills={skills.filter((s) => s.keySkill)} />
+      <SkillsSummary skills={halfSkillsShuffled} />
     </div>
   );
 };
@@ -83,8 +87,10 @@ const Skill: React.FC<SkillProps> = ({ skill }) => {
   );
 };
 
-const KeySkills: React.FC = () => {
-  const keySkills = getSkillsArray(ALL_SKILLS, true, true);
+interface KeySkillsProps {
+  keySkills: SkillValue[];
+}
+const KeySkills: React.FC<KeySkillsProps> = ({ keySkills }) => {
   return (
     <>
       <h3>Key Skills</h3>
@@ -126,8 +132,11 @@ const KeySkills: React.FC = () => {
   );
 };
 
-const AllSkills: React.FC = () => {
-  const skills = getSkillsArray(ALL_SKILLS);
+interface SkillsSummaryProps {
+  skills: SkillValue[];
+}
+const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
+  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
   const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
   return (
     <>
@@ -139,13 +148,21 @@ const AllSkills: React.FC = () => {
       >
         {skills.map((skill, skillIndex) => (
           <div
-            className={largerThanTablet ? "XLargeText" : "LargeText"}
+            className={largerThanMobile ? "XLargeText" : "LargeText"}
             title={buildSkillTitle(skill)}
             key={skillIndex}
           >
             {skill.icon}
           </div>
         ))}
+        <div
+          className="Btn Clickable Hoverable SeeAllSkills"
+          onClick={() => {
+            console.log("clicked");
+          }}
+        >
+          See All Skills
+        </div>
       </div>
     </>
   );
@@ -243,48 +260,46 @@ type SkillObject = Record<string, SkillValue[]>;
 // Make full list into Modal component with Swipers
 // filterable by time/proficiency/currently-interested
 // TODO: link to Pluralsight skills proficiencies
-// TODO: Over 5 years, stop counting in months
-// TODO: Over 10 years, leave as 10+ years
 const ALL_SKILLS: SkillObject = {
   Languages: [
     {
       name: "JavaScript",
       subName: "ECMAScript",
-      icon: <SiJavascript />,
+      icon: <SiJavascript title="JavaScript (ECMAScript)" />,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
       libraries: [
         {
           name: "React",
-          icon: <SiReact />,
+          icon: <SiReact title={"React"} />,
           start: STARTED_REACT,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "React-Redux",
-          icon: <SiRedux />,
+          icon: <SiRedux title={"React-Redux"} />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "React-Router",
-          icon: <SiReactrouter />,
+          icon: <SiReactrouter title={"React-Router"} />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
         },
         {
           name: "TypeScript",
-          icon: <SiTypescript />,
+          icon: <SiTypescript title={"TypeScript"} />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "JQuery",
-          icon: <SiJquery />,
+          icon: <SiJquery title={"JQuery"} />,
           start: STARTED_CO2,
           end: FINISHED_ENCOMPASS_PROJECT,
         },
@@ -293,7 +308,7 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "HTML",
       subName: "HTML5",
-      icon: <SiHtml5 />,
+      icon: <SiHtml5 title="HTML (HTML5)" />,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
@@ -301,7 +316,7 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "CSS",
       subName: "CSS3",
-      icon: <SiCss3 />,
+      icon: <SiCss3 title="CSS (CSS3)" />,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
@@ -309,7 +324,7 @@ const ALL_SKILLS: SkillObject = {
         {
           name: "SCSS",
           subName: "Dart Sass",
-          icon: <SiSass />,
+          icon: <SiSass title="SCSS (Dart Sass)" />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
@@ -318,25 +333,25 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Python",
-      icon: <SiPython />,
+      icon: <SiPython title={"Python"} />,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
       libraries: [
         {
           name: "Flask",
-          icon: <SiFlask />,
+          icon: <SiFlask title={"Flask"} />,
           start: STARTED_CO2,
           end: STARTED_AVAMAE,
         },
         {
           name: "Jinja",
-          icon: <SiJinja />,
+          icon: <SiJinja title={"Jinja"} />,
           start: STARTED_CO2,
           end: STARTED_AVAMAE,
         },
         {
           name: "Plotly",
-          icon: <SiPlotly />,
+          icon: <SiPlotly title={"Plotly"} />,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
@@ -346,45 +361,45 @@ const ALL_SKILLS: SkillObject = {
   "Software & Other Libraries": [
     {
       name: "NodeRED",
-      icon: <SiNodered />,
+      icon: <SiNodered title={"NodeRED"} />,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
     {
       name: "NPM",
-      icon: <SiNpm />,
+      icon: <SiNpm title={"NPM"} />,
       start: STARTED_REACT,
       end: UNTIL_CURRENT,
     },
     {
       name: "Bootstrap",
-      icon: <SiBootstrap />,
+      icon: <SiBootstrap title={"Bootstrap"} />,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Git",
-      icon: <SiGit />,
+      icon: <SiGit title={"Git"} />,
       start: STARTED_MTC,
       end: UNTIL_CURRENT,
       keySkill: true,
     },
     {
       name: "RabbitMQ",
-      icon: <SiRabbitmq />,
+      icon: <SiRabbitmq title={"RabbitMQ"} />,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Mosquitto",
       subName: "MQTT",
-      icon: <SiEclipsemosquitto />,
+      icon: <SiEclipsemosquitto title="Mosquitto (MQTT)" />,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Docker",
-      icon: <SiDocker />,
+      icon: <SiDocker title={"Docker"} />,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
@@ -392,25 +407,25 @@ const ALL_SKILLS: SkillObject = {
   Databases: [
     {
       name: "PostgreSQL",
-      icon: <SiPostgresql />,
+      icon: <SiPostgresql title={"PostgreSQL"} />,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "SQlite",
-      icon: <SiSqlite />,
+      icon: <SiSqlite title={"SQlite"} />,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
     },
     {
       name: "CouchBase",
-      icon: <SiCouchbase />,
+      icon: <SiCouchbase title={"CouchBase"} />,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
     {
       name: "MongoDB",
-      icon: <SiMongodb />,
+      icon: <SiMongodb title={"MongoDB"} />,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
@@ -418,32 +433,32 @@ const ALL_SKILLS: SkillObject = {
   "Operating Systems": [
     {
       name: "Linux",
-      icon: <SiLinux />,
+      icon: <SiLinux title={"Linux"} />,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
       keySkill: true,
       libraries: [
         {
           name: "Ubuntu",
-          icon: <SiUbuntu />,
+          icon: <SiUbuntu title={"Ubuntu"} />,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "Debian",
-          icon: <SiDebian />,
+          icon: <SiDebian title={"Debian"} />,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "Lubuntu",
-          icon: <SiLubuntu />,
+          icon: <SiLubuntu title={"Lubuntu"} />,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "RaspberryPi",
-          icon: <SiRaspberrypi />,
+          icon: <SiRaspberrypi title={"RaspberryPi"} />,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
@@ -451,14 +466,14 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Windows",
-      icon: <SiWindows />,
+      icon: <SiWindows title={"Windows"} />,
       start: new Date("2010-12-16"),
       end: UNTIL_CURRENT,
       keySkill: true,
     },
     {
       name: "MacOS",
-      icon: <SiMacos />,
+      icon: <SiMacos title={"MacOS"} />,
       start: STARTED_STORMFRONT_RETAIL,
       end: UNTIL_CURRENT,
     },
@@ -466,13 +481,13 @@ const ALL_SKILLS: SkillObject = {
   Editors: [
     {
       name: "Visual Studio Code",
-      icon: <SiVisualstudiocode />,
+      icon: <SiVisualstudiocode title={"Visual Studio Code"} />,
       start: STARTED_AVAMAE,
       end: UNTIL_CURRENT,
       libraries: [
         {
           name: "Prettier",
-          icon: <SiPrettier />,
+          icon: <SiPrettier title={"Prettier"} />,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
         },
@@ -480,13 +495,13 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Atom",
-      icon: <SiAtom />,
+      icon: <SiAtom title={"Atom"} />,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
     },
     {
       name: "Notepad++",
-      icon: <SiNotepadplusplus />,
+      icon: <SiNotepadplusplus title={"Notepad++"} />,
       start: STARTED_MTC,
       end: UNTIL_CURRENT,
     },

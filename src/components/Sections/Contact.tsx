@@ -20,8 +20,12 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* Email Shortcut */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div>Feel free to get in touch:</div>
-        <div className="ContactLink">
-          <Link href={EMAIL_LINK_FULL} style={{ textDecoration: "none" }}>
+        <div className="Btn Clickable Hoverable ContactLink">
+          <Link
+            href={EMAIL_LINK_FULL}
+            style={{ textDecoration: "none" }}
+            hoverable={false}
+          >
             Contact Me
           </Link>
         </div>

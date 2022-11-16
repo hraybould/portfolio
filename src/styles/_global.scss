@@ -108,3 +108,9 @@ h4,
 .MarginAuto {
   margin: auto;
 }
+
+.Btn {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid $white60;
+  border-radius: $smallBorderRadius;
+}

@@ -33,6 +33,9 @@
         .SkillTitle {
           text-align: center;
         }
+        .SeeAllSkills {
+          margin: 1px solid;
+        }
       }
 
       .AboutMeSection {
@@ -64,9 +67,6 @@
           color: unset;
         }
         .ContactLink {
-          padding: 0.25rem 0.5rem;
-          border: 1px solid $white60;
-          border-radius: $smallBorderRadius;
           text-decoration: none;
         }
         .TextLink {
