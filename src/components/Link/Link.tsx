@@ -1,14 +1,14 @@
-import React from "react";
-
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
   baseClass?: string;
   hoverable?: boolean;
   additionalClassNames?: string;
   target?: React.HTMLAttributeAnchorTarget;
-  // children prop implied
 }
 
-export const Link: React.FC<LinkProps> = ({
+/**
+ * A basic anchor element (`<a ...>`) to uniformly make links
+ */
+export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   baseClass = "Link",
   hoverable = true,
   target = "_blank",

@@ -1,0 +1,137 @@
+.ModalUnderlay {
+  background: colourWithHexAlpha($black100, D0);
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+
+  .Modal {
+    @include media-colour-scheme(background-color, $white95, $black90);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: $mediumBorderRadius;
+    // @include media-colour-scheme(
+    //   border,
+    //   1px solid $white90,
+    //   1px solid $black80
+    // );
+
+    .Inner {
+      position: relative;
+      width: 450px;
+      border-radius: inherit;
+      .Top {
+        display: flex;
+        align-items: center;
+        border-top-left-radius: inherit;
+        border-top-right-radius: inherit;
+        @include media-colour-scheme(
+          border-bottom,
+          1px solid $white60,
+          1px solid $black80
+        );
+        @include media-colour-scheme(background-color, $white90, $black80);
+        // box-sizing: border-box;
+        height: 60px;
+        padding: 10px 30px;
+        .Title {
+          font-size: 2em;
+          font-weight: 400;
+          padding: 0px;
+          margin: 0px;
+        }
+        .Cross {
+          cursor: pointer;
+        }
+      }
+      .Content {
+        padding: 20px 30px;
+        max-height: calc(100vh - 240px);
+        overflow-y: auto;
+      }
+
+      .Bottom {
+        @include media-colour-scheme(
+          border-top,
+          1px solid $white60,
+          1px solid $black80
+        );
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
+
+        &.Buttons {
+          height: 60px;
+          display: flex;
+          align-items: center;
+          @include media-colour-scheme(background-color, $white90, $black80);
+          padding: 0px 30px;
+          justify-content: flex-end;
+          .Btn {
+            margin: 0px 0px 0px 10px;
+            min-width: 120px;
+          }
+        }
+      }
+    }
+
+    &.FullSize {
+      max-height: initial;
+      width: calc(100vw - 60px);
+      height: calc(100vh - 60px);
+
+      .Inner {
+        width: 100%;
+        .Content {
+          // box-sizing: border-box;
+          max-height: none;
+          height: calc(100vh - 180px);
+        }
+      }
+    }
+  }
+}
+
+// TODO: convert this to house style
+// @media only screen and (max-width: 768px) {
+//   .ModalUnderlay .Modal {
+//     width: calc(100% - 20px);
+//   }
+//   .ModalUnderlay .Modal .Inner {
+//     width: 100%;
+//   }
+//   .Modal .Buttons {
+//     justify-content: center;
+//     padding: 0px 25px;
+//   }
+//   .Modal .Buttons .Btn {
+//     flex: 1;
+//     margin: 0px 5px;
+//     min-width: inherit;
+//   }
+// }
+// @media only screen and (max-width: 480px) {
+//   .Modal .Top {
+//     padding: 10px 60px 10px 20px;
+//   }
+//   .Modal .Block {
+//     padding: 40px 20px 20px 20px;
+//   }
+//   .Modal .Buttons {
+//     padding: 0px 15px;
+//   }
+// }
+// @media only screen and (max-width: 360px) {
+//   .Modal .Top {
+//     padding: 10px 60px 10px 10px;
+//   }
+//   .Modal .Block {
+//     padding: 40px 10px 20px 10px;
+//   }
+//   .Modal .Buttons {
+//     padding: 0px 5px;
+//   }
+// }

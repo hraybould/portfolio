@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { durationFormatter } from "helpers/durationFormatter";
 import {
   SiAtom,
@@ -47,6 +48,7 @@ import "swiper/scss/autoplay";
 import useMedia from "use-media";
 import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
 import { shuffle } from "lodash";
+import { Modal } from "components/Modal";
 
 interface SkillsProps {}
 
@@ -67,6 +69,7 @@ interface SkillProps {
   skill: SkillValue;
 }
 
+// TODO: ensure that teh duration is always at the bottom
 const Skill: React.FC<SkillProps> = ({ skill }) => {
   return (
     <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth SkillTitle">
@@ -138,6 +141,11 @@ interface SkillsSummaryProps {
 const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
   const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
   const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+  const closeModal = () => {
+    setModalOpen(false);
+  };
   return (
     <>
       <h3>All Skills</h3>
@@ -158,12 +166,15 @@ const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
         <div
           className="Btn Clickable Hoverable SeeAllSkills"
           onClick={() => {
-            console.log("clicked");
+            setModalOpen(true);
           }}
         >
           See All Skills
         </div>
       </div>
+      <Modal open={modalOpen} closeModal={closeModal} title={"All Skills"}>
+        Some Content
+      </Modal>
     </>
   );
 };
