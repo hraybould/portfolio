@@ -19,10 +19,13 @@
     //   1px solid $white90,
     //   1px solid $black80
     // );
+    width: calc(100% - 20px);
+    @include media-min-width($largerThanMobile) {
+      width: 450px;
+    }
 
     .Inner {
       position: relative;
-      width: 450px;
       border-radius: inherit;
       .Top {
         display: flex;
@@ -35,9 +38,14 @@
           1px solid $black80
         );
         @include media-colour-scheme(background-color, $white90, $black80);
-        // box-sizing: border-box;
         height: 60px;
-        padding: 10px 30px;
+        padding: 10px 15px;
+        @include media-min-width($largerThanMobile) {
+          padding: 10px 20px;
+        }
+        @include media-min-width($largerThanTablet) {
+          padding: 10px 30px;
+        }
         .Title {
           font-size: 2em;
           font-weight: 400;
@@ -49,9 +57,15 @@
         }
       }
       .Content {
-        padding: 20px 30px;
         max-height: calc(100vh - 240px);
         overflow-y: auto;
+        padding: 20px 20px;
+        @include media-min-width($largerThanMobile) {
+          padding: 25px 25px;
+        }
+        @include media-min-width($largerThanTablet) {
+          padding: 30px 30px;
+        }
       }
 
       .Bottom {
@@ -69,6 +83,14 @@
           align-items: center;
           @include media-colour-scheme(background-color, $white90, $black80);
           padding: 0px 30px;
+
+          padding: 0px 15px;
+          @include media-min-width($largerThanMobile) {
+            padding: 0px 20px;
+          }
+          @include media-min-width($largerThanTablet) {
+            padding: 0px 30px;
+          }
           justify-content: flex-end;
           .Btn {
             margin: 0px 0px 0px 10px;
@@ -80,13 +102,16 @@
 
     &.FullSize {
       max-height: initial;
-      width: calc(100vw - 60px);
-      height: calc(100vh - 60px);
+      width: calc(100vw - 20px);
+      height: calc(100vh - 20px);
+      @include media-min-width($largerThanMobile) {
+        width: calc(100vw - 60px);
+        height: calc(100vh - 60px);
+      }
 
       .Inner {
         width: 100%;
         .Content {
-          // box-sizing: border-box;
           max-height: none;
           height: calc(100vh - 180px);
         }
@@ -94,44 +119,3 @@
     }
   }
 }
-
-// TODO: convert this to house style
-// @media only screen and (max-width: 768px) {
-//   .ModalUnderlay .Modal {
-//     width: calc(100% - 20px);
-//   }
-//   .ModalUnderlay .Modal .Inner {
-//     width: 100%;
-//   }
-//   .Modal .Buttons {
-//     justify-content: center;
-//     padding: 0px 25px;
-//   }
-//   .Modal .Buttons .Btn {
-//     flex: 1;
-//     margin: 0px 5px;
-//     min-width: inherit;
-//   }
-// }
-// @media only screen and (max-width: 480px) {
-//   .Modal .Top {
-//     padding: 10px 60px 10px 20px;
-//   }
-//   .Modal .Block {
-//     padding: 40px 20px 20px 20px;
-//   }
-//   .Modal .Buttons {
-//     padding: 0px 15px;
-//   }
-// }
-// @media only screen and (max-width: 360px) {
-//   .Modal .Top {
-//     padding: 10px 60px 10px 10px;
-//   }
-//   .Modal .Block {
-//     padding: 40px 10px 20px 10px;
-//   }
-//   .Modal .Buttons {
-//     padding: 0px 5px;
-//   }
-// }

@@ -29,7 +29,7 @@ export const durationFormatter: DurationFormatterFunc = ({
     duration.years &&
     duration.years > 9
   ) {
-    return "10 + years";
+    return "10+ years";
   }
   // More than 5 years, only specify months
   if (

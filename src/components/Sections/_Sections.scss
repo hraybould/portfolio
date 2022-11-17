@@ -28,10 +28,16 @@
 
           .swiper-slide {
             padding: 2rem 0rem;
+            height: initial;
           }
         }
         .SkillTitle {
           text-align: center;
+          height: 100%;
+
+          :last-child {
+            margin-top: auto;
+          }
         }
         .SeeAllSkills {
           margin: 1px solid;

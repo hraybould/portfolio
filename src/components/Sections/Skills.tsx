@@ -114,11 +114,11 @@ const KeySkills: React.FC<KeySkillsProps> = ({ keySkills }) => {
         }}
         // Pagination Props - END
         // Loop Props - START
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
+        // autoplay={{
+        //   delay: 2500,
+        //   disableOnInteraction: false,
+        //   pauseOnMouseEnter: true,
+        // }}
         loop
         loopFillGroupWithBlank
         // Loop Props - END
