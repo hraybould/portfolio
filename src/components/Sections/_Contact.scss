@@ -1,0 +1,13 @@
+.ContactSection {
+  margin-top: 1rem;
+  .Link {
+    color: unset;
+  }
+  .ContactLink {
+    text-decoration: none;
+  }
+  .TextLink {
+    // text-decoration: underline;
+    user-select: text;
+  }
+}

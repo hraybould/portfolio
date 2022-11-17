@@ -1,3 +1,4 @@
+// Import Underlying Logic
 @import "./reset";
 @import "./constants";
 @import "./colours";
@@ -6,7 +7,13 @@
 @import "./global";
 @import "./overrides";
 
+// Import Component Styling
 @import "components/Header/Header";
 @import "components/Navigation/Navigation";
-@import "components/Sections/Sections";
 @import "components/Modal/Modal";
+//
+// Import Sections
+@import "components/Sections/Sections";
+@import "components/Sections/AboutMe";
+@import "components/Sections/Contact";
+@import "components/Sections/Skills";

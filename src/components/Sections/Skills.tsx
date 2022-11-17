@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { durationFormatter } from "helpers/durationFormatter";
 import {
   SiAtom,
@@ -53,14 +53,10 @@ import { Modal } from "components/Modal";
 interface SkillsProps {}
 
 export const Skills: React.FC<SkillsProps> = () => {
-  const skills = getSkillsArray(ALL_SKILLS, undefined, true);
-  const halfSkillsShuffled = shuffle(
-    skills.slice(0, Math.floor(skills.length / 2))
-  );
   return (
     <div className="SkillsSection">
-      <KeySkills keySkills={skills.filter((s) => s.keySkill)} />
-      <SkillsSummary skills={halfSkillsShuffled} />
+      <KeySkills />
+      <SkillsSummary />
     </div>
   );
 };
@@ -90,10 +86,8 @@ const Skill: React.FC<SkillProps> = ({ skill }) => {
   );
 };
 
-interface KeySkillsProps {
-  keySkills: SkillValue[];
-}
-const KeySkills: React.FC<KeySkillsProps> = ({ keySkills }) => {
+const KeySkills: React.FC = () => {
+  const keySkills = getSkillsArray(ALL_SKILLS, true, true);
   return (
     <>
       <h3>Key Skills</h3>
@@ -114,11 +108,11 @@ const KeySkills: React.FC<KeySkillsProps> = ({ keySkills }) => {
         }}
         // Pagination Props - END
         // Loop Props - START
-        // autoplay={{
-        //   delay: 2500,
-        //   disableOnInteraction: false,
-        //   pauseOnMouseEnter: true,
-        // }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
+        }}
         loop
         loopFillGroupWithBlank
         // Loop Props - END
@@ -135,17 +129,23 @@ const KeySkills: React.FC<KeySkillsProps> = ({ keySkills }) => {
   );
 };
 
-interface SkillsSummaryProps {
-  skills: SkillValue[];
-}
-const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
+const SkillsSummary: React.FC = () => {
+  // Memoised becuase useMedia causes shuffle to be called again
+  const halfSkillsShuffled = useMemo(() => {
+    const skills = getSkillsArray(ALL_SKILLS, undefined, true);
+    return shuffle(skills.slice(0, Math.floor(skills.length / 2)));
+  }, []);
+
+  // Media Queries
   const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
   const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
 
+  // State for Modal
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const closeModal = () => {
     setModalOpen(false);
   };
+
   return (
     <>
       <h3>All Skills</h3>
@@ -154,7 +154,7 @@ const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
           largerThanTablet ? "" : "MediumGap"
         } FlexWrap`}
       >
-        {skills.map((skill, skillIndex) => (
+        {halfSkillsShuffled.map((skill, skillIndex) => (
           <div
             className={largerThanMobile ? "XLargeText" : "LargeText"}
             title={buildSkillTitle(skill)}
@@ -172,8 +172,48 @@ const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
           See All Skills
         </div>
       </div>
-      <Modal open={modalOpen} closeModal={closeModal} title={"All Skills"}>
-        Some Content
+      <Modal
+        open={modalOpen}
+        closeModal={closeModal}
+        title={"All Skills"}
+        contentClassName="Content SkillsSection"
+      >
+        {Object.keys(ALL_SKILLS).map((skillGroup, groupIndex) => {
+          let skillsInGroup: SkillValue[] = [];
+          ALL_SKILLS[skillGroup].forEach(pushToResult(skillsInGroup));
+          return (
+            <div key={groupIndex}>
+              <h3>{skillGroup}</h3>
+              <Swiper
+                spaceBetween={20}
+                slidesPerView={3}
+                // Each module may need some props with it
+                modules={[Navigation, Pagination]}
+                // Navigation Props - START
+                navigation={true}
+                keyboard
+                // Navigation Props - END
+                // Pagination Props - START
+                pagination={{
+                  clickable: true,
+                  // dynamicBullets: true,
+                  // dynamicMainBullets: 3,
+                }}
+                // Pagination Props - END
+                // Loop Props - START
+                loop
+                loopFillGroupWithBlank
+                // Loop Props - END
+              >
+                {sortSkillsByTime(skillsInGroup).map((skill, skillIndex) => (
+                  <SwiperSlide key={skillIndex}>
+                    <Skill skill={skill} />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          );
+        })}
       </Modal>
     </>
   );
@@ -189,10 +229,21 @@ const SkillsSummary: React.FC<SkillsSummaryProps> = ({ skills }) => {
 //   return keySkills;
 // };
 
+/**
+ * Recursively find skills and related skills
+ *
+ * @param arrayToPushTo An array object to push the results to.
+ * **Note**: This object is an Array defined _outside_ of the loop callback,
+ * this mutates the arrary outside, this function needn't retrun anything.
+ * @param whichSkillsToGet Get skills based on `keySkill` value. Usage:
+ *  - All skills (undefined)
+ *  - Key Skills only (true)
+ *  - No key skills (false)
+ */
 const pushToResult =
   (
     arrayToPushTo: ReturnType<typeof getSkillsArray>,
-    whichSkillsToGet: boolean | undefined
+    whichSkillsToGet?: boolean
   ) =>
   (skill: SkillValue) => {
     if (whichSkillsToGet === undefined) {
@@ -207,32 +258,44 @@ const pushToResult =
     }
   };
 
+/**
+ *
+ * @param skillsArray An array to sort.
+ * **Note**: This is an "in-place" process according to the MDN Docs
+ * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+ * @returns The sorted array
+ */
+const sortSkillsByTime = (skillsArray: SkillValue[]) =>
+  skillsArray.sort((a, b) => {
+    // Another way:
+    // Could use date-fns to calculate the differnce instead of valueOf()
+    const aTime = a.end.valueOf() - a.start.valueOf();
+    const bTime = b.end.valueOf() - b.start.valueOf();
+    const aMinusB = aTime - bTime;
+    switch (true) {
+      case aMinusB < 0:
+        return 1;
+      case aMinusB > 0:
+        return -1;
+      case aMinusB === 0:
+      default:
+        return 0;
+    }
+  });
+
 const getSkillsArray = (
   allSkills: SkillObject,
   whichSkillsToGet: boolean | undefined = undefined,
   sortByTimeFrame: boolean = false
 ): SkillValue[] => {
-  let keySkills: ReturnType<typeof getSkillsArray> = [];
+  let skills: ReturnType<typeof getSkillsArray> = [];
   Object.keys(allSkills).forEach((skillGroup) => {
-    ALL_SKILLS[skillGroup].forEach(pushToResult(keySkills, whichSkillsToGet));
+    ALL_SKILLS[skillGroup].forEach(pushToResult(skills, whichSkillsToGet));
   });
   if (sortByTimeFrame) {
-    keySkills.sort((a, b) => {
-      const aTime = a.end.valueOf() - a.start.valueOf();
-      const bTime = b.end.valueOf() - b.start.valueOf();
-      const aMinusB = aTime - bTime;
-      switch (true) {
-        case aMinusB < 0:
-          return 1;
-        case aMinusB > 0:
-          return -1;
-        case aMinusB === 0:
-        default:
-          return 0;
-      }
-    });
+    sortSkillsByTime(skills);
   }
-  return keySkills;
+  return skills;
 };
 
 const buildSkillTitle = (skill: SkillValue): string => {

@@ -1,0 +1,13 @@
+.SkillsSection {
+  .SkillTitle {
+    text-align: center;
+    height: 100%;
+
+    :last-child {
+      margin-top: auto;
+    }
+  }
+  .SeeAllSkills {
+    margin: 1px solid;
+  }
+}
