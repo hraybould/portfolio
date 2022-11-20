@@ -69,7 +69,9 @@ interface SkillProps {
 const Skill: React.FC<SkillProps> = ({ skill }) => {
   return (
     <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth SkillTitle">
-      <div className="XXLargeText">{skill.icon}</div>
+      <div className="XXLargeText">
+        {skill.icon({ title: buildSkillTitle(skill) })}
+      </div>
       <div>
         <div className="LargeText">{skill.name}</div>
         {skill.subName && <div className="SmallText">({skill.subName})</div>}
@@ -160,7 +162,7 @@ const SkillsSummary: React.FC = () => {
             title={buildSkillTitle(skill)}
             key={skillIndex}
           >
-            {skill.icon}
+            {skill.icon({ title: buildSkillTitle(skill) })}
           </div>
         ))}
         <div
@@ -322,7 +324,7 @@ type SkillValue = {
   name: string;
   subName?: string;
   libraries?: SkillValue[];
-  icon: React.ReactNode;
+  icon: React.FC;
   start: Date;
   end: Date;
   // stillInterestedIn: "Yes" | "No" | "Actively working on"
@@ -339,41 +341,41 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "JavaScript",
       subName: "ECMAScript",
-      icon: <SiJavascript title="JavaScript (ECMAScript)" />,
+      icon: SiJavascript,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
       libraries: [
         {
           name: "React",
-          icon: <SiReact title={"React"} />,
+          icon: SiReact,
           start: STARTED_REACT,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "React-Redux",
-          icon: <SiRedux title={"React-Redux"} />,
+          icon: SiRedux,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "React-Router",
-          icon: <SiReactrouter title={"React-Router"} />,
+          icon: SiReactrouter,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
         },
         {
           name: "TypeScript",
-          icon: <SiTypescript title={"TypeScript"} />,
+          icon: SiTypescript,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
         },
         {
           name: "JQuery",
-          icon: <SiJquery title={"JQuery"} />,
+          icon: SiJquery,
           start: STARTED_CO2,
           end: FINISHED_ENCOMPASS_PROJECT,
         },
@@ -382,7 +384,7 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "HTML",
       subName: "HTML5",
-      icon: <SiHtml5 title="HTML (HTML5)" />,
+      icon: SiHtml5,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
@@ -390,7 +392,7 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "CSS",
       subName: "CSS3",
-      icon: <SiCss3 title="CSS (CSS3)" />,
+      icon: SiCss3,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
       keySkill: true,
@@ -398,7 +400,7 @@ const ALL_SKILLS: SkillObject = {
         {
           name: "SCSS",
           subName: "Dart Sass",
-          icon: <SiSass title="SCSS (Dart Sass)" />,
+          icon: SiSass,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
@@ -407,25 +409,25 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Python",
-      icon: <SiPython title={"Python"} />,
+      icon: SiPython,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
       libraries: [
         {
           name: "Flask",
-          icon: <SiFlask title={"Flask"} />,
+          icon: SiFlask,
           start: STARTED_CO2,
           end: STARTED_AVAMAE,
         },
         {
           name: "Jinja",
-          icon: <SiJinja title={"Jinja"} />,
+          icon: SiJinja,
           start: STARTED_CO2,
           end: STARTED_AVAMAE,
         },
         {
           name: "Plotly",
-          icon: <SiPlotly title={"Plotly"} />,
+          icon: SiPlotly,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
@@ -435,45 +437,45 @@ const ALL_SKILLS: SkillObject = {
   "Software & Other Libraries": [
     {
       name: "NodeRED",
-      icon: <SiNodered title={"NodeRED"} />,
+      icon: SiNodered,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
     {
       name: "NPM",
-      icon: <SiNpm title={"NPM"} />,
+      icon: SiNpm,
       start: STARTED_REACT,
       end: UNTIL_CURRENT,
     },
     {
       name: "Bootstrap",
-      icon: <SiBootstrap title={"Bootstrap"} />,
+      icon: SiBootstrap,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Git",
-      icon: <SiGit title={"Git"} />,
+      icon: SiGit,
       start: STARTED_MTC,
       end: UNTIL_CURRENT,
       keySkill: true,
     },
     {
       name: "RabbitMQ",
-      icon: <SiRabbitmq title={"RabbitMQ"} />,
+      icon: SiRabbitmq,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Mosquitto",
       subName: "MQTT",
-      icon: <SiEclipsemosquitto title="Mosquitto (MQTT)" />,
+      icon: SiEclipsemosquitto,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "Docker",
-      icon: <SiDocker title={"Docker"} />,
+      icon: SiDocker,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
@@ -481,25 +483,25 @@ const ALL_SKILLS: SkillObject = {
   Databases: [
     {
       name: "PostgreSQL",
-      icon: <SiPostgresql title={"PostgreSQL"} />,
+      icon: SiPostgresql,
       start: STARTED_CO2,
       end: STARTED_AVAMAE,
     },
     {
       name: "SQlite",
-      icon: <SiSqlite title={"SQlite"} />,
+      icon: SiSqlite,
       start: STARTED_CO2,
       end: UNTIL_CURRENT,
     },
     {
       name: "CouchBase",
-      icon: <SiCouchbase title={"CouchBase"} />,
+      icon: SiCouchbase,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
     {
       name: "MongoDB",
-      icon: <SiMongodb title={"MongoDB"} />,
+      icon: SiMongodb,
       start: STARTED_ENCOMPASS_PROJECT,
       end: STARTED_AVAMAE,
     },
@@ -507,32 +509,32 @@ const ALL_SKILLS: SkillObject = {
   "Operating Systems": [
     {
       name: "Linux",
-      icon: <SiLinux title={"Linux"} />,
+      icon: SiLinux,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
       keySkill: true,
       libraries: [
         {
           name: "Ubuntu",
-          icon: <SiUbuntu title={"Ubuntu"} />,
+          icon: SiUbuntu,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "Debian",
-          icon: <SiDebian title={"Debian"} />,
+          icon: SiDebian,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "Lubuntu",
-          icon: <SiLubuntu title={"Lubuntu"} />,
+          icon: SiLubuntu,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
         {
           name: "RaspberryPi",
-          icon: <SiRaspberrypi title={"RaspberryPi"} />,
+          icon: SiRaspberrypi,
           start: STARTED_MTC,
           end: STARTED_AVAMAE,
         },
@@ -540,14 +542,14 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Windows",
-      icon: <SiWindows title={"Windows"} />,
+      icon: SiWindows,
       start: new Date("2010-12-16"),
       end: UNTIL_CURRENT,
       keySkill: true,
     },
     {
       name: "MacOS",
-      icon: <SiMacos title={"MacOS"} />,
+      icon: SiMacos,
       start: STARTED_STORMFRONT_RETAIL,
       end: UNTIL_CURRENT,
     },
@@ -555,13 +557,13 @@ const ALL_SKILLS: SkillObject = {
   Editors: [
     {
       name: "Visual Studio Code",
-      icon: <SiVisualstudiocode title={"Visual Studio Code"} />,
+      icon: SiVisualstudiocode,
       start: STARTED_AVAMAE,
       end: UNTIL_CURRENT,
       libraries: [
         {
           name: "Prettier",
-          icon: <SiPrettier title={"Prettier"} />,
+          icon: SiPrettier,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
         },
@@ -569,13 +571,13 @@ const ALL_SKILLS: SkillObject = {
     },
     {
       name: "Atom",
-      icon: <SiAtom title={"Atom"} />,
+      icon: SiAtom,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
     },
     {
       name: "Notepad++",
-      icon: <SiNotepadplusplus title={"Notepad++"} />,
+      icon: SiNotepadplusplus,
       start: STARTED_MTC,
       end: UNTIL_CURRENT,
     },
