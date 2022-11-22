@@ -3,6 +3,8 @@ import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import useMedia from "use-media";
 import { Link } from "components/Link";
+import Popup from "reactjs-popup";
+import "reactjs-popup/dist/index.css";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
 const EMAIL_SUBJECT = "Hi";
@@ -38,14 +40,27 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
         <div className="TextLink DisplayFlex SmallGap">
           {EMAIL_ADDRESS}
-
-          {/* TODO: make a popover - popper.js? */}
-          <HiOutlineClipboardCopy
-            className="LargeText Clickable Hoverable"
-            onClick={() => {
-              navigator.clipboard.writeText(EMAIL_ADDRESS);
+          <Popup
+            trigger={
+              <span
+                className="LargeText Clickable Hoverable"
+                onClick={() => {
+                  navigator.clipboard.writeText(EMAIL_ADDRESS);
+                  console.log("Copied!");
+                }}
+              >
+                <HiOutlineClipboardCopy />
+              </span>
+            }
+            position="bottom center"
+            repositionOnResize
+            closeOnDocumentClick
+            contentStyle={{
+              width: "auto",
             }}
-          />
+          >
+            <span>Copied!</span>
+          </Popup>
         </div>
       </div>
       {/* GitHub */}

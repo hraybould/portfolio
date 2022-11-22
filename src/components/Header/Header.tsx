@@ -2,6 +2,7 @@ import { Navigation } from "components/Navigation";
 import mac from "assets/memoji/mac.png";
 import { headerId } from "./models";
 import React, { useEffect, useState } from "react";
+import { WeatherIcon } from "components/Weather";
 
 export const Header: React.FC = () => {
   // Determines if a user has scrolled from the top of the page
@@ -38,6 +39,7 @@ export const Header: React.FC = () => {
         }}
       />
       <Navigation />
+      <WeatherIcon />
     </header>
   );
 };
