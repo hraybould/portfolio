@@ -1,0 +1,6 @@
+.Link {
+  color: unset;
+  &:focus-visible {
+    outline: none;
+  }
+}

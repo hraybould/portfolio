@@ -3,6 +3,7 @@ import mac from "assets/memoji/mac.png";
 import { headerId } from "./models";
 import React, { useEffect, useState } from "react";
 import { WeatherIcon } from "components/Weather";
+import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Header: React.FC = () => {
   // Determines if a user has scrolled from the top of the page
@@ -24,6 +25,14 @@ export const Header: React.FC = () => {
 
   return (
     <header id={headerId}>
+      {/*
+      //  
+      // TODO: Show/Hide Hamburger Menu Icon on add state
+      // 
+      <div className="HamburgerMenuWrapper">
+        <GiHamburgerMenu size={25} className={"Icon"} />
+      </div>
+      */}
       <img
         className={`MeMoji MarginAuto ${hasScrolled ? "Clickable" : ""}`}
         src={mac}
@@ -34,11 +43,13 @@ export const Header: React.FC = () => {
           if (hasScrolled) {
             window.scrollTo({ top: 0 });
           } else {
-            console.debug("You clicked the image, but I won't do anything");
+            console.debug(
+              "You clicked the image, but I won't do anything until you've scrolled down some more!"
+            );
           }
         }}
       />
-      <Navigation />
+      <Navigation position={"Centred"} />
       <WeatherIcon />
     </header>
   );

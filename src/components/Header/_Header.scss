@@ -5,7 +5,7 @@ header {
   // Needed to override the z-index from Swiper
   z-index: 1;
   @include media-colour-scheme(
-    #{background-color},
+    background-color,
     $headingColour,
     $headingColourReverse
   );
@@ -14,6 +14,10 @@ header {
   @include transition(gap $transitionLong $transitionTiming);
   display: flex;
   align-items: center;
+
+  .HamburgerMenuWrapper {
+    width: 30px;
+  }
 
   .MeMoji {
     height: 100%;

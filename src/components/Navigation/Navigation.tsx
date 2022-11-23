@@ -2,9 +2,13 @@ import { headerId } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
 import React from "react";
 
-export const Navigation: React.FC = () => {
+interface NavigationProps {
+  position: "Centred" | "Hamburger";
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ position }) => {
   return (
-    <nav>
+    <nav className={position}>
       <ul>
         {ALL_SECTIONS.map(
           (section, index) =>

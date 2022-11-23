@@ -101,6 +101,9 @@ h4,
 .Clickable {
   cursor: pointer;
 }
+.CursorHelp {
+  cursor: help;
+}
 .Hoverable {
   @include hover-opacity;
 }
@@ -113,4 +116,9 @@ h4,
   padding: 0.25rem 0.5rem;
   border: 1px solid $white60;
   border-radius: $smallBorderRadius;
+}
+
+// Icon class for React-Select svg elements
+.Icon {
+  display: block;
 }

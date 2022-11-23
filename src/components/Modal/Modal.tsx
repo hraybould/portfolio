@@ -74,7 +74,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
               <div className="Top DisplayFlex JustifySpaceBetween">
                 <h2 className="Title">{title}</h2>
                 <IoCloseSharp
-                  className="Cross"
+                  className="Icon Cross"
                   size={25}
                   onClick={closeModal}
                 />

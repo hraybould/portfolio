@@ -26,7 +26,12 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
             <ClosingTag />
           </div>
           <div className="MediumText InfoText">
-            {durationFormatter({ start: DATE_OF_BIRTH, format: ["years"] })} old
+            {durationFormatter({
+              start: DATE_OF_BIRTH,
+              format: ["years"],
+              beSpecific: true,
+            })}{" "}
+            old
             <ClosingTag />
           </div>
           <div className="MediumText InfoText">

@@ -3,8 +3,12 @@ import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
 import useMedia from "use-media";
 import { Link } from "components/Link";
+import { useState, useEffect, useRef } from "react";
+import { PopupActions } from "reactjs-popup/dist/types";
+import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
+// Not importing style as it doesn't work well with Dark Mode
+// import "reactjs-popup/dist/index.css";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
 const EMAIL_SUBJECT = "Hi";
@@ -16,12 +20,37 @@ const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BOD
 interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
+  // Check if user prefers dark mode - for Stack Overflow flair
   const isDarkMode = useMedia("(prefers-color-scheme: dark)");
+
+  // ReactJS-Popup does not have fully working controlled state
+  // Automatically close the modal after it opens
+  const timeout = useRef<TimeoutRef>(null);
+  const popupRef = useRef<PopupActions | null>(null);
+  const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
+  useEffect(() => {
+    if (timeout.current) {
+      clearTimeout(timeout.current);
+    }
+    if (popUpOpen) {
+      // timeout.current = setTimeout(() => {
+      //   setPopUpOpen(false);
+      //   popupRef.current?.close();
+      // }, 2500);
+    }
+    // Cleanup on unmount
+    return () => {
+      if (timeout.current) {
+        clearTimeout(timeout.current);
+      }
+    };
+  }, [popUpOpen]);
+
   return (
     <div className="ContactSection DisplayFlex FlexColumn">
       {/* Email Shortcut */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
-        <div>Feel free to get in touch:</div>
+        <div>Get in touch with me:</div>
         <div className="Btn Clickable Hoverable ContactLink">
           <Link
             href={EMAIL_LINK_FULL}
@@ -35,29 +64,26 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* Email */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <AiOutlineMail className="LargeText" />
+          <AiOutlineMail className="LargeText Icon" />
           Email:
         </div>
         <div className="TextLink DisplayFlex SmallGap">
           {EMAIL_ADDRESS}
           <Popup
+            ref={popupRef}
+            onOpen={() => {
+              navigator.clipboard.writeText(EMAIL_ADDRESS);
+              console.debug("Copied!");
+              setPopUpOpen(true);
+            }}
             trigger={
-              <span
-                className="LargeText Clickable Hoverable"
-                onClick={() => {
-                  navigator.clipboard.writeText(EMAIL_ADDRESS);
-                  console.log("Copied!");
-                }}
-              >
-                <HiOutlineClipboardCopy />
+              <span className="LargeText Clickable Hoverable">
+                <HiOutlineClipboardCopy className={"Icon"} />
               </span>
             }
-            position="bottom center"
+            position={["bottom center", "top center"]}
             repositionOnResize
             closeOnDocumentClick
-            contentStyle={{
-              width: "auto",
-            }}
           >
             <span>Copied!</span>
           </Popup>
@@ -66,7 +92,7 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* GitHub */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsGithub className="LargeText" />
+          <BsGithub className="LargeText Icon" />
           GitHub:
         </div>
         <div>
@@ -76,7 +102,7 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* LinkedIn */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsLinkedin className="LargeText" />
+          <BsLinkedin className="LargeText Icon" />
           LinkedIn:
         </div>
         <div>
@@ -88,7 +114,7 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* Stack Overflow */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsStackOverflow className="LargeText" />
+          <BsStackOverflow className="LargeText Icon" />
           Stack Overflow:
         </div>
         <div>

@@ -132,15 +132,14 @@ const KeySkills: React.FC = () => {
 };
 
 const SkillsSummary: React.FC = () => {
+  // Media Queries
+  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
+  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
   // Memoised becuase useMedia causes shuffle to be called again
   const halfSkillsShuffled = useMemo(() => {
     const skills = getSkillsArray(ALL_SKILLS, undefined, true);
     return shuffle(skills.slice(0, Math.floor(skills.length / 2)));
   }, []);
-
-  // Media Queries
-  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
-  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
 
   // State for Modal
   const [modalOpen, setModalOpen] = useState<boolean>(false);
@@ -170,6 +169,7 @@ const SkillsSummary: React.FC = () => {
           onClick={() => {
             setModalOpen(true);
           }}
+          title={"Click to see more skills"}
         >
           See All Skills
         </div>

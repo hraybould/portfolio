@@ -17,3 +17,11 @@
     height: initial;
   }
 }
+
+// ReactJS-Popup
+.popup-content {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid;
+  border-radius: $smallBorderRadius;
+  @include media-colour-scheme(background-color, $white95, $black95);
+}
