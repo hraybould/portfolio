@@ -25,7 +25,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   actionButton,
   hideCancelButton,
   fullSize,
-  className,
+  className = "",
   contentClassName = "Content",
   customFooter,
   ignoreClickOutside = false,
@@ -48,7 +48,6 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   }, [open]);
   const ref = useOnClickOutside(closeModal, true);
   const nodeRef = useRef(null);
-  const classNames = className ? `Modal ${className}` : `Modal`;
 
   const portalContent = (
     <Transition
@@ -66,7 +65,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
           onClick={(e) => e.stopPropagation()}
         >
           <div
-            className={fullSize ? `${classNames} FullSize` : classNames}
+            className={`Modal ${className} ${fullSize ? "FullSize" : ""}`}
             ref={ignoreClickOutside ? undefined : ref}
           >
             <div className="Inner">
@@ -104,15 +103,13 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
                       {actionButton}
                     </>
                   ) : (
-                    <>
-                      <button
-                        type="button"
-                        className="Btn BtnCancel"
-                        onClick={closeModal}
-                      >
-                        Close
-                      </button>
-                    </>
+                    <button
+                      type="button"
+                      className="Btn BtnCancel"
+                      onClick={closeModal}
+                    >
+                      Close
+                    </button>
                   )}
                 </div>
               )}

@@ -4,6 +4,7 @@
 @import "./colours";
 @import "./mixins";
 @import "./functions";
+@import "./animations";
 @import "./global";
 @import "./overrides";
 
@@ -12,6 +13,7 @@
 @import "components/Navigation/Navigation";
 @import "components/Modal/Modal";
 @import "components/Link/Link";
+@import "components/WeatherIcon/WeatherIcon";
 //
 // Import Sections
 @import "components/Sections/Sections";

@@ -2,13 +2,12 @@ import { TABLET_BREAKPOINT } from "appHelpers";
 import { Link } from "components/Link";
 import { isAfter } from "date-fns";
 import { useState, useEffect, useRef } from "react";
-import Popup from "reactjs-popup";
 import { TimeoutRef } from "topLevelModels";
 import useMedia from "use-media";
 import { SuccessResponse, WEATHER_CODES } from "./model";
 import { WeatherApi } from "./WeatherApi";
-
-// TODO: Add link to https://open-meteo.com/
+import Popup from "reactjs-popup";
+import { PopupActions } from "reactjs-popup/dist/types";
 
 export const WeatherIcon: React.FC = () => {
   // Media Queries
@@ -24,6 +23,18 @@ export const WeatherIcon: React.FC = () => {
     temperature: 0,
     weathercode: 0,
   });
+  // PopupRef
+  const popupRef = useRef<PopupActions | null>(null);
+  useEffect(() => {
+    const closeRef = () => {
+      popupRef.current?.close();
+    };
+    document.addEventListener("scroll", closeRef);
+    // Cleanup listener on unmount
+    return () => {
+      document.removeEventListener("scroll", closeRef);
+    };
+  }, []);
 
   // Refresh the data on a timeout, every 100s at the moment
   useEffect(() => {
@@ -63,12 +74,15 @@ export const WeatherIcon: React.FC = () => {
     const iconString = weatherData.isNight ? "nightIcon" : "dayIcon";
     return (
       <Popup
+        ref={popupRef}
         trigger={
-          <div className="DisplayFlex SmallGap CursorHelp">
+          <div
+            className="WeatherDataWrapper DisplayFlex SmallGap CursorHelp"
+            onClick={popupRef.current?.toggle}
+          >
             {largerThanTablet && <span>Weather near me:</span>}
             {weatherCode[iconString]({
               size: 30,
-              className: "WeatherData",
             })}
           </div>
         }
@@ -79,7 +93,7 @@ export const WeatherIcon: React.FC = () => {
       >
         <div>The weather near me is currently: {weatherCode.title}</div>
         <div className="SmallText">
-          Meteorological data provided:{" "}
+          Meteorological data provided by:{" "}
           <Link href="https://open-meteo.com/">Open Meteo</Link>
         </div>
       </Popup>

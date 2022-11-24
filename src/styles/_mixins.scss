@@ -20,10 +20,17 @@
  * }
 **/
 @mixin transition($transitionProperties) {
-  -webkit-transition: $transitionProperties;
-  -moz-transition: $transitionProperties;
   -o-transition: $transitionProperties;
+  -moz-transition: $transitionProperties;
+  -webkit-transition: $transitionProperties;
   transition: $transitionProperties;
+}
+
+@mixin animation($animationProperties) {
+  -o-animation: $animationProperties;
+  -moz-animation: $animationProperties;
+  -webkit-animation: $animationProperties;
+  animation: $animationProperties;
 }
 
 // Add in hover functionality

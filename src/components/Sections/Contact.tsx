@@ -4,9 +4,9 @@ import { HiOutlineClipboardCopy } from "react-icons/hi";
 import useMedia from "use-media";
 import { Link } from "components/Link";
 import { useState, useEffect, useRef } from "react";
-import { PopupActions } from "reactjs-popup/dist/types";
 import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
+import { PopupActions } from "reactjs-popup/dist/types";
 // Not importing style as it doesn't work well with Dark Mode
 // import "reactjs-popup/dist/index.css";
 
@@ -29,19 +29,20 @@ export const Contact: React.FC<ContactProps> = () => {
   const popupRef = useRef<PopupActions | null>(null);
   const [popUpOpen, setPopUpOpen] = useState<boolean>(false);
   useEffect(() => {
-    if (timeout.current) {
-      clearTimeout(timeout.current);
+    const currentTimeout = timeout.current;
+    if (currentTimeout) {
+      clearTimeout(currentTimeout);
     }
     if (popUpOpen) {
-      // timeout.current = setTimeout(() => {
-      //   setPopUpOpen(false);
-      //   popupRef.current?.close();
-      // }, 2500);
+      timeout.current = setTimeout(() => {
+        setPopUpOpen(false);
+        popupRef.current?.close();
+      }, 2500);
     }
     // Cleanup on unmount
     return () => {
-      if (timeout.current) {
-        clearTimeout(timeout.current);
+      if (currentTimeout) {
+        clearTimeout(currentTimeout);
       }
     };
   }, [popUpOpen]);
@@ -51,7 +52,7 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* Email Shortcut */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div>Get in touch with me:</div>
-        <div className="Btn Clickable Hoverable ContactLink">
+        <div className="Btn ContactLink">
           <Link
             href={EMAIL_LINK_FULL}
             style={{ textDecoration: "none" }}
@@ -77,7 +78,7 @@ export const Contact: React.FC<ContactProps> = () => {
               setPopUpOpen(true);
             }}
             trigger={
-              <span className="LargeText Clickable Hoverable">
+              <span className="Btn NoBorder LargeText">
                 <HiOutlineClipboardCopy className={"Icon"} />
               </span>
             }

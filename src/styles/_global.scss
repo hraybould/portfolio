@@ -41,9 +41,6 @@ body {
   &.JustifySpaceAround {
     justify-content: space-around;
   }
-  .Flex {
-    flex: 1 1 50%;
-  }
 }
 
 .FullWidth {
@@ -101,21 +98,26 @@ h4,
 .Clickable {
   cursor: pointer;
 }
-.CursorHelp {
-  cursor: help;
-}
-.Hoverable {
-  @include hover-opacity;
-}
+// .Hoverable {
+//   @include hover-opacity;
+// }
 
 .MarginAuto {
   margin: auto;
 }
 
 .Btn {
-  padding: 0.25rem 0.5rem;
-  border: 1px solid $white60;
-  border-radius: $smallBorderRadius;
+  &:not(.NoPadding) {
+    padding: 0.25rem 0.5rem;
+  }
+  &:not(.NoBorder) {
+    border: 1px solid $white60;
+    border-radius: $smallBorderRadius;
+  }
+  @include media-colour-scheme(color, $textColour, $white100);
+  @include hover-opacity {
+    cursor: pointer;
+  }
 }
 
 // Icon class for React-Select svg elements

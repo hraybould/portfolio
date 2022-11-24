@@ -65,7 +65,6 @@ interface SkillProps {
   skill: SkillValue;
 }
 
-// TODO: ensure that teh duration is always at the bottom
 const Skill: React.FC<SkillProps> = ({ skill }) => {
   return (
     <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth SkillTitle">
@@ -151,9 +150,9 @@ const SkillsSummary: React.FC = () => {
     <>
       <h3>All Skills</h3>
       <div
-        className={`DisplayFlex ${
+        className={`DisplayFlex FlexWrap ${
           largerThanTablet ? "" : "MediumGap"
-        } FlexWrap`}
+        }`}
       >
         {halfSkillsShuffled.map((skill, skillIndex) => (
           <div
@@ -165,7 +164,7 @@ const SkillsSummary: React.FC = () => {
           </div>
         ))}
         <div
-          className="Btn Clickable Hoverable SeeAllSkills"
+          className="Btn"
           onClick={() => {
             setModalOpen(true);
           }}

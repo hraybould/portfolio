@@ -24,4 +24,5 @@
   border: 1px solid;
   border-radius: $smallBorderRadius;
   @include media-colour-scheme(background-color, $white95, $black95);
+  @include animation(anvil $transitionShort $transitionBezier forwards);
 }

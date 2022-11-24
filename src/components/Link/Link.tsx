@@ -12,15 +12,18 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   baseClass = "Link",
   hoverable = true,
   target = "_blank",
-  additionalClassNames,
+  additionalClassNames = "",
   children,
   ...anchorProps
 }) => {
-  const classes = `${baseClass} ${hoverable ? "Hoverable" : ""} ${
-    additionalClassNames ? additionalClassNames : ""
-  }`;
   return (
-    <a className={classes} target={target} {...anchorProps}>
+    <a
+      className={`${baseClass} ${
+        hoverable ? "Btn NoPadding NoBorder" : ""
+      } ${additionalClassNames}`}
+      target={target}
+      {...anchorProps}
+    >
       {children}
     </a>
   );

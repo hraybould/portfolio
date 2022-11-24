@@ -2,7 +2,7 @@ import { Navigation } from "components/Navigation";
 import mac from "assets/memoji/mac.png";
 import { headerId } from "./models";
 import React, { useEffect, useState } from "react";
-import { WeatherIcon } from "components/Weather";
+import { WeatherIcon } from "components/WeatherIcon";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 export const Header: React.FC = () => {
