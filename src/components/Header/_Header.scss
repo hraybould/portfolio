@@ -13,11 +13,8 @@ header {
   @include media-colour-scheme(gap, 0.5rem, 1rem);
   @include transition(gap $transitionLong $transitionTiming);
   display: flex;
+  justify-content: space-between;
   align-items: center;
-
-  .HamburgerMenuWrapper {
-    width: 30px;
-  }
 
   .MeMoji {
     height: 100%;

@@ -1,34 +1,41 @@
 import { headerId } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
-import React from "react";
+import React, { useState } from "react";
+import { GiHamburgerMenu } from "react-icons/gi";
+interface NavigationProps {}
 
-interface NavigationProps {
-  position: "Centred" | "Hamburger";
-}
+export const Navigation: React.FC<NavigationProps> = () => {
+  const [navVisible, setNavVisible] = useState<boolean>(true);
 
-export const Navigation: React.FC<NavigationProps> = ({ position }) => {
   return (
-    <nav className={position}>
-      <ul>
-        {ALL_SECTIONS.map(
-          (section, index) =>
-            section.sectionVisible && (
-              <React.Fragment key={section.id}>
-                {/* Add Spacer if index greater than 0 */}
-                {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
-                <li>
-                  <span
-                    className="NavLink"
-                    onClick={scrollIntoView(section.id)}
-                  >
-                    {section.titleText}
-                  </span>
-                </li>
-              </React.Fragment>
-            )
-        )}
-      </ul>
-    </nav>
+    <>
+      <div className="HamburgerMenuWrapper">
+        <GiHamburgerMenu size={25} className={"Icon"} />
+      </div>
+      {navVisible && (
+        <nav>
+          <ul>
+            {ALL_SECTIONS.map(
+              (section, index) =>
+                section.sectionVisible && (
+                  <React.Fragment key={section.id}>
+                    {/* Add Spacer if index greater than 0 */}
+                    {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
+                    <li>
+                      <span
+                        className="NavLink"
+                        onClick={scrollIntoView(section.id)}
+                      >
+                        {section.titleText}
+                      </span>
+                    </li>
+                  </React.Fragment>
+                )
+            )}
+          </ul>
+        </nav>
+      )}
+    </>
   );
 };
 

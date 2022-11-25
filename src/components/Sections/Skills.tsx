@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { durationFormatter } from "helpers/durationFormatter";
 import {
   SiAtom,
@@ -42,8 +42,8 @@ import {
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/scss";
-import "swiper/scss/pagination";
 import "swiper/scss/navigation";
+import "swiper/scss/pagination";
 import "swiper/scss/autoplay";
 import useMedia from "use-media";
 import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
@@ -98,7 +98,7 @@ const KeySkills: React.FC = () => {
         // Each module may need some props with it
         modules={[Autoplay, Navigation, Pagination]}
         // Navigation Props - START
-        navigation={true}
+        navigation
         keyboard
         // Navigation Props - END
         // Pagination Props - START

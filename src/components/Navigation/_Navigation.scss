@@ -1,18 +1,18 @@
+.HamburgerMenuWrapper {
+  width: 30px;
+  order: -1;
+  @include media-min-width($largerThanTablet) {
+    display: none;
+    // order: unset;
+  }
+}
+
 nav {
   flex: 1 1 auto;
-  &.Centred {
-    display: none;
-    @include media-min-width($largerThanTablet) {
-      display: block;
-    }
-  }
-  &.Hamburger {
+  display: none;
+  @include media-min-width($largerThanTablet) {
     display: block;
-    @include media-min-width($largerThanTablet) {
-      display: none;
-    }
   }
-
   ul {
     display: flex;
     gap: 1rem;
@@ -46,8 +46,10 @@ nav {
           // opacity: 0;
           transform: scale(0);
           transform-origin: center;
-          @include transition(opacity $transitionShort $transitionTiming);
-          @include transition(transform $transitionShort $transitionTiming);
+          @include transition(
+            #{opacity $transitionShort $transitionTiming,
+            transform $transitionShort $transitionTiming}
+          );
         }
         // Underline effect on hover
         @include hover-opacity {

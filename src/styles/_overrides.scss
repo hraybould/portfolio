@@ -16,6 +16,26 @@
     padding: 2rem 0rem;
     height: initial;
   }
+  .swiper-button-prev:after,
+  .swiper-button-next:after {
+    font-family: unset;
+    font-size: 2rem;
+    @include media-colour-scheme(color, $textColour, $white100);
+  }
+  .swiper-button-prev {
+    left: 0px;
+    z-index: auto;
+    &:after {
+      content: "\2329";
+    }
+  }
+  .swiper-button-next {
+    right: 0px;
+    z-index: auto;
+    &:after {
+      content: "\232A";
+    }
+  }
 }
 
 // ReactJS-Popup
