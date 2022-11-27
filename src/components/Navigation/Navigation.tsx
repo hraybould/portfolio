@@ -1,57 +1,85 @@
-import { headerId } from "components/Header/models";
+import { TABLET_BREAKPOINT } from "appHelpers";
+import { NAVBAR_HEADER_ID } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
-import React, { useState } from "react";
+import { useOnClickOutside } from "hooks";
+import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import useMedia from "use-media";
 interface NavigationProps {}
 
 export const Navigation: React.FC<NavigationProps> = () => {
-  const [navVisible, setNavVisible] = useState<boolean>(true);
+  const [navVisible, setNavVisible] = useState<boolean>(false);
+  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  const hideNavbar = () => setNavVisible(false);
+  const ref = useOnClickOutside(hideNavbar, true);
+
+  useEffect(() => {
+    setNavVisible(!!largerThanTablet);
+    if (!largerThanTablet) {
+      document.addEventListener("scroll", hideNavbar);
+    } else {
+      document.removeEventListener("scroll", hideNavbar);
+    }
+    // Cleanup listener on unmount
+    return () => {
+      document.removeEventListener("scroll", hideNavbar);
+    };
+  }, [largerThanTablet]);
 
   return (
     <>
       <div className="HamburgerMenuWrapper">
-        <GiHamburgerMenu size={25} className={"Icon"} />
+        <GiHamburgerMenu
+          size={25}
+          className={"Icon Btn NoPadding NoBorder"}
+          onClick={() => {
+            setNavVisible((p) => !p);
+          }}
+        />
       </div>
-      {navVisible && (
-        <nav>
-          <ul>
-            {ALL_SECTIONS.map(
-              (section, index) =>
-                section.sectionVisible && (
-                  <React.Fragment key={section.id}>
-                    {/* Add Spacer if index greater than 0 */}
-                    {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
-                    <li>
-                      <span
-                        className="NavLink"
-                        onClick={scrollIntoView(section.id)}
-                      >
-                        {section.titleText}
-                      </span>
-                    </li>
-                  </React.Fragment>
-                )
-            )}
-          </ul>
-        </nav>
-      )}
+      <nav ref={ref} className={navVisible ? "NavVisible" : undefined}>
+        <ul>
+          {ALL_SECTIONS.map(
+            (section, index) =>
+              section.sectionVisible && (
+                <React.Fragment key={section.id}>
+                  {/* Add Spacer if index greater than 0 */}
+                  {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
+                  <li>
+                    <span
+                      className="NavLink"
+                      onClick={scrollIntoView(
+                        section.id
+                        // , hideNavbar
+                      )}
+                    >
+                      {section.titleText}
+                    </span>
+                  </li>
+                </React.Fragment>
+              )
+          )}
+        </ul>
+      </nav>
     </>
   );
 };
 
-const scrollIntoView = (section: typeof ALL_SECTIONS[number]["id"]) => () => {
-  // Find Section element
-  const sectionElement = document.getElementById(section);
-  const top = sectionElement ? sectionElement.getBoundingClientRect().top : 0;
-  // Find header element
-  const headerElement = document.getElementById(headerId);
-  const headerHeight = headerElement
-    ? headerElement.getBoundingClientRect().height
-    : 0;
-  // Scroll to section
-  window.scrollBy({
-    top: top - headerHeight,
-  });
-  if (sectionElement) {
-  }
-};
+const scrollIntoView =
+  (section: typeof ALL_SECTIONS[number]["id"], callback?: VoidFunction) =>
+  () => {
+    // Find Section element
+    const sectionElement = document.getElementById(section);
+    const top = sectionElement ? sectionElement.getBoundingClientRect().top : 0;
+    // Find header element
+    const headerElement = document.getElementById(NAVBAR_HEADER_ID);
+    const headerHeight = headerElement
+      ? headerElement.getBoundingClientRect().height
+      : 0;
+    // Scroll to section
+    window.scrollBy({
+      top: top - headerHeight,
+    });
+    // If a callback exists,
+    callback && callback();
+  };

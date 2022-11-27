@@ -1,13 +1,14 @@
 import { Navigation } from "components/Navigation";
 import mac from "assets/memoji/mac.png";
-import { headerId } from "./models";
+import { NAVBAR_HEADER_ID } from "./models";
 import { useEffect, useState } from "react";
 import { WeatherIcon } from "components/WeatherIcon";
 
 export const Header: React.FC = () => {
   // Determines if a user has scrolled from the top of the page
   // A user may click the Image to scroll to the top
-  // This is done by adding the Clickable class
+  // This is done by adding the following classes:
+  // Clickable
   const [hasScrolled, setHasScrolled] = useState<boolean>(false);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ export const Header: React.FC = () => {
   }, []);
 
   return (
-    <header id={headerId}>
+    <header id={NAVBAR_HEADER_ID}>
       <img
         className={`MeMoji ${hasScrolled ? "Clickable" : ""}`}
         src={mac}

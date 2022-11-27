@@ -2,36 +2,36 @@
 // z-index values
 .swiper {
   z-index: auto;
-  .swiper-wrapper,
-  .swiper-pagination {
-    z-index: auto;
-  }
-}
-.swiper {
   width: 100%;
   height: 100%;
   margin-bottom: 2rem;
 
+  .swiper-wrapper,
+  .swiper-pagination {
+    z-index: auto;
+  }
   .swiper-slide {
     padding: 2rem 0rem;
     height: initial;
   }
-  .swiper-button-prev:after,
-  .swiper-button-next:after {
-    font-family: unset;
-    font-size: 2rem;
-    @include media-colour-scheme(color, $textColour, $white100);
+  .swiper-button-prev,
+  .swiper-button-next {
+    z-index: auto;
+    @include hover-opacity;
+    &:after {
+      font-family: unset;
+      font-size: 2rem;
+      @include media-colour-scheme(color, $textColour, $white100);
+    }
   }
   .swiper-button-prev {
     left: 0px;
-    z-index: auto;
     &:after {
       content: "\2329";
     }
   }
   .swiper-button-next {
     right: 0px;
-    z-index: auto;
     &:after {
       content: "\232A";
     }

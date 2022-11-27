@@ -2,6 +2,10 @@ header {
   position: sticky;
   top: 0;
   padding: 0.5rem 1rem;
+  height: $navbarHeight;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   // Needed to override the z-index from Swiper
   z-index: 1;
   @include media-colour-scheme(
@@ -9,21 +13,24 @@ header {
     $headingColour,
     $headingColourReverse
   );
-  height: $navbarHeight;
   @include media-colour-scheme(gap, 0.5rem, 1rem);
   @include transition(gap $transitionLong $transitionTiming);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 
   .MeMoji {
     height: 100%;
     background-color: $headingColour;
-    @include transition(border-radius $transitionLong $transitionTiming);
+    @include transition(
+      #{border-radius $transitionLong $transitionTiming,
+      opacity $transitionShort $transitionTiming}
+    );
     @include media-colour-scheme(
       border-radius,
       $smallBorderRadius,
       $circleBorderRadius
     );
+    &.Clickable {
+      @include hover-opacity(false);
+      cursor: pointer;
+    }
   }
 }

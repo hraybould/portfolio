@@ -37,18 +37,11 @@ import {
   SiVisualstudiocode,
   SiWindows,
 } from "react-icons/si";
-// Swiper is split into many separate imports
-// TODO: consider refactor
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper";
-import "swiper/scss";
-import "swiper/scss/navigation";
-import "swiper/scss/pagination";
-import "swiper/scss/autoplay";
 import useMedia from "use-media";
 import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
 import { shuffle } from "lodash";
 import { Modal } from "components/Modal";
+import { SwiperCarousel, SwiperCarouselSlide } from "components/SwiperCarousel";
 
 interface SkillsProps {}
 
@@ -63,19 +56,22 @@ export const Skills: React.FC<SkillsProps> = () => {
 
 interface SkillProps {
   skill: SkillValue;
+  smallerFontSizes?: boolean;
 }
 
-const Skill: React.FC<SkillProps> = ({ skill }) => {
+const Skill: React.FC<SkillProps> = ({ skill, smallerFontSizes }) => {
   return (
     <div className="DisplayFlex FlexColumn SmallGap JustifySpaceBetween FullWidth SkillTitle">
-      <div className="XXLargeText">
+      <div className={smallerFontSizes ? "XLargeText" : "XXLargeText"}>
         {skill.icon({ title: buildSkillTitle(skill) })}
       </div>
       <div>
-        <div className="LargeText">{skill.name}</div>
+        <div className={smallerFontSizes ? "MediumText" : "LargeText"}>
+          {skill.name}
+        </div>
         {skill.subName && <div className="SmallText">({skill.subName})</div>}
       </div>
-      <div className="MediumText">
+      <div className={smallerFontSizes ? undefined : "MediumText"}>
         {durationFormatter({
           start: skill.start,
           end: skill.end,
@@ -92,40 +88,13 @@ const KeySkills: React.FC = () => {
   return (
     <>
       <h3>Key Skills</h3>
-      <Swiper
-        spaceBetween={50}
-        slidesPerView={3}
-        // Each module may need some props with it
-        modules={[Autoplay, Navigation, Pagination]}
-        // Navigation Props - START
-        navigation
-        keyboard
-        // Navigation Props - END
-        // Pagination Props - START
-        pagination={{
-          clickable: true,
-          dynamicBullets: true,
-          // dynamicMainBullets: 3,
-        }}
-        // Pagination Props - END
-        // Loop Props - START
-        autoplay={{
-          delay: 2500,
-          disableOnInteraction: false,
-          pauseOnMouseEnter: true,
-        }}
-        loop
-        loopFillGroupWithBlank
-        // Loop Props - END
-        // onSlideChange={() => console.log("slide change")}
-        // onSwiper={(swiper) => console.log(swiper)}
-      >
+      <SwiperCarousel>
         {keySkills.map((keySkill, keySkillIndex) => (
-          <SwiperSlide key={keySkillIndex}>
+          <SwiperCarouselSlide key={keySkillIndex}>
             <Skill skill={keySkill} />
-          </SwiperSlide>
+          </SwiperCarouselSlide>
         ))}
-      </Swiper>
+      </SwiperCarousel>
     </>
   );
 };
@@ -185,33 +154,13 @@ const SkillsSummary: React.FC = () => {
           return (
             <div key={groupIndex}>
               <h3>{skillGroup}</h3>
-              <Swiper
-                spaceBetween={20}
-                slidesPerView={3}
-                // Each module may need some props with it
-                modules={[Navigation, Pagination]}
-                // Navigation Props - START
-                navigation={true}
-                keyboard
-                // Navigation Props - END
-                // Pagination Props - START
-                pagination={{
-                  clickable: true,
-                  // dynamicBullets: true,
-                  // dynamicMainBullets: 3,
-                }}
-                // Pagination Props - END
-                // Loop Props - START
-                loop
-                loopFillGroupWithBlank
-                // Loop Props - END
-              >
+              <SwiperCarousel spaceBetween={20} pagination autoplay={false}>
                 {sortSkillsByTime(skillsInGroup).map((skill, skillIndex) => (
-                  <SwiperSlide key={skillIndex}>
-                    <Skill skill={skill} />
-                  </SwiperSlide>
+                  <SwiperCarouselSlide key={skillIndex}>
+                    <Skill skill={skill} smallerFontSizes />
+                  </SwiperCarouselSlide>
                 ))}
-              </Swiper>
+              </SwiperCarousel>
             </div>
           );
         })}
@@ -309,7 +258,7 @@ const buildSkillTitle = (skill: SkillValue): string => {
 // List of Skills and Experience
 const STARTED_STORMFRONT_RETAIL = new Date("2016-11-01");
 const STARTED_MTC = new Date("2017-09-23");
-const STARTED_CO2 = new Date("2018-01-15");
+const STARTED_QUORUM = new Date("2018-01-15");
 const STARTED_ENCOMPASS_PROJECT = new Date("2018-03-01");
 const FINISHED_ENCOMPASS_PROJECT = new Date("2020-03-01");
 const STARTED_REACT = new Date("2021-01-17");
@@ -331,17 +280,18 @@ type SkillValue = {
 };
 type SkillObject = Record<string, SkillValue[]>;
 
-// TODO: refine start and end dates
-// Make full list into Modal component with Swipers
-// filterable by time/proficiency/currently-interested
 // TODO: link to Pluralsight skills proficiencies
+
+/**
+ * All skills with an estimated duration
+ */
 const ALL_SKILLS: SkillObject = {
   Languages: [
     {
       name: "JavaScript",
       subName: "ECMAScript",
       icon: SiJavascript,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
       keySkill: true,
       libraries: [
@@ -353,30 +303,11 @@ const ALL_SKILLS: SkillObject = {
           keySkill: true,
         },
         {
-          name: "React-Redux",
-          icon: SiRedux,
-          start: STARTED_AVAMAE,
-          end: UNTIL_CURRENT,
-          keySkill: true,
-        },
-        {
-          name: "React-Router",
-          icon: SiReactrouter,
-          start: STARTED_AVAMAE,
-          end: UNTIL_CURRENT,
-        },
-        {
           name: "TypeScript",
           icon: SiTypescript,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
-        },
-        {
-          name: "JQuery",
-          icon: SiJquery,
-          start: STARTED_CO2,
-          end: FINISHED_ENCOMPASS_PROJECT,
         },
       ],
     },
@@ -384,7 +315,7 @@ const ALL_SKILLS: SkillObject = {
       name: "HTML",
       subName: "HTML5",
       icon: SiHtml5,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
       keySkill: true,
     },
@@ -392,7 +323,7 @@ const ALL_SKILLS: SkillObject = {
       name: "CSS",
       subName: "CSS3",
       icon: SiCss3,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
       keySkill: true,
       libraries: [
@@ -411,34 +342,28 @@ const ALL_SKILLS: SkillObject = {
       icon: SiPython,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
-      libraries: [
-        {
-          name: "Flask",
-          icon: SiFlask,
-          start: STARTED_CO2,
-          end: STARTED_AVAMAE,
-        },
-        {
-          name: "Jinja",
-          icon: SiJinja,
-          start: STARTED_CO2,
-          end: STARTED_AVAMAE,
-        },
-        {
-          name: "Plotly",
-          icon: SiPlotly,
-          start: STARTED_MTC,
-          end: STARTED_AVAMAE,
-        },
-      ],
     },
   ],
   "Software & Other Libraries": [
+    // JS Related
     {
-      name: "NodeRED",
-      icon: SiNodered,
-      start: STARTED_ENCOMPASS_PROJECT,
-      end: STARTED_AVAMAE,
+      name: "React-Redux",
+      icon: SiRedux,
+      start: STARTED_AVAMAE,
+      end: UNTIL_CURRENT,
+      keySkill: true,
+    },
+    {
+      name: "React-Router",
+      icon: SiReactrouter,
+      start: STARTED_AVAMAE,
+      end: UNTIL_CURRENT,
+    },
+    {
+      name: "JQuery",
+      icon: SiJquery,
+      start: STARTED_QUORUM,
+      end: FINISHED_ENCOMPASS_PROJECT,
     },
     {
       name: "NPM",
@@ -447,9 +372,39 @@ const ALL_SKILLS: SkillObject = {
       end: UNTIL_CURRENT,
     },
     {
+      name: "NodeRED",
+      subName: "Low-code Platform",
+      icon: SiNodered,
+      start: STARTED_ENCOMPASS_PROJECT,
+      end: STARTED_AVAMAE,
+    },
+    // Python Related
+    {
+      name: "Flask",
+      subName: "Python",
+      icon: SiFlask,
+      start: STARTED_QUORUM,
+      end: STARTED_AVAMAE,
+    },
+    {
+      name: "Jinja",
+      subName: "Python",
+      icon: SiJinja,
+      start: STARTED_QUORUM,
+      end: STARTED_AVAMAE,
+    },
+    {
+      name: "Plotly",
+      subName: "Python",
+      icon: SiPlotly,
+      start: STARTED_MTC,
+      end: STARTED_AVAMAE,
+    },
+    // Other
+    {
       name: "Bootstrap",
       icon: SiBootstrap,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: STARTED_AVAMAE,
     },
     {
@@ -462,14 +417,14 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "RabbitMQ",
       icon: SiRabbitmq,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: STARTED_AVAMAE,
     },
     {
       name: "Mosquitto",
       subName: "MQTT",
       icon: SiEclipsemosquitto,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: STARTED_AVAMAE,
     },
     {
@@ -483,13 +438,13 @@ const ALL_SKILLS: SkillObject = {
     {
       name: "PostgreSQL",
       icon: SiPostgresql,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: STARTED_AVAMAE,
     },
     {
       name: "SQlite",
       icon: SiSqlite,
-      start: STARTED_CO2,
+      start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
     },
     {

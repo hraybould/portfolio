@@ -10,12 +10,37 @@
 nav {
   flex: 1 1 auto;
   display: none;
+  position: absolute;
+  top: $navbarHeight;
+  left: 0rem;
+  padding: 0 1rem 1rem 1rem;
+  width: 100%;
+  @include media-colour-scheme(
+    background-color,
+    $headingColour,
+    $headingColourReverse
+  );
   @include media-min-width($largerThanTablet) {
+    position: relative;
+    top: unset;
+    left: unset;
+    padding: unset;
+    width: unset;
+    background-color: unset;
+  }
+  &.NavVisible {
     display: block;
   }
+
   ul {
     display: flex;
+    flex-direction: column;
     gap: 1rem;
+    // Styling for larger than tablet
+    @include media-min-width($largerThanTablet) {
+      position: relative;
+      flex-direction: row;
+    }
 
     .NavSpacer {
       @include media-colour-scheme(color, $black100, $white100);
@@ -27,7 +52,10 @@ nav {
 
     li {
       position: relative;
-      text-align: center;
+      width: fit-content;
+      @include media-min-width($largerThanTablet) {
+        text-align: center;
+      }
 
       span {
         text-decoration: none;
