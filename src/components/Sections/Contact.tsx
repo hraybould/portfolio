@@ -93,7 +93,10 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* GitHub */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsGithub className="LargeText Icon" />
+          <BsGithub
+            className="LargeText Icon"
+            title="A link to Harrison Raybould GitHub profile"
+          />
           GitHub:
         </div>
         <div>
@@ -103,7 +106,10 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* LinkedIn */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsLinkedin className="LargeText Icon" />
+          <BsLinkedin
+            className="LargeText Icon"
+            title="Connect with Harrison Raybould's LinkedIn profile"
+          />
           LinkedIn:
         </div>
         <div>
@@ -115,7 +121,10 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* Stack Overflow */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
-          <BsStackOverflow className="LargeText Icon" />
+          <BsStackOverflow
+            className="LargeText Icon"
+            title="Harrison Raybould's Stack Overflow profile"
+          />
           Stack Overflow:
         </div>
         <div>
@@ -133,8 +142,8 @@ export const Contact: React.FC<ContactProps> = () => {
           }`}
           width="208"
           height="58"
-          alt="Profile for Harrison at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
-          title="Profile for Harrison at Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+          alt="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+          title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
         />
       </Link>
 

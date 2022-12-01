@@ -21,17 +21,17 @@
     &:after {
       font-family: unset;
       font-size: 2rem;
-      @include media-colour-scheme(color, $textColour, $white100);
+      @include media-colour-scheme(color, $black100, $white100);
     }
   }
   .swiper-button-prev {
-    left: 0px;
+    left: -5px;
     &:after {
       content: "\2329";
     }
   }
   .swiper-button-next {
-    right: 0px;
+    right: -5px;
     &:after {
       content: "\232A";
     }

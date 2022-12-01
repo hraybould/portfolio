@@ -62,7 +62,7 @@ nav {
         @include media-colour-scheme(color, $black100, $white100);
         cursor: pointer;
         // Add in Underline effect
-        &::after {
+        &:after {
           content: "";
           position: absolute;
           bottom: 0;
@@ -81,7 +81,7 @@ nav {
         }
         // Underline effect on hover
         @include hover-opacity {
-          &::after {
+          &:after {
             transform: scaleX(1);
           }
         }

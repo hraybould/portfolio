@@ -3,7 +3,10 @@
   flex-direction: column;
   align-items: center;
   .HiText {
-    margin: 1rem 0rem -4rem 0rem;
+    margin: 1rem 0rem -1rem 0rem;
+    @include media-min-width($largerThanTablet) {
+      margin: 1rem 0rem -2rem 0rem;
+    }
   }
   // .ClippedImg {
   //   clip-path: ellipse(50% 75% at 50% 90%);
@@ -18,5 +21,21 @@
   }
   .InfoText {
     font-weight: 600;
+    text-align: center;
+    margin: 0.5rem 0 0 0;
+    @include media-min-width($largerThanTablet) {
+      text-align: unset;
+      margin: 0 0 0 10vw;
+    }
+
+    &:before {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 110%;
+      content: "<";
+    }
+    &:after {
+      font-family: Consolas, "Courier New", monospace;
+      content: "/>";
+    }
   }
 }

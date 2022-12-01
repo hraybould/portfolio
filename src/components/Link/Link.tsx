@@ -22,6 +22,8 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
         hoverable ? "Btn NoPadding NoBorder" : ""
       } ${additionalClassNames}`}
       target={target}
+      // TODO: learn more about how this affects SEO
+      rel="nofollow"
       {...anchorProps}
     >
       {children}

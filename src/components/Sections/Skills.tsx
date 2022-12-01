@@ -85,10 +85,11 @@ const Skill: React.FC<SkillProps> = ({ skill, smallerFontSizes }) => {
 
 const KeySkills: React.FC = () => {
   const keySkills = getSkillsArray(ALL_SKILLS, true, true);
+  const slidesPerView = useSlidesPerView();
   return (
     <>
       <h3>Key Skills</h3>
-      <SwiperCarousel>
+      <SwiperCarousel slidesPerView={slidesPerView}>
         {keySkills.map((keySkill, keySkillIndex) => (
           <SwiperCarouselSlide key={keySkillIndex}>
             <Skill skill={keySkill} />
@@ -114,6 +115,8 @@ const SkillsSummary: React.FC = () => {
   const closeModal = () => {
     setModalOpen(false);
   };
+
+  const slidesPerView = useSlidesPerView();
 
   return (
     <>
@@ -154,7 +157,12 @@ const SkillsSummary: React.FC = () => {
           return (
             <div key={groupIndex}>
               <h3>{skillGroup}</h3>
-              <SwiperCarousel spaceBetween={20} pagination autoplay={false}>
+              <SwiperCarousel
+                spaceBetween={20}
+                pagination
+                autoplay={false}
+                slidesPerView={slidesPerView}
+              >
                 {sortSkillsByTime(skillsInGroup).map((skill, skillIndex) => (
                   <SwiperCarouselSlide key={skillIndex}>
                     <Skill skill={skill} smallerFontSizes />
@@ -536,4 +544,17 @@ const ALL_SKILLS: SkillObject = {
       end: UNTIL_CURRENT,
     },
   ],
+};
+
+const useSlidesPerView = (): number => {
+  // Media Queries
+  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
+  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  if (largerThanTablet) {
+    return 4;
+  }
+  if (largerThanMobile) {
+    return 3;
+  }
+  return 2;
 };
