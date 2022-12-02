@@ -10,11 +10,17 @@ interface NavigationProps {}
 export const Navigation: React.FC<NavigationProps> = () => {
   const [navVisible, setNavVisible] = useState<boolean>(false);
   const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
-  const hideNavbar = () => setNavVisible(false);
+  const hideNavbar = () => {
+    if (!largerThanTablet) {
+      setNavVisible(false);
+    }
+  };
   const ref = useOnClickOutside(hideNavbar, true);
 
   useEffect(() => {
+    // Reset Navbar Visibility State
     setNavVisible(!!largerThanTablet);
+    // Add listener, the scroll process closess the navbar on tablet devices
     if (!largerThanTablet) {
       document.addEventListener("scroll", hideNavbar);
     } else {
@@ -24,6 +30,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
     return () => {
       document.removeEventListener("scroll", hideNavbar);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [largerThanTablet]);
 
   return (
@@ -48,10 +55,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
                   <li>
                     <span
                       className="NavLink"
-                      onClick={scrollIntoView(
-                        section.id
-                        // , hideNavbar
-                      )}
+                      onClick={scrollIntoView(section.id)}
                     >
                       {section.titleText}
                     </span>
