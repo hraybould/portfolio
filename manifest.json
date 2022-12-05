@@ -1,25 +1,55 @@
 {
-  "short_name": "Harrison Raybould's Portfolio",
-  "name": "Harrison Raybould's Portfolio Website to showcase some skills: React, HTML, CSS, SCSS, TypeScript, etc.",
+  "short_name": "A simple portfolio site created by Harrison Raybould.",
+  "name": "I'm a React Developer based in the United Kingdom. I'm a React Developer based in the United Kingdom. I have a solid understanding of JavaScript React, React-Hooks, React-Redux and TypeScript.",
   "icons": [
     {
+      "src": "logo-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-64.png",
+      "sizes": "64x64",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-100.png",
+      "sizes": "100x100",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-256.png",
+      "sizes": "256x256",
+      "type": "image/png"
+    },
+    {
+      "src": "logo-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64 48x48 32x32 24x24 16x16",
       "type": "image/x-icon"
-    },
-    {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
     }
   ],
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "background_color": "#FFFFFF"
 }
