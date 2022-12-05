@@ -8,6 +8,7 @@ import { SuccessResponse, WEATHER_CODES } from "./model";
 import { WeatherApi } from "./WeatherApi";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
+import { WiCloudDown } from "react-icons/wi";
 
 export const WeatherIcon: React.FC = () => {
   // Media Queries
@@ -99,7 +100,7 @@ export const WeatherIcon: React.FC = () => {
       </Popup>
     );
   }
-  return null;
+  return <WiCloudDown title="Loading" size={30} />;
 };
 
 // Helpers

@@ -111,6 +111,9 @@ h4,
   @include hover-opacity {
     cursor: pointer;
   }
+  &.BtnCancel {
+    @include media-colour-scheme(background-color, $white80, $black60);
+  }
 }
 
 // Icon class for React-Select svg elements

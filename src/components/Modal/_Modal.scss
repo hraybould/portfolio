@@ -47,7 +47,7 @@
           padding: 10px 30px;
         }
         .Title {
-          font-size: 2em;
+          font-size: 2rem;
           font-weight: 400;
           padding: 0px;
           margin: 0px;
@@ -94,6 +94,7 @@
           justify-content: flex-end;
           gap: 10px;
           .Btn {
+            font-size: 1rem;
             min-width: 120px;
           }
         }

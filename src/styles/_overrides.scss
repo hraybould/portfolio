@@ -6,14 +6,17 @@
   height: 100%;
   margin-bottom: 2rem;
 
+  // Wrapper
   .swiper-wrapper,
   .swiper-pagination {
     z-index: auto;
   }
+  // Slide
   .swiper-slide {
     padding: 2rem 0rem;
     height: initial;
   }
+  // Next/Prev Buttons
   .swiper-button-prev,
   .swiper-button-next {
     z-index: auto;
@@ -35,6 +38,10 @@
     &:after {
       content: "\232A";
     }
+  }
+  // Bullets
+  .swiper-pagination-bullet {
+    @include media-colour-scheme(background-color, $black100, $white100);
   }
 }
 
