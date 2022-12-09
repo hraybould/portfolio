@@ -40,14 +40,7 @@ nav {
     @include media-min-width($largerThanTablet) {
       position: relative;
       flex-direction: row;
-    }
-
-    .NavSpacer {
-      @include media-colour-scheme(color, $black100, $white100);
-      display: none;
-      @include media-min-width($largerThanTablet) {
-        display: block;
-      }
+      gap: 2.5rem;
     }
 
     li {
@@ -84,6 +77,14 @@ nav {
           &:after {
             transform: scaleX(1);
           }
+        }
+      }
+      @include media-min-width($largerThanTablet) {
+        &:not(:first-child):before {
+          content: "//";
+          position: absolute;
+          left: -1.6rem;
+          @include media-colour-scheme(color, $black100, $white100);
         }
       }
     }

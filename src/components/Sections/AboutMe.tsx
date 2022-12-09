@@ -1,5 +1,5 @@
 import { durationFormatter } from "helpers/durationFormatter";
-import wave from "assets/memoji/wave.png";
+import myImage from "assets/general/me.jpg";
 import useMedia from "use-media";
 import { TABLET_BREAKPOINT } from "appHelpers";
 
@@ -16,13 +16,13 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
   }`;
   return (
     <div className="SectionInner AboutMeSection">
-      <h1 className="HiText CursiveFont">Hi, I'm...</h1>
+      <h1 className="CursiveFont">Hi, I'm...</h1>
       <img
         className="MarginAuto"
-        src={wave}
-        alt="Apple's Memoji of Me, Harrison!"
-        height="421"
-        width="421"
+        src={myImage}
+        alt="It's Me, Harrison!"
+        height="425"
+        width="425"
       />
       <div className="DisplayFlex">
         {/* <div className="XLargeText ImText CursiveFont">I'm &#8230;</div> */}

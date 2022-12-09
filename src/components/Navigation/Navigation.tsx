@@ -49,18 +49,14 @@ export const Navigation: React.FC<NavigationProps> = () => {
           {ALL_SECTIONS.map(
             (section, index) =>
               section.sectionVisible && (
-                <React.Fragment key={section.id}>
-                  {/* Add Spacer if index greater than 0 */}
-                  {!!index && <span className="NavSpacer">&#x2F;&#x2F;</span>}
-                  <li>
-                    <span
-                      className="NavLink"
-                      onClick={scrollIntoView(section.id)}
-                    >
-                      {section.titleText}
-                    </span>
-                  </li>
-                </React.Fragment>
+                <li key={section.id}>
+                  <span
+                    className="NavLink"
+                    onClick={scrollIntoView(section.id)}
+                  >
+                    {section.titleText}
+                  </span>
+                </li>
               )
           )}
         </ul>

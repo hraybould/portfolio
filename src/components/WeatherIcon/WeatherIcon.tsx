@@ -81,7 +81,7 @@ export const WeatherIcon: React.FC = () => {
             className="WeatherDataWrapper DisplayFlex SmallGap CursorHelp"
             onClick={popupRef.current?.toggle}
           >
-            {largerThanTablet && <span>Weather near me:</span>}
+            {largerThanTablet && <span>Weather near Birmingham:</span>}
             {weatherCode[iconString]({
               size: 30,
             })}
@@ -92,7 +92,11 @@ export const WeatherIcon: React.FC = () => {
         repositionOnResize
         closeOnDocumentClick
       >
-        <div>The weather near me is currently: {weatherCode.title}</div>
+        <div>
+          The weather near me in Birmingham is currently:
+          <br />
+          {weatherData.temperature}&#x2103; and {weatherCode.title}
+        </div>
         <div className="SmallText">
           Meteorological data provided by:{" "}
           <Link href="https://open-meteo.com/">Open Meteo</Link>
