@@ -5,6 +5,7 @@ import { useOnClickOutside } from "hooks";
 import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useMedia from "use-media";
+
 interface NavigationProps {}
 
 export const Navigation: React.FC<NavigationProps> = () => {

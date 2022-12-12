@@ -42,6 +42,11 @@ import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
 import { shuffle } from "lodash";
 import { Modal } from "components/Modal";
 import { SwiperCarousel, SwiperCarouselSlide } from "components/SwiperCarousel";
+import {
+  STARTED_STORMFRONT_RETAIL,
+  STARTED_MTC,
+  STARTED_AVAMAE,
+} from "./keyDates";
 
 interface SkillsProps {}
 
@@ -264,13 +269,13 @@ const buildSkillTitle = (skill: SkillValue): string => {
 };
 
 // List of Skills and Experience
-const STARTED_STORMFRONT_RETAIL = new Date("2016-11-01");
-const STARTED_MTC = new Date("2017-09-23");
+// MTC Projects
 const STARTED_QUORUM = new Date("2018-01-15");
 const STARTED_ENCOMPASS_PROJECT = new Date("2018-03-01");
 const FINISHED_ENCOMPASS_PROJECT = new Date("2020-03-01");
+// Other
 const STARTED_REACT = new Date("2021-01-17");
-const STARTED_AVAMAE = new Date("2021-05-05");
+// Date today
 const UNTIL_CURRENT = new Date();
 
 /**

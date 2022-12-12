@@ -44,7 +44,7 @@ export const ALL_SECTIONS: Section[] = [
     titleVisible: true,
     titleText: "Resume",
     sectionContent: <Resume />,
-    sectionVisible: false,
+    sectionVisible: true,
   },
   {
     id: "contact-me",

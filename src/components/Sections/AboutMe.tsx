@@ -2,12 +2,11 @@ import { durationFormatter } from "helpers/durationFormatter";
 import myImage from "assets/general/me.jpg";
 import useMedia from "use-media";
 import { TABLET_BREAKPOINT } from "appHelpers";
-
-interface AboutMeProps {}
-
-const DATE_OF_BIRTH = new Date("1994-12-16");
+import { DATE_OF_BIRTH } from "./keyDates";
 
 // const ClosingTag = () => <span className="ClosingTag">&#x20;&#x2F;&#x3E;</span>;
+
+interface AboutMeProps {}
 
 export const AboutMe: React.FC<AboutMeProps> = () => {
   const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });

@@ -79,6 +79,13 @@ h4,
   }
 }
 
+h5 {
+  font-size: 105%;
+  @include media-min-width($largerThanTablet) {
+    font-size: 115%;
+  }
+}
+
 .SmallText {
   font-size: 90%;
   @include media-min-width($largerThanTablet) {

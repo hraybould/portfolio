@@ -1,7 +1,15 @@
 .SectionsWrapper {
   // margin-top: $navbarHeight;
 
+  //
   section {
+    padding: 0rem 0rem 1rem 0rem;
+    .SectionHeading {
+      margin-bottom: 0.5rem;
+    }
+  }
+  // Direct
+  & > section {
     padding: 1rem 1rem;
     min-height: calc(100vh - $navbarHeight);
     &:nth-child(odd) {
@@ -14,10 +22,6 @@
       margin: auto;
       @include media-min-width($largerThanLaptop) {
         max-width: 65vw;
-      }
-
-      .SectionHeading {
-        margin-bottom: 0.5rem;
       }
     }
   }
