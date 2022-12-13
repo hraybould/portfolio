@@ -93,8 +93,19 @@ h5 {
   }
 }
 
+.XSmallText {
+  font-size: 75%;
+  @include media-min-width($largerThanTablet) {
+    font-size: 80%;
+  }
+}
+
 .CursiveFont {
   font-family: Lucida Handwriting;
+}
+
+.Italics {
+  font-style: italic;
 }
 
 .ClosingTag {
