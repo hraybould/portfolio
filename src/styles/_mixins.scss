@@ -68,8 +68,21 @@
   }
 }
 
+// Simplified version of `media-colour-scheme`, just targets one scheme
 @mixin prefers-colour-scheme($scheme) {
   @media (prefers-color-scheme: #{$scheme}) {
+    @content;
+  }
+}
+
+// Targets all headings at once
+@mixin all-headings {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @content;
   }
 }

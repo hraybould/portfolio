@@ -13,16 +13,25 @@ body {
   }
 }
 
+// Different Display types
+.DisplayBlock {
+  display: block;
+}
+.DisplayInlinBlock {
+  display: inline-block;
+}
 .DisplayFlex {
   display: flex;
   align-items: center;
   gap: 2rem;
+  // Gaps
   &.SmallGap {
     gap: 0.5rem;
   }
   &.MediumGap {
     gap: 1rem;
   }
+  // Flex Direction
   &.FlexRow {
     flex-direction: column;
     @include media-min-width($largerThanMobile) {
@@ -35,11 +44,15 @@ body {
   &.FlexWrap {
     flex-wrap: wrap;
   }
+  // Spacing
   &.JustifySpaceBetween {
     justify-content: space-between;
   }
   &.JustifySpaceAround {
     justify-content: space-around;
+  }
+  &.FlexEvenly > div {
+    flex: 1 1;
   }
 }
 
@@ -137,4 +150,10 @@ h5 {
 // Icon class for React-Select svg elements
 .Icon {
   display: block;
+}
+
+pre {
+  font-family: monospace;
+  display: inline;
+  @include media-colour-scheme(background-color, $white80, $black60);
 }

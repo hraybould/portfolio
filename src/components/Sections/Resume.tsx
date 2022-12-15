@@ -1,5 +1,5 @@
 import { format } from "date-fns";
-import React from "react";
+import React, { useState } from "react";
 import {
   STARTED_AVAMAE,
   STARTED_MTC,
@@ -31,7 +31,7 @@ interface ResumeHeadingProps {
   subTitle?: string;
   link?: string;
   start: Date;
-  end: Date;
+  end?: Date;
   smaller?: boolean;
 }
 
@@ -46,20 +46,32 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
   const headingContent = (
     <>
       {link ? <Link href={link}>{heading}</Link> : heading}
-      {subTitle && <em className="XSmallText Italics">&nbsp;({subTitle})</em>}
+      {subTitle && (
+        <>
+          {" "}
+          {/* Breakable space needed above */}
+          <em className="XSmallText Italics DisplayInlinBlock">({subTitle})</em>
+        </>
+      )}
     </>
   );
 
   const datesContent = (
-    <>
-      {format(start, "MMM yyyy")}&nbsp;-&nbsp;{format(end, "MMM yyyy")}
-    </>
+    // non-breaking-space before to keep " -" before breaking to a new line
+    <div className="RoleDate">
+      {format(start, "MMM yyyy")}&nbsp;-{" "}
+      {end ? format(end, "MMM yyyy") : "Present"}
+    </div>
+    // <>
+    //   <div className="DisplayInlinBlock">{format(start, "MMM yyyy")}</div>
+    //   &nbsp;- <div className="DisplayInlinBlock">{format(end, "MMM yyyy")}</div>
+    // </>
   );
 
   return (
-    <div className="DisplayFlex JustifySpaceBetween">
-      {smaller ? <div>{headingContent}</div> : <h5>{headingContent}</h5>}
-      {smaller ? <div>{datesContent}</div> : <h5>{datesContent}</h5>}
+    <div className="DisplayFlex SmallGap FlexEvenly JustifySpaceBetween">
+      <div>{smaller ? headingContent : <h5>{headingContent}</h5>}</div>
+      <div>{smaller ? datesContent : <h5>{datesContent}</h5>}</div>
     </div>
   );
 };
@@ -73,7 +85,7 @@ const PersonalProfile: React.FC = () => (
     <h3>Personal Profile</h3>
     <p>
       I am an enthusiastic, intuitive, and highly motivated React Developer;
-      competent in languages such as JavaScript, HTML, and CSS, and Python I
+      competent in languages such as JavaScript, HTML, and CSS, and Python. I
       have a firm grasp of React, Hooks, Redux, and TypeScript. Being a Physics
       graduate, I have advanced problem solving skills and work with a high
       attention to detail. I enjoy working in a team or independently and have
@@ -104,7 +116,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     achievement: (
       <>
-        Represented The Manufacturing Technology Centre (MTC) at the
+        Represented The Manufacturing Technology Centre (The MTC) at the
         International Conference on Additive Manufacturing, EMO Hannover 2019
       </>
     ),
@@ -113,8 +125,8 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     achievement: (
       <>
-        Lead development in key areas of projects in areas such as: Additive
-        Manufacturing (AM) and low-cost Industry 4.0 condition monitoring.
+        Lead development in key projects at The MTC such as: Additive
+        Manufacturing (AM), and low-cost Industry 4.0 condition monitoring.
       </>
     ),
     subAchievements: [
@@ -138,7 +150,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     achievement: (
       <>
         Halved the time in which a repair could be processed and completed as a
-        Senior Technician at Stormfront Retail
+        Senior Technician at Select (formerly Stormfront Retail)
       </>
     ),
     visible: true,
@@ -156,7 +168,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
         Form
       </>
     ),
-    visible: true,
+    visible: false,
   },
 ];
 
@@ -209,7 +221,7 @@ type JobRole = {
   // description: string
   // Dates
   start: Date;
-  end: Date;
+  end?: Date;
   // Roles in job
   roles: Position[];
   rolesDescription: React.ReactNode;
@@ -249,13 +261,13 @@ const PREVIOUS_ROLES: JobRole[] = [
     ],
     rolesDescription: (
       <p>
-        The positions held at Stormfront Retail were intensly customer facing
-        and required high attention to detail in order to efficiently diagnose
-        issues for customers with their Apple devices. In an effort to improve
-        repair times, I personally produced an internal training document for
-        colleagues to refer to; known as "The iOS Repair Handbook" it use lead
-        to a significant reduction in time taken to complete iPhone repairs and
-        replacements.
+        The positions held at Stormfront Retail were intensely customer facing
+        and for a retail position and required high attention to detail in order
+        to efficiently diagnose issues for customers with their Apple devices.
+        In an effort to improve repair times, I personally produced an internal
+        training document for colleagues to refer to; known as "The iOS Repair
+        Handbook", its use lead to a significant reduction in time taken to
+        complete iPhone repairs and replacements.
       </p>
     ),
     visible: true,
@@ -279,27 +291,31 @@ const PREVIOUS_ROLES: JobRole[] = [
     rolesDescription: (
       <>
         <p>
-          During my time at The MTC, I have been involved in a number of
-          projects, such as BluePlanet and Encompass
+          During my time at The MTC, I was involved in a number of projects,
+          such as Encompass and BluePlanet
         </p>
         <p>
-          For the BluePlanet project, I architected an Industry 4.0, Internet of
-          Things (IoT) solution capable of remotely reporting telemetry data to
-          an AWS instance hosting ThingsBoard, a IoT dashboarding platform.
+          My involvement in Encompass included full-stack development with a
+          Python backend, using Vanilla JavaScript, JQuery, HTML, and CSS. It
+          was this project that ignited my passion for Web Development; I lead
+          the design and development of the Integrated Design Decision Support
+          (IDDS) system that interfaced with a multitude of databases and
+          external applications. I then had the opportunity to deliver a
+          presentation at EMO Hannover in 2019.
         </p>
         <p>
-          My involvement in Encompass included full-stack development with
-          Python, JavaScript, HTML, and CSS. I lead the design and development
-          of the Integrated Design Decision Support (IDDS) system that
-          interfaced with databases and external applications. I then had the
-          opportunity to deliver a presentation at EMO Hannover in 2019.
+          During the course of the BluePlanet project, I architected an Industry
+          4.0, Internet of Things (IoT) solution capable of remotely reporting
+          telemetry data from an agriculture monitoring rover to an AWS instance
+          hosting ThingsBoard - a IoT dashboarding platform.
         </p>
         <p>
           In addition to the aforementioned projects, I also produced a Python
-          Web-App template; it became widely used by the department in numerous
-          projects including the "AI Ecosystem" - an internal demonstrator
-          platform that compiled demonstrators showcasing the department's
-          capabilities and successes.
+          Web-App template which became widely used by my colleagues across the
+          department; It became the starting point for numerous projects
+          including the "AI Ecosystem" - an internal demonstrator platform that
+          compiled demonstrators showcasing the department's capabilities and
+          success stories.
         </p>
       </>
     ),
@@ -311,13 +327,39 @@ const PREVIOUS_ROLES: JobRole[] = [
   {
     companyName: "AVAMAE Software Solutions",
     start: STARTED_AVAMAE,
-    end: new Date(),
+    // end: new Date(),
     roles: [
       {
         positionName: "App Engineer",
       },
     ],
-    rolesDescription: "",
+    rolesDescription: (
+      <>
+        <p>
+          Joining AVAMAE was not without its challenges. I joined a new
+          business, in the midst of the pandemic, with little formal experience
+          of React beyond my own learning. I was thrown into a project with a
+          fast-paced client and quickly found myself the go-to developer of the
+          project. Within 6 months my proficiencies in React, Hooks, Redux, and
+          TypeScript cemented and I found myself pushing myself and the
+          surrounding team towards a more robust way of working.
+        </p>
+        <p>
+          My time has been split between a number of custom-built interfaces for
+          my client. One of which was a JavaScript-React application, with few
+          comments and no types. I took it upon myself to pain-stakingly convert{" "}
+          <pre>.js</pre> and <pre>.jsx</pre> files to TypeScript (<pre>.ts</pre>{" "}
+          and <pre>.tsx</pre>). I upgraded the code from pre-Hooks React and
+          Redux (Redux-Compose) to being Hook-capable and strongly-typed. There
+          were a number of reasons why I did this, chief among which was that a
+          junior engineer joined the team and instantly struggled to get to
+          grips with the code. I had long felt that TypeScript should be
+          implemented on that application and this sparked the beginning of the
+          transformation. Any new components were to be written in TypeScript
+          and I set about converting the 300-odd files.
+        </p>
+      </>
+    ),
     visible: true,
     link: "https://www.avamae.co.uk/",
   },
@@ -326,36 +368,48 @@ const PREVIOUS_ROLES: JobRole[] = [
 /**
  * Previous jobs
  */
-const PriorExperience: React.FC = () => (
-  <section>
-    <h3>Prior Experience</h3>
-    {PREVIOUS_ROLES.map(
-      (job, jobIndex) =>
-        job.visible && (
-          <div key={jobIndex}>
-            <ResumeHeading
-              heading={job.companyName}
-              subTitle={job.subTitle}
-              link={job.link}
-              start={job.start}
-              end={job.end}
-            />
-            {job.roles.map((role, roleIndex) => (
-              <React.Fragment key={roleIndex}>
-                <ResumeHeading
-                  heading={role.positionName}
-                  start={role.start ?? job.start}
-                  end={role.end ?? job.end}
-                  smaller
-                />
-              </React.Fragment>
-            ))}
-            <p style={{ padding: "1rem 0rem" }}>{job.rolesDescription}</p>
-          </div>
-        )
-    )}
-  </section>
-);
+const PriorExperience: React.FC = () => {
+  // TODO:
+  //  - dropdown to setRoleOrder
+  // IDEA:
+  //  - timeline slider alongside roles to show dates
+  const [roleOrder, setRoleOrder] = useState<"asc" | "desc">("desc");
+  const rolesData = PREVIOUS_ROLES.sort((a, b) =>
+    roleOrder === "asc"
+      ? a.start.valueOf() - b.start.valueOf()
+      : b.start.valueOf() - a.start.valueOf()
+  );
+  return (
+    <section>
+      <h3>Prior Experience</h3>
+      {rolesData.map(
+        (job, jobIndex) =>
+          job.visible && (
+            <div key={jobIndex}>
+              <ResumeHeading
+                heading={job.companyName}
+                subTitle={job.subTitle}
+                link={job.link}
+                start={job.start}
+                end={job.end}
+              />
+              {job.roles.map((role, roleIndex) => (
+                <React.Fragment key={roleIndex}>
+                  <ResumeHeading
+                    heading={role.positionName}
+                    start={role.start ?? job.start}
+                    end={role.end ?? job.end}
+                    smaller
+                  />
+                </React.Fragment>
+              ))}
+              <div style={{ padding: "1rem 0rem" }}>{job.rolesDescription}</div>
+            </div>
+          )
+      )}
+    </section>
+  );
+};
 // Prior Experience - END
 
 // Education History - START
@@ -374,7 +428,7 @@ const PAST_EDUCATION: EducationalInstitutions[] = [
   {
     institutionName: "University Of Exeter",
     start: new Date("01-09-2013"),
-    end: new Date("01-09-2013"),
+    end: new Date("01-06-2016"),
     subTitle: "2:1 BSc Physics (Hons.)",
     modules: [
       {
@@ -450,7 +504,7 @@ const HobbiesAndInterests: React.FC = () => (
   <section>
     <h3>Hobbies and Interests</h3>
     <p>
-      In my spare time I am an avid Powerlifter and I occasionally run; I find
+      In my spare time I am an avid Powerlifter and occasional runner; I find
       that my physical wellbeing has a significant and direct impact on my
       mental wellbeing and professional focus.
     </p>
@@ -460,7 +514,10 @@ const HobbiesAndInterests: React.FC = () => (
     <ul>
       <li>A smart thermostat controlled by a Node-Red on RaspberryPi</li>
       <li>An Eisenhower Matrix iOS app written in Swift</li>
-      <li>{/* TODO: THERE REALLY SHOULD BE ANOTHER POINT */}</li>
+      <li>
+        A homemade Network-Attached Storage (NAS) device for sharing files
+        within my local Wi-Fi network
+      </li>
     </ul>
     <p>I also enjoy gaming on my PlayStation and doing DIY around the house.</p>
   </section>

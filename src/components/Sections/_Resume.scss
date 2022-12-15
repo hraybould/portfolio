@@ -10,4 +10,12 @@
       }
     }
   }
+
+  @include all-headings {
+    text-align: initial;
+  }
+
+  .RoleDate {
+    text-align: right !important;
+  }
 }
