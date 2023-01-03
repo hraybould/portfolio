@@ -6,20 +6,21 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // Needed to override the z-index from Swiper
-  z-index: 1;
+  // Needed to override the z-index from Swiper and ReactSelect
+  z-index: 2;
   @include media-colour-scheme(
     background-color,
     $headingColour,
     $headingColourReverse
   );
   @include media-colour-scheme(gap, 0.5rem, 1rem);
-  @include transition(gap $transitionLong $transitionTiming);
+  @include vendor-prefixed(transition, gap $transitionLong $transitionTiming);
 
   .MeMoji {
     height: 100%;
     background-color: $headingColour;
-    @include transition(
+    @include vendor-prefixed(
+      transition,
       #{border-radius $transitionLong $transitionTiming,
       opacity $transitionShort $transitionTiming}
     );

@@ -24,7 +24,7 @@ export const Header: React.FC = () => {
   }, []);
 
   return (
-    <header id={NAVBAR_HEADER_ID}>
+    <header id={NAVBAR_HEADER_ID} className="NotForPrinting">
       <img
         className={`MeMoji ${hasScrolled ? "Clickable" : ""}`}
         src={mac}

@@ -3,4 +3,9 @@
   &:focus-visible {
     outline: none;
   }
+  @media print {
+    &.NoPrintDecoration {
+      text-decoration: none;
+    }
+  }
 }

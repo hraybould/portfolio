@@ -50,6 +50,9 @@
   padding: 0.25rem 0.5rem;
   border: 1px solid;
   border-radius: $smallBorderRadius;
-  @include media-colour-scheme(background-color, $white95, $black95);
-  @include animation(anvil $transitionShort $transitionBezier forwards);
+  @include media-colour-scheme(background-color, $white95, $black90);
+  @include vendor-prefixed(
+    animation,
+    anvil $transitionShort $transitionBezier forwards
+  );
 }

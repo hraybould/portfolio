@@ -1,4 +1,4 @@
-/* Generic transition mixin
+/* Generic vendor prefix mixin for animation and transition properties
  * 
  * Usage:
  * Include the mixin inside a Selector
@@ -7,31 +7,36 @@
  * 
  * Example:
  * a {
- *   @include transition(
- *     (
- *       opacity $transitionShort $transitionTiming,
- *       color $transitionShort $transitionTiming
- *     )
+ *   @include vendor-prefixed(
+ *     transition,
+ *     #{opacity $transitionShort $transitionTiming, transform $transitionShort $transitionTiming}
  *   );
  *   &:hover {
- *     opacity: 0.5 !important;
- *     color: red !important;
+ *     opacity: 0.5;
+ *     color: red;
  *   }
  * }
 **/
-@mixin transition($transitionProperties) {
-  -o-transition: $transitionProperties;
-  -moz-transition: $transitionProperties;
-  -webkit-transition: $transitionProperties;
-  transition: $transitionProperties;
+@mixin vendor-prefixed($property, $propertyContents) {
+  -o-#{$property}: $propertyContents;
+  -moz-#{$property}: $propertyContents;
+  -webkit-#{$property}: $propertyContents;
+  #{$property}: $propertyContents;
 }
 
-@mixin animation($animationProperties) {
-  -o-animation: $animationProperties;
-  -moz-animation: $animationProperties;
-  -webkit-animation: $animationProperties;
-  animation: $animationProperties;
-}
+// @mixin transition($transitionProperties) {
+//   -o-transition: $transitionProperties;
+//   -moz-transition: $transitionProperties;
+//   -webkit-transition: $transitionProperties;
+//   transition: $transitionProperties;
+// }
+
+// @mixin animation($animationProperties) {
+//   -o-animation: $animationProperties;
+//   -moz-animation: $animationProperties;
+//   -webkit-animation: $animationProperties;
+//   animation: $animationProperties;
+// }
 
 // Add in hover functionality
 @mixin hover-behaviour {
@@ -44,7 +49,10 @@
 // opacity changes are quite common, this also includes transition mixin
 @mixin hover-opacity($withTransition: true) {
   @if $withTransition {
-    @include transition(opacity $transitionShort $transitionTiming);
+    @include vendor-prefixed(
+      transition,
+      opacity $transitionShort $transitionTiming
+    );
   }
   @include hover-behaviour {
     @content;
@@ -59,18 +67,19 @@
   }
 }
 
+// TODO: expand to avoid passing of `!important` by passing a parameter
 // Adds in dark mode functionality for a given property
 // Namely used for background-color and color.
 @mixin media-colour-scheme($property, $lightMode, $darkMode) {
   #{$property}: $lightMode;
-  @media (prefers-color-scheme: dark) {
+  @media screen and (prefers-color-scheme: dark) {
     #{$property}: $darkMode;
   }
 }
 
 // Simplified version of `media-colour-scheme`, just targets one scheme
 @mixin prefers-colour-scheme($scheme) {
-  @media (prefers-color-scheme: #{$scheme}) {
+  @media screen and (prefers-color-scheme: #{$scheme}) {
     @content;
   }
 }

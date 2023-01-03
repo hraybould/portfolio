@@ -1,4 +1,4 @@
-import { TABLET_BREAKPOINT } from "appHelpers";
+import { TABLET_MIN_WIDTH } from "appHelpers";
 import { Link } from "components/Link";
 import { isAfter } from "date-fns";
 import { useState, useEffect, useRef } from "react";
@@ -12,7 +12,7 @@ import { WiCloudDown } from "react-icons/wi";
 
 export const WeatherIcon: React.FC = () => {
   // Media Queries
-  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   // Timeout
   const timeout = useRef<TimeoutRef>(null);
   const [shouldReload, setShouldReload] = useState<boolean>(true);
@@ -93,7 +93,7 @@ export const WeatherIcon: React.FC = () => {
         closeOnDocumentClick
       >
         <div>
-          The weather near me in Birmingham is currently:
+          The weather near me (in Birmingham) is currently:
           <br />
           {weatherCode.title} and {weatherData.temperature}&#x2103;
         </div>

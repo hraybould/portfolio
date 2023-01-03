@@ -1,0 +1,116 @@
+#resume {
+  text-align: justify;
+
+  ul {
+    list-style: disc;
+    padding-inline-start: 2rem;
+    li {
+      ul {
+        list-style: circle;
+      }
+    }
+  }
+
+  @include all-headings {
+    text-align: initial;
+  }
+
+  .RoleDate {
+    text-align: right !important;
+  }
+}
+
+// React-Select Dropdown
+.CustomReactSelectContainer {
+  .CustomReactSelect__control {
+    @include media-colour-scheme(
+      background-color,
+      $white95 !important,
+      $black80 !important
+    );
+    @include media-colour-scheme(
+      box-shadow,
+      0 0 0 1px $black60 !important,
+      0 0 0 1px $white60 !important
+    );
+    @include media-colour-scheme(
+      border-color,
+      $black60 !important,
+      $white60 !important
+    );
+    @include hover-behaviour {
+      cursor: pointer;
+    }
+    // transition: none !important;
+
+    // &:hover,
+    // @include hover-behaviour
+    &.CustomReactSelect__control--is-focused {
+      @include media-colour-scheme(
+        border-color,
+        $white80 !important,
+        $black80 !important
+      );
+    }
+  }
+  .CustomReactSelect__indicator {
+    @include media-colour-scheme(
+      color,
+      $black80 !important,
+      $white100 !important
+    );
+  }
+
+  .CustomReactSelect__menu {
+    @include media-colour-scheme(
+      background-color,
+      $white95 !important,
+      $black65 !important
+    );
+    @include media-colour-scheme(
+      border,
+      1px solid $black60 !important,
+      1px solid $white60 !important
+    );
+  }
+
+  .CustomReactSelect__option {
+    @include prefers-colour-scheme(dark) {
+      background-color: $black65 !important;
+    }
+    @include hover-behaviour {
+      cursor: pointer;
+    }
+
+    &.CustomReactSelect__option--is-selected {
+      @include prefers-colour-scheme(dark) {
+        background-color: $white85 !important;
+        color: $textColour !important;
+      }
+    }
+
+    @include hover-behaviour {
+      @include prefers-colour-scheme(dark) {
+        background-color: $white100 !important;
+        color: $textColour !important;
+      }
+    }
+  }
+
+  // Check if for dark mode only
+  .CustomReactSelect__indicator-separator {
+    @include prefers-colour-scheme(dark) {
+      background-color: $black60 !important;
+    }
+  }
+
+  // Only for dark mode
+  .CustomReactSelect__placeholder,
+  .CustomReactSelect__single-value {
+    @include media-colour-scheme(
+      color,
+      $textColour !important,
+      $white100 !important
+    );
+  }
+}

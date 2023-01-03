@@ -67,7 +67,8 @@ nav {
           // opacity: 0;
           transform: scale(0);
           transform-origin: center;
-          @include transition(
+          @include vendor-prefixed(
+            transition,
             #{opacity $transitionShort $transitionTiming,
             transform $transitionShort $transitionTiming}
           );

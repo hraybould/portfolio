@@ -7,6 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
+import { PREFERS_DARK_MODE } from "appHelpers";
 // Not importing style as it doesn't work well with Dark Mode
 // import "reactjs-popup/dist/index.css";
 
@@ -21,7 +22,7 @@ interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
   // Check if user prefers dark mode - for Stack Overflow flair
-  const isDarkMode = useMedia("(prefers-color-scheme: dark)");
+  const isDarkMode = useMedia(PREFERS_DARK_MODE);
 
   // ReactJS-Popup does not have fully working controlled state
   // Automatically close the modal after it opens
@@ -50,7 +51,7 @@ export const Contact: React.FC<ContactProps> = () => {
   return (
     <div className="ContactSection DisplayFlex FlexColumn">
       {/* Email Shortcut */}
-      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
+      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth NotForPrinting">
         <div>Get in touch with me:</div>
         <div className="Btn ContactLink">
           <Link
@@ -78,7 +79,7 @@ export const Contact: React.FC<ContactProps> = () => {
               setPopUpOpen(true);
             }}
             trigger={
-              <span className="Btn NoBorder LargeText">
+              <span className="Btn NoBorder LargeText NotForPrinting">
                 <HiOutlineClipboardCopy className={"Icon"} />
               </span>
             }
@@ -100,7 +101,9 @@ export const Contact: React.FC<ContactProps> = () => {
           GitHub:
         </div>
         <div>
-          <Link href="https://github.com/hraybould">harrisonr</Link>
+          <Link href="https://github.com/hraybould" noPrintDecoration>
+            harrisonr
+          </Link>
         </div>
       </div>
       {/* LinkedIn */}
@@ -113,7 +116,10 @@ export const Contact: React.FC<ContactProps> = () => {
           LinkedIn:
         </div>
         <div>
-          <Link href="https://www.linkedin.com/in/harrison-raybould/">
+          <Link
+            href="https://www.linkedin.com/in/harrison-raybould/"
+            noPrintDecoration
+          >
             harrison-raybould
           </Link>
         </div>
@@ -128,7 +134,10 @@ export const Contact: React.FC<ContactProps> = () => {
           Stack Overflow:
         </div>
         <div>
-          <Link href="https://stackoverflow.com/users/15291770/harrison">
+          <Link
+            href="https://stackoverflow.com/users/15291770/harrison"
+            noPrintDecoration
+          >
             harrison
           </Link>
         </div>
@@ -136,7 +145,7 @@ export const Contact: React.FC<ContactProps> = () => {
       {/* <div> */}
       <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
-          className="MarginAuto"
+          className="MarginAuto StackOverflowFlair"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
             isDarkMode ? "dark" : "light"
           }`}

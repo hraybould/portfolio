@@ -38,7 +38,7 @@ import {
   SiWindows,
 } from "react-icons/si";
 import useMedia from "use-media";
-import { MOBILE_BREAKPOINT, TABLET_BREAKPOINT } from "appHelpers";
+import { MOBILE_MIN_WIDTH, TABLET_MIN_WIDTH } from "appHelpers";
 import { shuffle } from "lodash";
 import { Modal } from "components/Modal";
 import { SwiperCarousel, SwiperCarouselSlide } from "components/SwiperCarousel";
@@ -107,8 +107,8 @@ const KeySkills: React.FC = () => {
 
 const SkillsSummary: React.FC = () => {
   // Media Queries
-  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
-  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  const largerThanMobile = useMedia(MOBILE_MIN_WIDTH);
+  const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   // Memoised becuase useMedia causes shuffle to be called again
   const halfSkillsShuffled = useMemo(() => {
     const skills = getSkillsArray(ALL_SKILLS, undefined, true);
@@ -553,8 +553,8 @@ const ALL_SKILLS: SkillObject = {
 
 const useSlidesPerView = (): number => {
   // Media Queries
-  const largerThanMobile = useMedia({ minWidth: MOBILE_BREAKPOINT });
-  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  const largerThanMobile = useMedia(MOBILE_MIN_WIDTH);
+  const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   if (largerThanTablet) {
     return 4;
   }

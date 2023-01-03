@@ -2,6 +2,7 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
   baseClass?: string;
   hoverable?: boolean;
   additionalClassNames?: string;
+  noPrintDecoration?: boolean;
   target?: React.HTMLAttributeAnchorTarget;
 }
 
@@ -13,13 +14,14 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
   hoverable = true,
   target = "_blank",
   additionalClassNames = "",
+  noPrintDecoration = false,
   children,
   ...anchorProps
 }) => {
   return (
     <a
-      className={`${baseClass} ${
-        hoverable ? "Btn NoPadding NoBorder" : ""
+      className={`${baseClass} ${hoverable ? "Btn NoPadding NoBorder" : ""} ${
+        noPrintDecoration ? "NoPrintDecoration" : ""
       } ${additionalClassNames}`}
       target={target}
       // TODO: learn more about how this affects SEO

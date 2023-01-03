@@ -10,8 +10,10 @@
   }
   // Direct
   & > section {
-    padding: 1rem 1rem;
-    min-height: calc(100vh - $navbarHeight);
+    @media screen {
+      padding: 1rem 1rem;
+      min-height: calc(100vh - $navbarHeight);
+    }
     &:nth-child(odd) {
       @include media-colour-scheme(background-color, $white85, $black85);
     }

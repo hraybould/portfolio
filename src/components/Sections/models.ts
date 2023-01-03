@@ -6,4 +6,5 @@ export type Section = {
   titleVisible: boolean;
   sectionContent: React.ReactNode;
   sectionVisible: boolean;
+  sectionPrintable: boolean;
 };

@@ -134,6 +134,9 @@ h5 {
   &:not(.NoPadding) {
     padding: 0.25rem 0.5rem;
   }
+  &.MinimalPadding {
+    padding: 0rem 0.25rem;
+  }
   &:not(.NoBorder) {
     border: 1px solid $white60;
     border-radius: $smallBorderRadius;
@@ -152,8 +155,28 @@ h5 {
   display: block;
 }
 
-pre {
+pre,
+span.pre {
   font-family: monospace;
   display: inline;
   @include media-colour-scheme(background-color, $white80, $black60);
+}
+
+// Printing Logic
+@media print {
+  // Hide elements from being printed
+  *.NotForPrinting {
+    display: none;
+  }
+  // Show elements for printing
+  *.IsPrintable {
+    display: block;
+  }
+  // Always show the same light-themed StackOverflow Flair
+  .StackOverflowFlair {
+    content: url("https://stackoverflow.com/users/flair/15291770.png?theme=light");
+  }
+  @page {
+    margin: 1cm 1.5cm;
+  }
 }

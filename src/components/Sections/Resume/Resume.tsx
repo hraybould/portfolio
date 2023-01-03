@@ -1,11 +1,14 @@
 import { format } from "date-fns";
-import React, { useState } from "react";
+import React from "react";
 import {
   STARTED_AVAMAE,
   STARTED_MTC,
   STARTED_STORMFRONT_RETAIL,
-} from "./keyDates";
+} from "../keyDates";
 import { Link } from "components/Link";
+import { useResumeDropdown } from "./ResumeDropdown";
+import { useMedia } from "use-media";
+import { TABLET_MIN_WIDTH } from "appHelpers";
 
 interface ResumeProps {}
 
@@ -33,6 +36,7 @@ interface ResumeHeadingProps {
   start: Date;
   end?: Date;
   smaller?: boolean;
+  flexEvenly?: boolean;
 }
 
 const ResumeHeading: React.FC<ResumeHeadingProps> = ({
@@ -42,6 +46,7 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
   start,
   end,
   smaller = false,
+  flexEvenly = false,
 }) => {
   const headingContent = (
     <>
@@ -69,7 +74,11 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
   );
 
   return (
-    <div className="DisplayFlex SmallGap FlexEvenly JustifySpaceBetween">
+    <div
+      className={`DisplayFlex SmallGap ${
+        flexEvenly ? "FlexEvenly" : ""
+      } JustifySpaceBetween`}
+    >
       <div>{smaller ? headingContent : <h5>{headingContent}</h5>}</div>
       <div>{smaller ? datesContent : <h5>{datesContent}</h5>}</div>
     </div>
@@ -262,12 +271,12 @@ const PREVIOUS_ROLES: JobRole[] = [
     rolesDescription: (
       <p>
         The positions held at Stormfront Retail were intensely customer facing
-        and for a retail position and required high attention to detail in order
-        to efficiently diagnose issues for customers with their Apple devices.
-        In an effort to improve repair times, I personally produced an internal
-        training document for colleagues to refer to; known as "The iOS Repair
-        Handbook", its use lead to a significant reduction in time taken to
-        complete iPhone repairs and replacements.
+        and, uniquely for a retail position, required high attention to detail
+        in order to efficiently diagnose issues for customers with their Apple
+        devices. In an effort to improve repair times, I personally produced an
+        internal training document for colleagues to refer to; known as "The iOS
+        Repair Handbook", its use lead to a significant reduction in time taken
+        to complete iPhone repairs and replacements.
       </p>
     ),
     visible: true,
@@ -292,7 +301,7 @@ const PREVIOUS_ROLES: JobRole[] = [
       <>
         <p>
           During my time at The MTC, I was involved in a number of projects,
-          such as Encompass and BluePlanet
+          such as Encompass and BluePlanet.
         </p>
         <p>
           My involvement in Encompass included full-stack development with a
@@ -348,15 +357,16 @@ const PREVIOUS_ROLES: JobRole[] = [
           My time has been split between a number of custom-built interfaces for
           my client. One of which was a JavaScript-React application, with few
           comments and no types. I took it upon myself to pain-stakingly convert{" "}
-          <pre>.js</pre> and <pre>.jsx</pre> files to TypeScript (<pre>.ts</pre>{" "}
-          and <pre>.tsx</pre>). I upgraded the code from pre-Hooks React and
-          Redux (Redux-Compose) to being Hook-capable and strongly-typed. There
-          were a number of reasons why I did this, chief among which was that a
-          junior engineer joined the team and instantly struggled to get to
-          grips with the code. I had long felt that TypeScript should be
-          implemented on that application and this sparked the beginning of the
-          transformation. Any new components were to be written in TypeScript
-          and I set about converting the 300-odd files.
+          <span className="pre">.js</span> and <span className="pre">.jsx</span>{" "}
+          files to TypeScript (<span className="pre">.ts</span> and{" "}
+          <span className="pre">.tsx</span>). I upgraded the code from pre-Hooks
+          React and Redux (Redux-Compose) to being Hook-capable and
+          strongly-typed. There were a number of reasons why I did this, chief
+          among which was that a junior engineer joined the team and instantly
+          struggled to get to grips with the code. I had long felt that
+          TypeScript should be implemented on that application and this sparked
+          the beginning of the transformation. Any new components were to be
+          written in TypeScript and I set about converting the 300-odd files.
         </p>
       </>
     ),
@@ -369,19 +379,16 @@ const PREVIOUS_ROLES: JobRole[] = [
  * Previous jobs
  */
 const PriorExperience: React.FC = () => {
-  // TODO:
-  //  - dropdown to setRoleOrder
   // IDEA:
   //  - timeline slider alongside roles to show dates
-  const [roleOrder, setRoleOrder] = useState<"asc" | "desc">("desc");
-  const rolesData = PREVIOUS_ROLES.sort((a, b) =>
-    roleOrder === "asc"
-      ? a.start.valueOf() - b.start.valueOf()
-      : b.start.valueOf() - a.start.valueOf()
-  );
+  const [rolesData, dropdown] = useResumeDropdown(PREVIOUS_ROLES);
+  const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   return (
     <section>
-      <h3>Prior Experience</h3>
+      <div className="DisplayFlex SmallGap JustifySpaceBetween">
+        <h3>Prior Experience</h3>
+        <div>{dropdown}</div>
+      </div>
       {rolesData.map(
         (job, jobIndex) =>
           job.visible && (
@@ -392,16 +399,17 @@ const PriorExperience: React.FC = () => {
                 link={job.link}
                 start={job.start}
                 end={job.end}
+                flexEvenly={!largerThanTablet}
               />
               {job.roles.map((role, roleIndex) => (
-                <React.Fragment key={roleIndex}>
-                  <ResumeHeading
-                    heading={role.positionName}
-                    start={role.start ?? job.start}
-                    end={role.end ?? job.end}
-                    smaller
-                  />
-                </React.Fragment>
+                <ResumeHeading
+                  key={roleIndex}
+                  heading={role.positionName}
+                  start={role.start ?? job.start}
+                  end={role.end ?? job.end}
+                  smaller
+                  flexEvenly={!largerThanTablet}
+                />
               ))}
               <div style={{ padding: "1rem 0rem" }}>{job.rolesDescription}</div>
             </div>
@@ -470,30 +478,36 @@ const PAST_EDUCATION: EducationalInstitutions[] = [
 /**
  * Education History
  */
-const Education: React.FC = () => (
-  <section>
-    <h3>Education</h3>
-    {PAST_EDUCATION.map((institution, institutionIndex) => (
-      <div key={institutionIndex} style={{ padding: "0.5rem 0" }}>
-        <ResumeHeading
-          heading={institution.institutionName}
-          start={institution.start}
-          end={institution.end}
-        />
-        {institution.modules.map((module, moduleIndex) => (
-          <React.Fragment key={moduleIndex}>
-            {module.title && <h5>{module.title}</h5>}
-            <ul>
-              {module.notableGrades.map((grade, gradeIndex) => (
-                <li key={gradeIndex}>{grade}</li>
-              ))}
-            </ul>
-          </React.Fragment>
-        ))}
+const Education: React.FC = () => {
+  const [educationData, dropdown] = useResumeDropdown(PAST_EDUCATION);
+  return (
+    <section>
+      <div className="DisplayFlex SmallGap JustifySpaceBetween">
+        <h3>Education</h3>
+        <div>{dropdown}</div>
       </div>
-    ))}
-  </section>
-);
+      {educationData.map((institution, institutionIndex) => (
+        <div key={institutionIndex} style={{ padding: "0.5rem 0" }}>
+          <ResumeHeading
+            heading={institution.institutionName}
+            start={institution.start}
+            end={institution.end}
+          />
+          {institution.modules.map((module, moduleIndex) => (
+            <React.Fragment key={moduleIndex}>
+              {module.title && <h5>{module.title}</h5>}
+              <ul>
+                {module.notableGrades.map((grade, gradeIndex) => (
+                  <li key={gradeIndex}>{grade}</li>
+                ))}
+              </ul>
+            </React.Fragment>
+          ))}
+        </div>
+      ))}
+    </section>
+  );
+};
 // Education History - END
 
 // Hobbies and Interests - START
@@ -504,7 +518,7 @@ const HobbiesAndInterests: React.FC = () => (
   <section>
     <h3>Hobbies and Interests</h3>
     <p>
-      In my spare time I am an avid Powerlifter and occasional runner; I find
+      In my spare time, I'm an avid Powerlifter and occasional runner; I find
       that my physical wellbeing has a significant and direct impact on my
       mental wellbeing and professional focus.
     </p>
@@ -519,7 +533,7 @@ const HobbiesAndInterests: React.FC = () => (
         within my local Wi-Fi network
       </li>
     </ul>
-    <p>I also enjoy gaming on my PlayStation and doing DIY around the house.</p>
+    <p>I also enjoy gaming, doing DIY around the house, and Bouldering.</p>
   </section>
 );
 // Hobbies and Interests - END

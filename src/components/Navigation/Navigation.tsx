@@ -1,8 +1,8 @@
-import { TABLET_BREAKPOINT } from "appHelpers";
+import { TABLET_MIN_WIDTH } from "appHelpers";
 import { NAVBAR_HEADER_ID } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
 import { useOnClickOutside } from "hooks";
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import useMedia from "use-media";
 
@@ -10,7 +10,7 @@ interface NavigationProps {}
 
 export const Navigation: React.FC<NavigationProps> = () => {
   const [navVisible, setNavVisible] = useState<boolean>(false);
-  const largerThanTablet = useMedia({ minWidth: TABLET_BREAKPOINT });
+  const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   const hideNavbar = () => {
     if (!largerThanTablet) {
       setNavVisible(false);
@@ -48,7 +48,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
       <nav ref={ref} className={navVisible ? "NavVisible" : undefined}>
         <ul>
           {ALL_SECTIONS.map(
-            (section, index) =>
+            (section) =>
               section.sectionVisible && (
                 <li key={section.id}>
                   <span
@@ -60,6 +60,16 @@ export const Navigation: React.FC<NavigationProps> = () => {
                 </li>
               )
           )}
+          {/* {ALL_SECTIONS.some((section) => section.sectionPrintable) && (
+            <li className="NotRealNavLink">
+              <span
+                className="Btn NoBorder MinimalPadding"
+                onClick={window.print}
+              >
+                Print Page
+              </span>
+            </li>
+          )} */}
         </ul>
       </nav>
     </>

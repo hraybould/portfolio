@@ -10,7 +10,13 @@ export const SectionsBuilder: React.FC = () => {
       {ALL_SECTIONS.map(
         (section) =>
           section.sectionVisible && (
-            <section id={section.id} key={section.titleText}>
+            <section
+              key={section.titleText}
+              id={section.id}
+              className={
+                section.sectionPrintable ? "IsPrintable" : "NotForPrinting"
+              }
+            >
               <div className="SectionInner">
                 {section.titleVisible && (
                   <h2 className="SectionHeading">{section.titleText}</h2>
@@ -31,6 +37,7 @@ export const ALL_SECTIONS: Section[] = [
     titleVisible: false,
     sectionContent: <AboutMe />,
     sectionVisible: true,
+    sectionPrintable: false,
   },
   {
     id: "skills",
@@ -38,6 +45,7 @@ export const ALL_SECTIONS: Section[] = [
     titleVisible: true,
     sectionContent: <Skills />,
     sectionVisible: true,
+    sectionPrintable: false,
   },
   {
     id: "resume",
@@ -45,6 +53,7 @@ export const ALL_SECTIONS: Section[] = [
     titleText: "Resume",
     sectionContent: <Resume />,
     sectionVisible: true,
+    sectionPrintable: true,
   },
   {
     id: "contact-me",
@@ -52,5 +61,6 @@ export const ALL_SECTIONS: Section[] = [
     titleVisible: true,
     sectionContent: <Contact />,
     sectionVisible: true,
+    sectionPrintable: true,
   },
 ];
