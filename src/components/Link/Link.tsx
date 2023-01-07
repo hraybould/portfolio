@@ -1,8 +1,12 @@
 interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
+  // General
   baseClass?: string;
-  hoverable?: boolean;
   additionalClassNames?: string;
+  // Helpers
+  hoverable?: boolean;
   noPrintDecoration?: boolean;
+  printableLink?: boolean;
+  // achor tag props
   target?: React.HTMLAttributeAnchorTarget;
 }
 
@@ -10,11 +14,15 @@ interface LinkProps extends React.HTMLProps<HTMLAnchorElement> {
  * A basic anchor element (`<a ...>`) to uniformly make links
  */
 export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
+  // General
   baseClass = "Link",
-  hoverable = true,
-  target = "_blank",
   additionalClassNames = "",
+  // Helpers
+  hoverable = true,
   noPrintDecoration = false,
+  printableLink = false,
+  // achor tag props
+  target = "_blank",
   children,
   ...anchorProps
 }) => {
@@ -29,6 +37,9 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
       {...anchorProps}
     >
       {children}
+      {printableLink && (
+        <span className="DisplayNone IsPrintable"> ({anchorProps.href})</span>
+      )}
     </a>
   );
 };

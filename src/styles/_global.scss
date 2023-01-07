@@ -163,6 +163,9 @@ span.pre {
 }
 
 // Printing Logic
+.DisplayNone {
+  display: none;
+}
 @media print {
   // Hide elements from being printed
   *.NotForPrinting {

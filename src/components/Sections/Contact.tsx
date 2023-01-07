@@ -100,8 +100,12 @@ export const Contact: React.FC<ContactProps> = () => {
           />
           GitHub:
         </div>
-        <div>
-          <Link href="https://github.com/hraybould" noPrintDecoration>
+        <div className="RightAligned">
+          <Link
+            href="https://github.com/hraybould"
+            noPrintDecoration
+            printableLink
+          >
             harrisonr
           </Link>
         </div>
@@ -115,10 +119,11 @@ export const Contact: React.FC<ContactProps> = () => {
           />
           LinkedIn:
         </div>
-        <div>
+        <div className="RightAligned">
           <Link
             href="https://www.linkedin.com/in/harrison-raybould/"
             noPrintDecoration
+            printableLink
           >
             harrison-raybould
           </Link>
@@ -133,10 +138,11 @@ export const Contact: React.FC<ContactProps> = () => {
           />
           Stack Overflow:
         </div>
-        <div>
+        <div className="RightAligned">
           <Link
             href="https://stackoverflow.com/users/15291770/harrison"
             noPrintDecoration
+            printableLink
           >
             harrison
           </Link>

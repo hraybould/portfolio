@@ -8,4 +8,10 @@
     // text-decoration: underline;
     user-select: text;
   }
+
+  .RightAligned {
+    @include media-min-width($largerThanMobile) {
+      text-align: right;
+    }
+  }
 }
