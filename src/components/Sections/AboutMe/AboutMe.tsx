@@ -2,7 +2,7 @@ import { durationFormatter } from "helpers/durationFormatter";
 import myImage from "assets/general/me.jpg";
 import useMedia from "use-media";
 import { TABLET_MIN_WIDTH } from "appHelpers";
-import { DATE_OF_BIRTH } from "./keyDates";
+import { DATE_OF_BIRTH } from "../keyDates";
 
 // const ClosingTag = () => <span className="ClosingTag">&#x20;&#x2F;&#x3E;</span>;
 

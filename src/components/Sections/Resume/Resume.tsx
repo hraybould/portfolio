@@ -1,4 +1,3 @@
-import { format } from "date-fns";
 import React from "react";
 import {
   STARTED_AVAMAE,
@@ -9,6 +8,13 @@ import { Link } from "components/Link";
 import { useResumeDropdown } from "./ResumeDropdown";
 import { useMedia } from "use-media";
 import { TABLET_MIN_WIDTH } from "appHelpers";
+import {
+  ALL_SKILLS,
+  buildSkillTitle,
+  getSkillsArray,
+} from "../Skills/skillsHelpers";
+import { durationFormatter } from "helpers/durationFormatter";
+import { ListItem, SimpleList } from "components/SimpleList";
 
 interface ResumeProps {}
 
@@ -17,6 +23,8 @@ export const Resume: React.FC<ResumeProps> = () => {
     <div>
       {/* Personal Profile */}
       <PersonalProfile />
+      {/* Key Skills - Resume */}
+      <KeyResumeSkills />
       {/* Key Achievements */}
       <KeyAchievements />
       {/* Prior Experience */}
@@ -64,13 +72,9 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
   const datesContent = (
     // non-breaking-space before to keep " -" before breaking to a new line
     <div className="RoleDate">
-      {format(start, "MMM yyyy")}&nbsp;-{" "}
-      {end ? format(end, "MMM yyyy") : "Present"}
+      <span>{formatDate(start)}&nbsp;-</span>{" "}
+      <span>{end ? formatDate(end) : "Present"}</span>
     </div>
-    // <>
-    //   <div className="DisplayInlinBlock">{format(start, "MMM yyyy")}</div>
-    //   &nbsp;- <div className="DisplayInlinBlock">{format(end, "MMM yyyy")}</div>
-    // </>
   );
 
   return (
@@ -105,16 +109,44 @@ const PersonalProfile: React.FC = () => (
 );
 // Personal Profile - END
 
-// Key Achievements - START
+// Key Skills (Resume) - START
+/**
+ *
+ */
+const KeyResumeSkills: React.FC = () => (
+  <section className="ForPrintOnly">
+    <h3>Key Skills</h3>
+    <SimpleList
+      list={getSkillsArray(
+        {
+          Languages: ALL_SKILLS["Languages"],
+          "Software & Other Libraries":
+            ALL_SKILLS["Software & Other Libraries"],
+        },
+        true
+      ).map((skill) => ({
+        itemInfo: (
+          <>
+            {buildSkillTitle(skill)}&nbsp;-&nbsp;
+            {durationFormatter({
+              start: skill.start,
+              end: skill.end,
+              format: ["years", "months"],
+              delimiter: ", ",
+            })}
+          </>
+        ),
+        visible: true,
+      }))}
+    />
+  </section>
+);
+// Key Skills (Resume) - END
 
-type KeyAchievement = {
-  achievement: React.ReactNode;
-  subAchievements?: KeyAchievement[];
-  visible: boolean;
-};
-const KEY_ACHIEVEMENTS: KeyAchievement[] = [
+// Key Achievements - START
+const KEY_ACHIEVEMENTS: ListItem[] = [
   {
-    achievement: (
+    itemInfo: (
       <>
         Rewrote an existing client project from JavaScript to TypeScript with
         extensive Types and Hooks
@@ -123,7 +155,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     visible: true,
   },
   {
-    achievement: (
+    itemInfo: (
       <>
         Represented The Manufacturing Technology Centre (The MTC) at the
         International Conference on Additive Manufacturing, EMO Hannover 2019
@@ -132,19 +164,19 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     visible: true,
   },
   {
-    achievement: (
+    itemInfo: (
       <>
         Lead development in key projects at The MTC such as: Additive
         Manufacturing (AM), and low-cost Industry 4.0 condition monitoring.
       </>
     ),
-    subAchievements: [
+    sublist: [
       {
-        achievement: <>Obtained Level 1 Vibration Analyst from RMS Solutions</>,
+        itemInfo: <>Obtained Level 1 Vibration Analyst from RMS Solutions</>,
         visible: false,
       },
       {
-        achievement: (
+        itemInfo: (
           <>
             Early completion of The MTC Graduate Program, transferring from the
             2-year scheme within the first 6 months
@@ -156,7 +188,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     visible: true,
   },
   {
-    achievement: (
+    itemInfo: (
       <>
         Halved the time in which a repair could be processed and completed as a
         Senior Technician at Select (formerly Stormfront Retail)
@@ -165,13 +197,13 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     visible: true,
   },
   {
-    achievement: (
+    itemInfo: (
       <>Graduated from Exeter University with a 2:1 BSc Physics (Hons.)</>
     ),
     visible: true,
   },
   {
-    achievement: (
+    itemInfo: (
       <>
         Gained 4 full A-Levels: A*, A, A, C, from Arthur Terry School and Sixth
         Form
@@ -181,39 +213,13 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   },
 ];
 
-interface ListAchievementsProps {
-  achievements: KeyAchievement[];
-}
-const ListAchievements: React.FC<ListAchievementsProps> = ({
-  achievements,
-}) => {
-  if (!achievements.some((value) => value.visible)) {
-    return null;
-  }
-  return (
-    <ul>
-      {achievements.map(
-        (achievement, achievementIndex) =>
-          achievement.visible && (
-            <React.Fragment key={achievementIndex}>
-              <li>{achievement.achievement}</li>
-              {achievement.subAchievements && (
-                <ListAchievements achievements={achievement.subAchievements} />
-              )}
-            </React.Fragment>
-          )
-      )}
-    </ul>
-  );
-};
-
 /**
  * Summary of key achievements over recent years
  */
 const KeyAchievements: React.FC = () => (
   <section>
     <h3>Key Achievements</h3>
-    <ListAchievements achievements={KEY_ACHIEVEMENTS} />
+    <SimpleList list={KEY_ACHIEVEMENTS} />
   </section>
 );
 // Key Achievements - END
@@ -435,8 +441,8 @@ type EducationalInstitutions = {
 const PAST_EDUCATION: EducationalInstitutions[] = [
   {
     institutionName: "University Of Exeter",
-    start: new Date("01-09-2013"),
-    end: new Date("01-06-2016"),
+    start: new Date("2013-09-01"),
+    end: new Date("2016-06-01"),
     subTitle: "2:1 BSc Physics (Hons.)",
     modules: [
       {
@@ -452,8 +458,8 @@ const PAST_EDUCATION: EducationalInstitutions[] = [
   },
   {
     institutionName: "Arthur Terry School and Sixth Form",
-    start: new Date("01-09-2006"),
-    end: new Date("01-06-2013"),
+    start: new Date("2006-09-01"),
+    end: new Date("2013-06-01"),
     modules: [
       {
         title: "A-Level",
@@ -537,3 +543,9 @@ const HobbiesAndInterests: React.FC = () => (
   </section>
 );
 // Hobbies and Interests - END
+
+const formatDate = (date: Date) =>
+  date.toLocaleString("default", {
+    month: "short",
+    year: "numeric",
+  });

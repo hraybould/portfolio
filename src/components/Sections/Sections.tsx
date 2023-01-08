@@ -1,8 +1,8 @@
-import { AboutMe } from "./AboutMe";
-import { Contact } from "./Contact";
+import { AboutMe } from "./AboutMe/AboutMe";
+import { Contact } from "./Contact/Contact";
 import { Section } from "./models";
 import { Resume } from "./Resume";
-import { Skills } from "./Skills";
+import { Skills } from "./Skills/Skills";
 
 export const SectionsBuilder: React.FC = () => {
   return (

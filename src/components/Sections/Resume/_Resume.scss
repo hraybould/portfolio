@@ -17,6 +17,9 @@
 
   .RoleDate {
     text-align: right !important;
+    span {
+      white-space: nowrap;
+    }
   }
 }
 

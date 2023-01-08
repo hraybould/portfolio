@@ -163,7 +163,7 @@ span.pre {
 }
 
 // Printing Logic
-.DisplayNone {
+.ForPrintOnly {
   display: none;
 }
 @media print {
@@ -172,8 +172,11 @@ span.pre {
     display: none;
   }
   // Show elements for printing
-  *.IsPrintable {
-    display: block;
+  * {
+    &.IsPrintable,
+    &.ForPrintOnly {
+      display: block;
+    }
   }
   // Always show the same light-themed StackOverflow Flair
   .StackOverflowFlair {

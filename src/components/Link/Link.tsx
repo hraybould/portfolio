@@ -38,7 +38,7 @@ export const Link: React.FC<React.PropsWithChildren<LinkProps>> = ({
     >
       {children}
       {printableLink && (
-        <span className="DisplayNone IsPrintable"> ({anchorProps.href})</span>
+        <span className="ForPrintOnly"> ({anchorProps.href})</span>
       )}
     </a>
   );

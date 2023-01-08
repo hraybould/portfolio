@@ -148,10 +148,10 @@ export const Contact: React.FC<ContactProps> = () => {
           </Link>
         </div>
       </div>
-      {/* <div> */}
+      {/* TEMP - do not print */}
       <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
-          className="MarginAuto StackOverflowFlair"
+          className="MarginAuto StackOverflowFlair NotForPrinting"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
             isDarkMode ? "dark" : "light"
           }`}
@@ -161,8 +161,6 @@ export const Contact: React.FC<ContactProps> = () => {
           title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
         />
       </Link>
-
-      {/* </div> */}
     </div>
   );
 };
