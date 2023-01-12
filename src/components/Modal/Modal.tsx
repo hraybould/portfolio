@@ -7,7 +7,7 @@ import { IoCloseSharp } from "react-icons/io5";
 
 interface ModalProps {
   open: boolean;
-  closeModal(): void;
+  closeModal: VoidFunction;
   actionButton?: React.ReactNode;
   title: string;
   fullSize?: boolean;
@@ -31,13 +31,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   ignoreClickOutside = false,
   children,
 }) => {
-  const [delayedOpen, setDelayedOpen] = useState(false);
-  const lockBodyScroll = () => {
-    document.body.style.overflow = "hidden";
-  };
-  const unlockBodyScroll = () => {
-    document.body.style.overflow = "auto";
-  };
+  const [delayedOpen, setDelayedOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (open) {
@@ -46,8 +40,9 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
       }, 1);
     }
   }, [open]);
+
   const ref = useOnClickOutside(closeModal, true);
-  const nodeRef = useRef(null);
+  const nodeRef = useRef<HTMLElement>(null);
 
   const portalContent = (
     <Transition
@@ -127,4 +122,13 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
   }
 
   return null;
+};
+
+// Helpers
+const lockBodyScroll = () => {
+  document.body.style.overflow = "hidden";
+};
+
+const unlockBodyScroll = () => {
+  document.body.style.overflow = "auto";
 };

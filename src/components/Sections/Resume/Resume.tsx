@@ -62,7 +62,7 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
       {subTitle && (
         <>
           {" "}
-          {/* Breakable space needed above */}
+          {/* Breakable space needed above for a better look when wrapping */}
           <em className="XSmallText Italics DisplayInlinBlock">({subTitle})</em>
         </>
       )}
@@ -98,8 +98,8 @@ const PersonalProfile: React.FC = () => (
     <h3>Personal Profile</h3>
     <p>
       I am an enthusiastic, intuitive, and highly motivated React Developer;
-      competent in languages such as JavaScript, HTML, and CSS, and Python. I
-      have a firm grasp of React, Hooks, Redux, and TypeScript. Being a Physics
+      competent in languages such as JavaScript, HTML, and CSS; I also have a
+      firm grasp of React, Hooks, Redux, and TypeScript. Being a Physics
       graduate, I have advanced problem solving skills and work with a high
       attention to detail. I enjoy working in a team or independently and have
       great interpersonal skills and experience working in customer/client
@@ -148,8 +148,9 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
-        Rewrote an existing client project from JavaScript to TypeScript with
-        extensive Types and Hooks
+        Rewrote an existing client project from JavaScript to TypeScript,
+        providing extensive Type definitions, and converting lifecycle methods
+        to Hooks
       </>
     ),
     visible: true,
@@ -157,8 +158,9 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
-        Represented The Manufacturing Technology Centre (The MTC) at the
-        International Conference on Additive Manufacturing, EMO Hannover 2019
+        Represented The Manufacturing Technology Centre (The MTC) by presenting
+        at the International Conference on Additive Manufacturing, EMO Hannover
+        2019
       </>
     ),
     visible: true,
@@ -167,9 +169,11 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
     itemInfo: (
       <>
         Lead development in key projects at The MTC such as: Additive
-        Manufacturing (AM), and low-cost Industry 4.0 condition monitoring.
+        Manufacturing (AM), and low-cost Industry 4.0 (I4.0) condition
+        monitoring.
       </>
     ),
+    visible: true,
     sublist: [
       {
         itemInfo: <>Obtained Level 1 Vibration Analyst from RMS Solutions</>,
@@ -185,7 +189,6 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
         visible: false,
       },
     ],
-    visible: true,
   },
   {
     itemInfo: (
@@ -307,29 +310,32 @@ const PREVIOUS_ROLES: JobRole[] = [
       <>
         <p>
           During my time at The MTC, I was involved in a number of projects,
-          such as Encompass and BluePlanet.
+          such as Encompass and BluePlanet. I additionally held management
+          resposibilities for a number of graduates in the team.
         </p>
         <p>
           My involvement in Encompass included full-stack development with a
-          Python backend, using Vanilla JavaScript, JQuery, HTML, and CSS. It
+          Python backend, using [Vanilla] JavaScript, JQuery, HTML, and CSS. It
           was this project that ignited my passion for Web Development; I lead
-          the design and development of the Integrated Design Decision Support
-          (IDDS) system that interfaced with a multitude of databases and
-          external applications. I then had the opportunity to deliver a
-          presentation at EMO Hannover in 2019.
+          the design and development of the{" "}
+          <i>"Integrated Design Decision Support"</i> (IDDS) system that
+          interfaced with multiple databases and external applications. In 2019
+          I had the opportunity to deliver a presentation at an industry-leading
+          forum in Hannover, Germany.
         </p>
         <p>
-          During the course of the BluePlanet project, I architected an Industry
-          4.0, Internet of Things (IoT) solution capable of remotely reporting
-          telemetry data from an agriculture monitoring rover to an AWS instance
-          hosting ThingsBoard - a IoT dashboarding platform.
+          During the course of the BluePlanet project, I architected and
+          developed an Industry 4.0, Internet of Things (IoT) solution capable
+          of remotely reporting telemetry data from an agriculture monitoring
+          rover to an AWS instance hosting ThingsBoard - a IoT dashboarding
+          platform.
         </p>
         <p>
           In addition to the aforementioned projects, I also produced a Python
           Web-App template which became widely used by my colleagues across the
           department; It became the starting point for numerous projects
-          including the "AI Ecosystem" - an internal demonstrator platform that
-          compiled demonstrators showcasing the department's capabilities and
+          including the <i>"AI Ecosystem"</i> - an internal demonstrator
+          platform that collated and showcased the department's capabilities and
           success stories.
         </p>
       </>
@@ -351,28 +357,35 @@ const PREVIOUS_ROLES: JobRole[] = [
     rolesDescription: (
       <>
         <p>
-          Joining AVAMAE was not without its challenges. I joined a new
-          business, in the midst of the pandemic, with little formal experience
-          of React beyond my own learning. I was thrown into a project with a
-          fast-paced client and quickly found myself the go-to developer of the
-          project. Within 6 months my proficiencies in React, Hooks, Redux, and
-          TypeScript cemented and I found myself pushing myself and the
-          surrounding team towards a more robust way of working.
+          Joining AVAMAE was not without its challenges, I joined a new business
+          in the midst of the pandemic which meant that I had to rely heavily on
+          my communication skills to form close connections with the team.
         </p>
         <p>
-          My time has been split between a number of custom-built interfaces for
-          my client. One of which was a JavaScript-React application, with few
-          comments and no types. I took it upon myself to pain-stakingly convert{" "}
+          From the beginning I was thrown into a project with a fast-paced
+          client and quickly found myself the go-to developer of the project.
+          Within 6 months, I cemented my proficiencies in React, Hooks, Redux,
+          and TypeScript and began pushing both myself and the surrounding team
+          towards improving code robustness, uniformity and readability.
+        </p>
+        <p>
+          My time has been split between a number of custom-built React
+          interfaces for my client; one of which was written with few comments
+          and no type definitions while the others were fully typed with
+          TypeScript. I used my inittiative and converted{" "}
           <span className="pre">.js</span> and <span className="pre">.jsx</span>{" "}
           files to TypeScript (<span className="pre">.ts</span> and{" "}
           <span className="pre">.tsx</span>). I upgraded the code from pre-Hooks
           React and Redux (Redux-Compose) to being Hook-capable and
-          strongly-typed. There were a number of reasons why I did this, chief
-          among which was that a junior engineer joined the team and instantly
-          struggled to get to grips with the code. I had long felt that
-          TypeScript should be implemented on that application and this sparked
-          the beginning of the transformation. Any new components were to be
-          written in TypeScript and I set about converting the 300-odd files.
+          strongly-typed with TypeScript. There were a number of reasons why I
+          did this, chief among which was that a junior engineer joined the team
+          and struggled to get to grips with the codebase. I had long felt that
+          TypeScript should be implemented and this catalysed the
+          transformation; I also found it very rewarding being able to support
+          someone in my team. Any new components were written in TypeScript and
+          I set about providing type definitions and converting the 300+ files;
+          all the while adding new features and functionality and responding to
+          client requests.
         </p>
       </>
     ),
@@ -501,7 +514,7 @@ const Education: React.FC = () => {
           />
           {institution.modules.map((module, moduleIndex) => (
             <React.Fragment key={moduleIndex}>
-              {module.title && <h5>{module.title}</h5>}
+              {module.title && <h6>{module.title}</h6>}
               <ul>
                 {module.notableGrades.map((grade, gradeIndex) => (
                   <li key={gradeIndex}>{grade}</li>
@@ -524,7 +537,7 @@ const HobbiesAndInterests: React.FC = () => (
   <section>
     <h3>Hobbies and Interests</h3>
     <p>
-      In my spare time, I'm an avid Powerlifter and occasional runner; I find
+      In my spare time, I'm an avid powerlifter and occasional runner; I find
       that my physical wellbeing has a significant and direct impact on my
       mental wellbeing and professional focus.
     </p>
@@ -539,7 +552,7 @@ const HobbiesAndInterests: React.FC = () => (
         within my local Wi-Fi network
       </li>
     </ul>
-    <p>I also enjoy gaming, doing DIY around the house, and Bouldering.</p>
+    <p>I also enjoy gaming, doing DIY, and bouldering.</p>
   </section>
 );
 // Hobbies and Interests - END

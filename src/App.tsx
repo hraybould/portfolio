@@ -1,8 +1,11 @@
 import { MODAL_PORTAL_ID } from "appHelpers";
 import { Header } from "components/Header";
 import Sections from "components/Sections";
+import { useSetupPrintTitle } from "hooks";
 
-const App = () => {
+const App: React.FC = () => {
+  useSetupPrintTitle();
+
   return (
     <div className="App">
       <Header />

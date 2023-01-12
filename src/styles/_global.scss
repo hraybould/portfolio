@@ -99,6 +99,13 @@ h5 {
   }
 }
 
+h6 {
+  font-size: 102.5%;
+  @include media-min-width($largerThanTablet) {
+    font-size: 107.5%;
+  }
+}
+
 .SmallText {
   font-size: 90%;
   @include media-min-width($largerThanTablet) {
@@ -177,6 +184,10 @@ span.pre {
     &.ForPrintOnly {
       display: block;
     }
+  }
+  // Reduce contact section's gap between elements when printing
+  .ContactSection {
+    gap: 1rem;
   }
   // Always show the same light-themed StackOverflow Flair
   .StackOverflowFlair {
