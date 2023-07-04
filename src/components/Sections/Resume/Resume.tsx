@@ -352,6 +352,11 @@ const PREVIOUS_ROLES: JobRole[] = [
     roles: [
       {
         positionName: "App Engineer",
+        end: new Date("2023-04-01"),
+      },
+      {
+        positionName: "Lead Engineer",
+        start: new Date("2023-04-01"),
       },
     ],
     rolesDescription: (
