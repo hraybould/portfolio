@@ -13,7 +13,7 @@ import { PREFERS_DARK_MODE } from "appHelpers";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
 const EMAIL_SUBJECT = "Hi";
-const EMAIL_BODY = `Hi Harrison,%0D%0A%0D%0AI just came across your website and I wanted to you regarding`;
+const EMAIL_BODY = `Hi Harrison,%0D%0A%0D%0AI just came across your website and wanted to contact you regarding`;
 
 const EMAIL_LINK = `mailto:${EMAIL_ADDRESS}`;
 const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BODY}`;
@@ -149,7 +149,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       {/* TEMP - do not print */}
-      <Link href="https://stackoverflow.com/users/15291770/harrison">
+      {/* <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
           className="MarginAuto StackOverflowFlair NotForPrinting"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
@@ -159,6 +159,18 @@ export const Contact: React.FC<ContactProps> = () => {
           height="58"
           alt="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
           title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
+        />
+      </Link> */}
+      <Link href="https://stackexchange.com/users/20819824/harrison">
+        <img
+          className="MarginAuto StackOverflowFlair NotForPrinting"
+          src={`https://stackexchange.com/users/flair/20819824.png?theme=${
+            isDarkMode ? "dark" : "light"
+          }`}
+          width="208"
+          height="58"
+          alt="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
+          title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
         />
       </Link>
     </div>
