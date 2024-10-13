@@ -315,7 +315,7 @@ export const ALL_SKILLS: SkillObject = {
       name: "SQlite",
       icon: SiSqlite,
       start: STARTED_QUORUM,
-      end: UNTIL_CURRENT,
+      end: STARTED_AVAMAE,
     },
     {
       name: "CouchBase",

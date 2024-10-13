@@ -58,7 +58,13 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
 }) => {
   const headingContent = (
     <>
-      {link ? <Link href={link}>{heading}</Link> : heading}
+      {link ? (
+        <Link href={link} noPrintDecoration>
+          {heading}
+        </Link>
+      ) : (
+        heading
+      )}
       {subTitle && (
         <>
           {" "}

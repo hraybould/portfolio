@@ -92,7 +92,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       {/* GitHub */}
-      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
+      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth NotForPrinting">
         <div className="DisplayFlex SmallGap">
           <BsGithub
             className="LargeText Icon"
@@ -130,7 +130,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       {/* Stack Overflow */}
-      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
+      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth NotForPrinting">
         <div className="DisplayFlex SmallGap">
           <BsStackOverflow
             className="LargeText Icon"
@@ -148,10 +148,10 @@ export const Contact: React.FC<ContactProps> = () => {
           </Link>
         </div>
       </div>
-      {/* TEMP - do not print */}
-      {/* <Link href="https://stackoverflow.com/users/15291770/harrison">
+      <div className="DisplayFlex FlexColumn SmallGap NotForPrinting">
+        {/* <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
-          className="MarginAuto StackOverflowFlair NotForPrinting"
+        className="MarginAuto StackOverflowFlair"
           src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
             isDarkMode ? "dark" : "light"
           }`}
@@ -159,28 +159,58 @@ export const Contact: React.FC<ContactProps> = () => {
           height="58"
           alt="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
           title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
-        />
-      </Link> */}
-      <Link href="https://stackexchange.com/users/20819824/harrison">
-        <img
-          className="MarginAuto StackOverflowFlair NotForPrinting"
-          src={`https://stackexchange.com/users/flair/20819824.png?theme=${
-            isDarkMode ? "dark" : "light"
-          }`}
-          width="208"
-          height="58"
-          alt="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-          title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-        />
-      </Link>
-      <Link href="https://stackoverflow-readme-profile.vercel.app/tags-league/reactjs/users/15291770">
-        <img
-          src={`https://stackoverflow-readme-profile.johannchopin.fr/tags-league-ranking/reactjs/15291770?theme=${
-            isDarkMode ? "dark" : "light"
-          }`}
-          alt="Harrison's SO ranking for reactjs"
-        />
-      </Link>
+          />
+        </Link> */}
+        <Link href="https://stackexchange.com/users/20819824/harrison">
+          <img
+            className="MarginAuto StackOverflowFlair"
+            src={`https://stackexchange.com/users/flair/20819824.png?theme=${
+              isDarkMode ? "dark" : "light"
+            }`}
+            width="208"
+            height="58"
+            alt="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
+            title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
+          />
+        </Link>
+        <TopTags isDarkMode={isDarkMode} />
+      </div>
     </div>
+  );
+};
+
+const TOP_TAGS: string[][] = [
+  ["javascript", "reactjs", "typescript"],
+  ["css", "html"],
+];
+
+interface TopTagsProps {
+  isDarkMode: boolean;
+}
+const TopTags: React.FC<TopTagsProps> = ({ isDarkMode }) => {
+  return (
+    <>
+      {TOP_TAGS.map((group, i) => (
+        <div
+          key={`TOP_TAGS_GROUP_${i}`}
+          className="DisplayFlex FlexRow SmallGap"
+        >
+          {group.map((tag, j) => (
+            <div key={`TOP_TAGS_${i}_${tag}_${j}`}>
+              <Link href="https://stackoverflow-readme-profile.vercel.app/tags-league/css/users/15291770">
+                <img
+                  className="TopTagImg"
+                  // style={{ height: 34, padding: 1 }}
+                  src={`https://stackoverflow-readme-profile.johannchopin.fr/tags-league-ranking/${tag}/15291770?theme=${
+                    isDarkMode ? "dark" : "graywhite"
+                  }`}
+                  alt={`Harrison's SO ranking for ${tag}`}
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
+      ))}
+    </>
   );
 };

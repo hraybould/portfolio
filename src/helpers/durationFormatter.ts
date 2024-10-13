@@ -1,4 +1,9 @@
-import { formatDuration, intervalToDuration } from "date-fns";
+import {
+  Duration,
+  Interval,
+  formatDuration,
+  intervalToDuration,
+} from "date-fns";
 
 type DurationFormatterArgs = {
   start: Interval["start"];

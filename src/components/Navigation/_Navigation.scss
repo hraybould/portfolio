@@ -52,8 +52,8 @@ nav {
 
       span {
         text-decoration: none;
-        @include media-colour-scheme(color, $black100, $white100);
         cursor: pointer;
+        @include media-colour-scheme(color, $black100, $white100);
         // Add in Underline effect
         &:after {
           content: "";

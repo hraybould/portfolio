@@ -30,8 +30,8 @@ header {
       $circleBorderRadius
     );
     &.Clickable {
-      @include hover-opacity(false);
       cursor: pointer;
+      @include hover-opacity(false);
     }
   }
 }

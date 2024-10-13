@@ -9,7 +9,6 @@
   z-index: 1;
 
   .Modal {
-    @include media-colour-scheme(background-color, $white95, $black90);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,6 +20,7 @@
     //   1px solid $black80
     // );
     width: calc(100% - 20px);
+    @include media-colour-scheme(background-color, $white95, $black90);
     @include media-min-width($largerThanTablet) {
       width: 650px;
     }
@@ -70,21 +70,21 @@
       }
 
       .Bottom {
+        border-bottom-left-radius: inherit;
+        border-bottom-right-radius: inherit;
         @include media-colour-scheme(
           border-top,
           1px solid $white60,
           1px solid $black80
         );
-        border-bottom-left-radius: inherit;
-        border-bottom-right-radius: inherit;
 
         &.Buttons {
           height: 60px;
           display: flex;
           align-items: center;
+          justify-content: flex-end;
+          gap: 10px;
           @include media-colour-scheme(background-color, $white90, $black80);
-          padding: 0px 30px;
-
           padding: 0px 15px;
           @include media-min-width($largerThanMobile) {
             padding: 0px 20px;
@@ -92,8 +92,6 @@
           @include media-min-width($largerThanTablet) {
             padding: 0px 30px;
           }
-          justify-content: flex-end;
-          gap: 10px;
           .Btn {
             font-size: 1rem;
             min-width: 120px;

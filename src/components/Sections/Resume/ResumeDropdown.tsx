@@ -37,7 +37,6 @@ export const ResumeDropdown: React.FC<ResumeDropdownProps> = ({
       value={value}
       options={options}
       onChange={callback}
-      menuIsOpen
     />
   );
 };
