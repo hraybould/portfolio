@@ -557,7 +557,11 @@ const HobbiesAndInterests: React.FC = () => (
         within my local Wi-Fi network
       </li>
     </ul>
-    <p>I also enjoy gaming, doing DIY, and bouldering.</p>
+    <p>
+      I also enjoy gaming, doing DIY, and bouldering. In 2024 I rekindled my
+      passion for Scuba Diving, I completed my PADI Open Water certification and
+      intend to take it further into the future.
+    </p>
   </section>
 );
 // Hobbies and Interests - END

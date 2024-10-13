@@ -6,8 +6,8 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  // Needed to override the z-index from Swiper and ReactSelect
-  z-index: 2;
+  // Needed to show above other elements
+  z-index: 1;
   @include media-colour-scheme(
     background-color,
     $headingColour,

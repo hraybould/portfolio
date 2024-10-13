@@ -5,6 +5,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  // Index set to same as header, shows above due to HTML display order
   z-index: 1;
 
   .Modal {

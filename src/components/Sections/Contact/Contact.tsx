@@ -173,6 +173,14 @@ export const Contact: React.FC<ContactProps> = () => {
           title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
         />
       </Link>
+      <Link href="https://stackoverflow-readme-profile.vercel.app/tags-league/reactjs/users/15291770">
+        <img
+          src={`https://stackoverflow-readme-profile.johannchopin.fr/tags-league-ranking/reactjs/15291770?theme=${
+            isDarkMode ? "dark" : "light"
+          }`}
+          alt="Harrison's SO ranking for reactjs"
+        />
+      </Link>
     </div>
   );
 };

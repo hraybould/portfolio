@@ -122,8 +122,9 @@ export const buildSkillTitle = (skill: SkillValue): string => {
 const STARTED_QUORUM = new Date("2018-01-15");
 const STARTED_ENCOMPASS_PROJECT = new Date("2018-03-01");
 const FINISHED_ENCOMPASS_PROJECT = new Date("2020-03-01");
-// Other
+// Other Important Dates
 const STARTED_REACT = new Date("2021-01-17");
+const STARTED_REACT_NATIVE = new Date("2023-07-01");
 // Date today
 const UNTIL_CURRENT = new Date();
 
@@ -168,6 +169,13 @@ export const ALL_SKILLS: SkillObject = {
           name: "TypeScript",
           icon: SiTypescript,
           start: STARTED_AVAMAE,
+          end: UNTIL_CURRENT,
+          keySkill: true,
+        },
+        {
+          name: "React Native",
+          icon: SiReact,
+          start: STARTED_REACT_NATIVE,
           end: UNTIL_CURRENT,
           keySkill: true,
         },

@@ -68,6 +68,8 @@
   }
 
   .CustomReactSelect__menu {
+    // Lowers the index to show behind header
+    z-index: 0;
     @include media-colour-scheme(
       background-color,
       $white95 !important,
