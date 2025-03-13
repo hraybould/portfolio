@@ -432,7 +432,7 @@ const PriorExperience: React.FC = () => {
       {rolesData.map(
         (job, jobIndex) =>
           job.visible && (
-            <div key={jobIndex}>
+            <div key={`JOB_${jobIndex}`}>
               <ResumeHeading
                 heading={job.companyName}
                 subTitle={job.subTitle}
@@ -443,7 +443,7 @@ const PriorExperience: React.FC = () => {
               />
               {job.roles.map((role, roleIndex) => (
                 <ResumeHeading
-                  key={roleIndex}
+                  key={`JOB_ROLE_${roleIndex}`}
                   heading={role.positionName}
                   start={role.start ?? job.start}
                   end={role.end ?? job.end}
@@ -527,18 +527,21 @@ const Education: React.FC = () => {
         <div>{dropdown}</div>
       </div>
       {educationData.map((institution, institutionIndex) => (
-        <div key={institutionIndex} style={{ padding: "0.5rem 0" }}>
+        <div
+          key={`EDUCATION_INSTITUTION_${institutionIndex}`}
+          style={{ padding: "0.5rem 0" }}
+        >
           <ResumeHeading
             heading={institution.institutionName}
             start={institution.start}
             end={institution.end}
           />
           {institution.modules.map((module, moduleIndex) => (
-            <React.Fragment key={moduleIndex}>
+            <React.Fragment key={`EDUCATION_MODULE_${moduleIndex}`}>
               {module.title && <h6>{module.title}</h6>}
               <ul>
                 {module.notableGrades.map((grade, gradeIndex) => (
-                  <li key={gradeIndex}>{grade}</li>
+                  <li key={`NOTABLE_GRADE_${gradeIndex}`}>{grade}</li>
                 ))}
               </ul>
             </React.Fragment>

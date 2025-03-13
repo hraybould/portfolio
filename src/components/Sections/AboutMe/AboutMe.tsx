@@ -41,7 +41,7 @@ export const AboutMe: React.FC<AboutMeProps> = () => {
             {/* <ClosingTag /> */}
           </div>
           <div className={infoClassNames}>
-            &nbsp;a UK-based Web Developer&nbsp;
+            &nbsp;UK-based Web Developer&nbsp;
             {/* <ClosingTag /> */}
           </div>
         </div>

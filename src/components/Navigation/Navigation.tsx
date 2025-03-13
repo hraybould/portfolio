@@ -50,7 +50,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
           {ALL_SECTIONS.map(
             (section) =>
               section.sectionVisible && (
-                <li key={section.id}>
+                <li key={`NAV_LINK_${section.id}`}>
                   <span
                     className="NavLink"
                     onClick={scrollIntoView(section.id)}

@@ -10,7 +10,7 @@ import {
   buildSkillTitle,
   getSkillsArray,
   pushToResult,
-  SkillValue,
+  SkillDetails,
   sortSkillsByTime,
 } from "./skillsHelpers";
 
@@ -26,7 +26,7 @@ export const Skills: React.FC<SkillsProps> = () => {
 };
 
 interface SkillProps {
-  skill: SkillValue;
+  skill: SkillDetails;
   smallerFontSizes?: boolean;
 }
 
@@ -62,7 +62,7 @@ const KeySkills: React.FC = () => {
       <h3>Key Skills</h3>
       <SwiperCarousel slidesPerView={slidesPerView}>
         {keySkills.map((keySkill, keySkillIndex) => (
-          <SwiperCarouselSlide key={keySkillIndex}>
+          <SwiperCarouselSlide key={`KEY_SKILL_${keySkillIndex}`}>
             <Skill skill={keySkill} />
           </SwiperCarouselSlide>
         ))}
@@ -101,7 +101,7 @@ const SkillsSummary: React.FC = () => {
           <div
             className={largerThanMobile ? "XLargeText" : "LargeText"}
             title={buildSkillTitle(skill)}
-            key={skillIndex}
+            key={`ALL_SKILLS_ITEM_${skillIndex}`}
           >
             {skill.icon({ title: buildSkillTitle(skill) })}
           </div>
@@ -123,10 +123,10 @@ const SkillsSummary: React.FC = () => {
         contentClassName="Content SkillsSection"
       >
         {Object.keys(ALL_SKILLS).map((skillGroup, groupIndex) => {
-          let skillsInGroup: SkillValue[] = [];
+          let skillsInGroup: SkillDetails[] = [];
           ALL_SKILLS[skillGroup].forEach(pushToResult(skillsInGroup));
           return (
-            <div key={groupIndex}>
+            <div key={`ALL_SKILLS_GROUP_${groupIndex}`}>
               <h3>{skillGroup}</h3>
               <SwiperCarousel
                 spaceBetween={20}
@@ -135,9 +135,10 @@ const SkillsSummary: React.FC = () => {
                 slidesPerView={slidesPerView}
               >
                 {sortSkillsByTime(skillsInGroup).map((skill, skillIndex) => (
-                  <SwiperCarouselSlide key={skillIndex}>
-                    <Skill skill={skill} smallerFontSizes />
-                  </SwiperCarouselSlide>
+                  <SwiperCarouselSlide
+                    key={`ALL_SKILLS_SLIDE_${skillIndex}`}
+                    children={<Skill skill={skill} smallerFontSizes />}
+                  />
                 ))}
               </SwiperCarousel>
             </div>

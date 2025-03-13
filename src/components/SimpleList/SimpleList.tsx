@@ -19,7 +19,7 @@ export const SimpleList: React.FC<SimpleListProps> = ({ list }) => {
       {list.map(
         (listItem, listItemIndex) =>
           listItem.visible && (
-            <React.Fragment key={listItemIndex}>
+            <React.Fragment key={`SIMPLE_LIST_ITEM_${listItemIndex}`}>
               <li>{listItem.itemInfo}</li>
               {listItem.subList && <SimpleList list={listItem.subList} />}
             </React.Fragment>

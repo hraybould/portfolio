@@ -11,7 +11,7 @@ export const SectionsBuilder: React.FC = () => {
         (section) =>
           section.sectionVisible && (
             <section
-              key={section.titleText}
+              key={`PAGE_SECTION_${section.titleText}`}
               id={section.id}
               className={
                 section.sectionPrintable ? "IsPrintable" : "NotForPrinting"

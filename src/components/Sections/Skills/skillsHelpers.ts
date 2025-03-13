@@ -57,7 +57,7 @@ export const pushToResult =
     arrayToPushTo: ReturnType<typeof getSkillsArray>,
     whichSkillsToGet?: boolean
   ) =>
-  (skill: SkillValue) => {
+  (skill: SkillDetails) => {
     if (whichSkillsToGet === undefined) {
       arrayToPushTo.push(skill);
     } else {
@@ -77,7 +77,7 @@ export const pushToResult =
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
  * @returns The sorted array
  */
-export const sortSkillsByTime = (skillsArray: SkillValue[]) =>
+export const sortSkillsByTime = (skillsArray: SkillDetails[]) =>
   skillsArray.sort((a, b) => {
     // Another way:
     // Could use date-fns to calculate the differnce instead of valueOf()
@@ -99,7 +99,7 @@ export const getSkillsArray = (
   allSkills: SkillObject,
   whichSkillsToGet: boolean | undefined = undefined,
   sortByTimeFrame: boolean = false
-): SkillValue[] => {
+): SkillDetails[] => {
   let skills: ReturnType<typeof getSkillsArray> = [];
   Object.keys(allSkills).forEach((skillGroup) => {
     ALL_SKILLS[skillGroup].forEach(pushToResult(skills, whichSkillsToGet));
@@ -110,7 +110,7 @@ export const getSkillsArray = (
   return skills;
 };
 
-export const buildSkillTitle = (skill: SkillValue): string => {
+export const buildSkillTitle = (skill: SkillDetails): string => {
   if (skill.subName) {
     return `${skill.name} (${skill.subName})`;
   }
@@ -131,17 +131,17 @@ const UNTIL_CURRENT = new Date();
 /**
  * Information about different skills
  */
-export type SkillValue = {
+export type SkillDetails = {
   name: string;
   subName?: string;
-  libraries?: SkillValue[];
+  libraries?: SkillDetails[];
   icon: React.FC;
   start: Date;
   end: Date;
   // stillInterestedIn: "Yes" | "No" | "Actively working on"
   keySkill?: boolean;
 };
-type SkillObject = Record<string, SkillValue[]>;
+type SkillObject = Record<string, SkillDetails[]>;
 
 // TODO: link to Pluralsight skills proficiencies
 
