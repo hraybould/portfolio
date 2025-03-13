@@ -173,7 +173,14 @@ export const Contact: React.FC<ContactProps> = () => {
             title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
           />
         </Link>
-        <TopTags isDarkMode={isDarkMode} />
+        {/*
+          NOTE: Tag Leagues is currently down, disabled until this is back up
+          SEE: https://github.com/johannchopin/stackoverflow-readme-profile/issues/31 
+
+          Different Question: https://meta.stackexchange.com/questions/361001/get-your-position-in-tag-league-top-x
+          Working Query?      https://data.stackexchange.com/stackoverflow/query/50844/what-percentile-am-i-in-for-a-given-tag
+        */}
+        {/* <TopTags isDarkMode={isDarkMode} /> */}
       </div>
     </div>
   );

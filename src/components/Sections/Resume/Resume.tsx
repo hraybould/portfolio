@@ -180,7 +180,7 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
       </>
     ),
     visible: true,
-    sublist: [
+    subList: [
       {
         itemInfo: <>Obtained Level 1 Vibration Analyst from RMS Solutions</>,
         visible: false,
@@ -317,7 +317,7 @@ const PREVIOUS_ROLES: JobRole[] = [
         <p>
           During my time at The MTC, I was involved in a number of projects,
           such as Encompass and BluePlanet. I additionally held management
-          resposibilities for a number of graduates in the team.
+          responsibilities for a number of graduates in the team.
         </p>
         <p>
           My involvement in Encompass included full-stack development with a
@@ -383,7 +383,7 @@ const PREVIOUS_ROLES: JobRole[] = [
           My time has been split between a number of custom-built React
           interfaces for my client; one of which was written with few comments
           and no type definitions while the others were fully typed with
-          TypeScript. I used my inittiative and converted{" "}
+          TypeScript. I used my initiative and converted{" "}
           <span className="pre">.js</span> and <span className="pre">.jsx</span>{" "}
           files to TypeScript (<span className="pre">.ts</span> and{" "}
           <span className="pre">.tsx</span>). I upgraded the code from pre-Hooks

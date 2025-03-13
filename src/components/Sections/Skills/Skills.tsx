@@ -75,7 +75,7 @@ const SkillsSummary: React.FC = () => {
   // Media Queries
   const largerThanMobile = useMedia(MOBILE_MIN_WIDTH);
   const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
-  // Memoised becuase useMedia causes shuffle to be called again
+  // Memoised because useMedia causes shuffle to be called again
   const halfSkillsShuffled = useMemo(() => {
     const skills = getSkillsArray(ALL_SKILLS, undefined, true);
     return shuffle(skills.slice(0, Math.floor(skills.length / 2)));

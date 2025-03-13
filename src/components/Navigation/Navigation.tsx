@@ -21,7 +21,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
   useEffect(() => {
     // Reset Navbar Visibility State
     setNavVisible(!!largerThanTablet);
-    // Add listener, the scroll process closess the navbar on tablet devices
+    // Add listener, the scroll process closes the navbar on tablet devices
     if (!largerThanTablet) {
       document.addEventListener("scroll", hideNavbar);
     } else {
@@ -77,7 +77,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
 };
 
 const scrollIntoView =
-  (section: typeof ALL_SECTIONS[number]["id"], callback?: VoidFunction) =>
+  (section: (typeof ALL_SECTIONS)[number]["id"], callback?: VoidFunction) =>
   () => {
     // Find Section element
     const sectionElement = document.getElementById(section);

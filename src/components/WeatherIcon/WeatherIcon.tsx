@@ -93,7 +93,7 @@ export const WeatherIcon: React.FC = () => {
         closeOnDocumentClick
       >
         <div>
-          The weather near me (in Birmingham) is currently:
+          I live near Birmingham, the weather near me is currently:
           <br />
           {weatherCode.title} and {weatherData.temperature}&#x2103;
         </div>

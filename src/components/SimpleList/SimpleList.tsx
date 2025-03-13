@@ -2,7 +2,7 @@ import React from "react";
 
 export type ListItem = {
   itemInfo: React.ReactNode;
-  sublist?: ListItem[];
+  subList?: ListItem[];
   visible: boolean;
 };
 
@@ -21,7 +21,7 @@ export const SimpleList: React.FC<SimpleListProps> = ({ list }) => {
           listItem.visible && (
             <React.Fragment key={listItemIndex}>
               <li>{listItem.itemInfo}</li>
-              {listItem.sublist && <SimpleList list={listItem.sublist} />}
+              {listItem.subList && <SimpleList list={listItem.subList} />}
             </React.Fragment>
           )
       )}
