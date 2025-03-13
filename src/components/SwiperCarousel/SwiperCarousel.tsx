@@ -15,7 +15,7 @@ export const SwiperCarousel: React.FC<SwiperProps> = ({
   navigation = true,
   keyboard = true,
   autoplay = {
-    delay: 2500,
+    delay: 3000,
     disableOnInteraction: false,
     pauseOnMouseEnter: true,
   },

@@ -103,13 +103,14 @@ const PersonalProfile: React.FC = () => (
   <section>
     <h3>Personal Profile</h3>
     <p>
-      I am an enthusiastic, intuitive, and highly motivated React Developer;
-      competent in languages such as JavaScript, HTML, and CSS; I also have a
-      firm grasp of React, Hooks, Redux, and TypeScript. Being a Physics
-      graduate, I have advanced problem solving skills and work with a high
-      attention to detail. I enjoy working in a team or independently and have
-      great interpersonal skills and experience working in customer/client
-      focussed environments.
+      I am an enthusiastic, intuitive, and highly motivated React Developer. My
+      strongest languages are JavaScript, HTML, and CSS; additionally, I have a
+      firm grasp of React, Hooks, Redux, and TypeScript. Having studied Physics
+      at university, I have advanced problem solving skills and work with a high
+      attention to detail. My time working as a fully-remote React engineer has
+      led me to develop great communication and interpersonal skills; as well as
+      having solid experience working in customer/client focussed environments
+      requiring both team-focussed and independent delivery.
     </p>
   </section>
 );
@@ -154,9 +155,18 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
-        Rewrote an existing client project from JavaScript to TypeScript,
-        providing extensive Type definitions, and converting lifecycle methods
-        to Hooks
+        Developed a React Native app for a client, and distributed it to Google
+        Play Store and Apple App Store
+      </>
+    ),
+    visible: true,
+  },
+  {
+    itemInfo: (
+      <>
+        Without outages or downtime, rewrote a live client project from
+        JavaScript to TypeScript, providing extensive Type definitions, and
+        converting lifecycle methods to Hooks
       </>
     ),
     visible: true,
@@ -549,24 +559,25 @@ const HobbiesAndInterests: React.FC = () => (
     <h3>Hobbies and Interests</h3>
     <p>
       In my spare time, I'm an avid powerlifter and occasional runner; I find
-      that my physical wellbeing has a significant and direct impact on my
-      mental wellbeing and professional focus.
+      that my physical wellbeing has a significant (and direct) impact on my
+      mental well-being and professional focus.
     </p>
     <p>
       At home, I have also taken on small-scale programming projects such as:
     </p>
     <ul>
-      <li>A smart thermostat controlled by a Node-Red on RaspberryPi</li>
-      <li>An Eisenhower Matrix iOS app written in Swift</li>
+      <li>A Visual Studio Code (VS Code) extension</li>
+      <li>A smart thermostat controlled by Node-Red on a Raspberry Pi</li>
+      <li>An Eisenhower Matrix app written in Swift for iOS</li>
       <li>
         A homemade Network-Attached Storage (NAS) device for sharing files
-        within my local Wi-Fi network
+        within my home Wi-Fi network
       </li>
     </ul>
     <p>
-      I also enjoy gaming, doing DIY, and bouldering. In 2024 I rekindled my
-      passion for Scuba Diving, I completed my PADI Open Water certification and
-      intend to take it further into the future.
+      I also enjoy gaming, DIY, and bouldering. In 2024 I rekindled my passion
+      for Scuba Diving and completed my PADI Open Water certification; I intend
+      to continue this and attain the Advanced Open Water certification.
     </p>
   </section>
 );

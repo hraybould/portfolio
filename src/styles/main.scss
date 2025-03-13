@@ -22,3 +22,7 @@
 @import "components/Sections/Contact/Contact";
 @import "components/Sections/Resume/Resume";
 @import "components/Sections/Skills/Skills";
+// End of Imports
+
+// Printing Imported last
+@import "./print.scss";

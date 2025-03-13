@@ -148,7 +148,7 @@ export const Contact: React.FC<ContactProps> = () => {
           </Link>
         </div>
       </div>
-      <div className="DisplayFlex FlexColumn SmallGap NotForPrinting">
+      <div className="DisplayFlex FlexColumn SmallGap">
         {/* <Link href="https://stackoverflow.com/users/15291770/harrison">
         <img
         className="MarginAuto StackOverflowFlair"

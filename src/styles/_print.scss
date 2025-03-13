@@ -1,0 +1,38 @@
+// Printing Logic
+.ForPrintOnly {
+  display: none;
+}
+@media print {
+  // Set page settings
+  @page {
+    margin: 1cm 1.5cm;
+  }
+  // General Classes - START
+  // Hide elements from being printed
+  *.NotForPrinting {
+    display: none;
+  }
+  // Show elements for printing
+  * {
+    &.IsPrintable,
+    &.ForPrintOnly {
+      display: block;
+    }
+  }
+  // General Classes - END
+  //
+  // Specific Overrides - START
+  // Clear the background colour, Safari seems to require this for printing
+  .SectionsWrapper > section:nth-child(n) {
+    background-color: unset;
+  }
+  // Reduce contact section's gap between elements when printing
+  .ContactSection {
+    gap: 1rem;
+  }
+  // Always show the same light-themed StackOverflow Flair
+  .StackOverflowFlair {
+    content: url("https://stackoverflow.com/users/flair/15291770.png?theme=light");
+  }
+  // Specific Overrides - END
+}

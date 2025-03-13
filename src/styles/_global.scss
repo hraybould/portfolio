@@ -168,32 +168,3 @@ span.pre {
   display: inline;
   @include media-colour-scheme(background-color, $white80, $black60);
 }
-
-// Printing Logic
-.ForPrintOnly {
-  display: none;
-}
-@media print {
-  // Hide elements from being printed
-  *.NotForPrinting {
-    display: none;
-  }
-  // Show elements for printing
-  * {
-    &.IsPrintable,
-    &.ForPrintOnly {
-      display: block;
-    }
-  }
-  // Reduce contact section's gap between elements when printing
-  .ContactSection {
-    gap: 1rem;
-  }
-  // Always show the same light-themed StackOverflow Flair
-  .StackOverflowFlair {
-    content: url("https://stackoverflow.com/users/flair/15291770.png?theme=light");
-  }
-  @page {
-    margin: 1cm 1.5cm;
-  }
-}
