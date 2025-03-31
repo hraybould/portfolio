@@ -103,14 +103,15 @@ const PersonalProfile: React.FC = () => (
   <section>
     <h3>Personal Profile</h3>
     <p>
-      I am an enthusiastic, intuitive, and highly motivated React Developer. My
+      I'm an enthusiastic, intuitive, and highly motivated React Developer. My
       strongest languages are JavaScript, HTML, and CSS; additionally, I have a
-      firm grasp of React, Hooks, Redux, and TypeScript. Having studied Physics
-      at university, I have advanced problem solving skills and work with a high
-      attention to detail. My time working as a fully-remote React engineer has
-      led me to develop great communication and interpersonal skills; as well as
-      having solid experience working in customer/client focussed environments
-      requiring both team-focussed and independent delivery.
+      firm grasp of TypeScript, React, Hooks, Redux, and Git. Having studied
+      Physics at university, I have advanced problem solving skills and work
+      with a high attention to detail. My time working as a fully-remote React
+      engineer has led me to develop great communication and interpersonal
+      skills; as well as having solid experience working in customer/client
+      focussed environments requiring both team-focussed and independent
+      delivery.
     </p>
   </section>
 );
@@ -155,8 +156,8 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
-        Developed a React Native app for a client, and distributed it to Google
-        Play Store and Apple App Store
+        Developed and distributed a React Native app to both Apple and Android
+        app stores
       </>
     ),
     visible: true,
@@ -343,7 +344,7 @@ const PREVIOUS_ROLES: JobRole[] = [
           During the course of the BluePlanet project, I architected and
           developed an Industry 4.0, Internet of Things (IoT) solution capable
           of remotely reporting telemetry data from an agriculture monitoring
-          rover to an AWS instance hosting ThingsBoard - a IoT dashboarding
+          rover to an AWS instance hosting ThingsBoard - an IoT dashboarding
           platform.
         </p>
         <p>
@@ -570,7 +571,10 @@ const HobbiesAndInterests: React.FC = () => (
     </p>
     <ul>
       <li>A Visual Studio Code (VS Code) extension</li>
-      <li>A smart thermostat controlled by Node-Red on a Raspberry Pi</li>
+      <li>
+        An Apple HomeKit-compatible smart thermostat controlled by Node-Red on a
+        Raspberry Pi
+      </li>
       <li>An Eisenhower Matrix app written in Swift for iOS</li>
       <li>
         A homemade Network-Attached Storage (NAS) device for sharing files
@@ -579,8 +583,9 @@ const HobbiesAndInterests: React.FC = () => (
     </ul>
     <p>
       I also enjoy gaming, DIY, and bouldering. In 2024 I rekindled my passion
-      for Scuba Diving and completed my PADI Open Water certification; I intend
-      to continue this and attain the Advanced Open Water certification.
+      for Scuba Diving and completed my PADI Open Water certification; this year
+      I intend to continue this and attain the Advanced Open Water
+      certification.
     </p>
   </section>
 );
