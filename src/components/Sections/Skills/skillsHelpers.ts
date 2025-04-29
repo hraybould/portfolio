@@ -177,7 +177,7 @@ export const ALL_SKILLS: SkillObject = {
           icon: SiReact,
           start: STARTED_REACT_NATIVE,
           end: UNTIL_CURRENT,
-          keySkill: true,
+          keySkill: false,
         },
       ],
     },

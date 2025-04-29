@@ -2,13 +2,17 @@ import React from "react";
 import ReactDom from "react-dom/client";
 import App from "App";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { store } from "app/store";
 import "styles/main.scss";
 
 const container = document.getElementById("root");
 const root = ReactDom.createRoot(container!);
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>
 );
 

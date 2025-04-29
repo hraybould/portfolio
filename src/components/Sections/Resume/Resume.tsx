@@ -15,6 +15,7 @@ import {
 } from "../Skills/skillsHelpers";
 import { durationFormatter } from "helpers/durationFormatter";
 import { ListItem, SimpleList } from "components/SimpleList";
+import { useAppSelector } from "app/hooks";
 
 interface ResumeProps {}
 
@@ -104,14 +105,13 @@ const PersonalProfile: React.FC = () => (
     <h3>Personal Profile</h3>
     <p>
       I'm an enthusiastic, intuitive, and highly motivated React Developer. My
-      strongest languages are JavaScript, HTML, and CSS; additionally, I have a
-      firm grasp of TypeScript, React, Hooks, Redux, and Git. Having studied
-      Physics at university, I have advanced problem solving skills and work
-      with a high attention to detail. My time working as a fully-remote React
-      engineer has led me to develop great communication and interpersonal
-      skills; as well as having solid experience working in customer/client
-      focussed environments requiring both team-focussed and independent
-      delivery.
+      strongest languages are JavaScript, HTML, and CSS; I have a firm grasp of
+      TypeScript, React, Redux, and Git. Having studied Physics at university, I
+      have advanced problem solving skills and work with a high attention to
+      detail. During my time as a fully-remote React engineer, I have honed my
+      communication and interpersonal skills; additionally I have furthered my
+      in customer/client focussed environments requiring both team-focussed and
+      independent delivery.
     </p>
   </section>
 );
@@ -165,9 +165,9 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
-        Without outages or downtime, rewrote a live client project from
-        JavaScript to TypeScript, providing extensive Type definitions, and
-        converting lifecycle methods to Hooks
+        Without outages or downtime, rewrote a live React app from JavaScript to
+        TypeScript. Converting lifecycle methods to Hooks and providing
+        extensive type definitions enabled safer, faster future development.
       </>
     ),
     visible: true,
@@ -259,7 +259,9 @@ type JobRole = {
   end?: Date;
   // Roles in job
   roles: Position[];
-  rolesDescription: React.ReactNode;
+  // Details about roles
+  roleResume: React.ReactNode;
+  roleCV: React.ReactNode;
   // Misc
   visible: boolean;
   link: string;
@@ -294,16 +296,29 @@ const PREVIOUS_ROLES: JobRole[] = [
         start: new Date("2017-03-01"),
       },
     ],
-    rolesDescription: (
-      <p>
-        The positions held at Stormfront Retail were intensely customer facing
-        and, uniquely for a retail position, required high attention to detail
-        in order to efficiently diagnose issues for customers with their Apple
-        devices. In an effort to improve repair times, I personally produced an
-        internal training document for colleagues to refer to; known as "The iOS
-        Repair Handbook", its use lead to a significant reduction in time taken
-        to complete iPhone repairs and replacements.
-      </p>
+    roleResume: (
+      <>
+        <p>
+          The positions held at Stormfront Retail were intensely customer facing
+          and, uniquely for a retail position, required high attention to detail
+          in order to efficiently diagnose issues for customers with their Apple
+          devices. In an effort to improve repair times, I produced an internal
+          training document for colleagues to refer to; its use lead to a
+          significant reduction in time taken to complete iPhone repairs and
+          replacements.
+        </p>
+      </>
+    ),
+    roleCV: (
+      <>
+        <p>
+          This was an intensely customer facing role; uniquely for a retail
+          position it required high attention to detail in order to efficiently
+          diagnose issues for customers with their Apple devices. In an effort
+          to improve repair times, I wrote an internal document to help train
+          staff, its use lead to a significant reduction in repair lead times.
+        </p>
+      </>
     ),
     visible: true,
     link: "https://uk.selectonline.com/",
@@ -323,7 +338,7 @@ const PREVIOUS_ROLES: JobRole[] = [
         start: new Date("2018-03-01"),
       },
     ],
-    rolesDescription: (
+    roleResume: (
       <>
         <p>
           During my time at The MTC, I was involved in a number of projects,
@@ -357,6 +372,31 @@ const PREVIOUS_ROLES: JobRole[] = [
         </p>
       </>
     ),
+    roleCV: (
+      <>
+        <p>
+          I am immensely proud of the projects I contributed to at The MTC;
+          ranging from Industry 4.0 to Internet of Things (IoT) systems.
+        </p>
+        <p>
+          My involvement in Encompass included full-stack development with a
+          Python backend, using [Vanilla] JavaScript, JQuery, HTML, and CSS. It
+          was this project that ignited my passion for Web Development; I lead
+          the design and development of the{" "}
+          <i>"Integrated Design Decision Support"</i> (IDDS) system that
+          interfaced with multiple databases and external applications. In 2019
+          I had the opportunity to deliver a presentation at an industry-leading
+          forum in Hannover, Germany.
+        </p>
+        <p>
+          During the course of the BluePlanet project, I architected and
+          developed an Industry 4.0, Internet of Things (IoT) solution capable
+          of remotely reporting telemetry data from an agriculture monitoring
+          rover to an AWS instance hosting ThingsBoard - an IoT dashboarding
+          platform.
+        </p>
+      </>
+    ),
     // Disman Project:
     // The Disman project also involved a web solution that was able to mine data from Inspection report documents and save them to a unified front-end that displayed analytics.
     visible: true,
@@ -376,7 +416,7 @@ const PREVIOUS_ROLES: JobRole[] = [
         start: new Date("2023-04-01"),
       },
     ],
-    rolesDescription: (
+    roleResume: (
       <>
         <p>
           Joining AVAMAE was not without its challenges, I joined a new business
@@ -411,6 +451,30 @@ const PREVIOUS_ROLES: JobRole[] = [
         </p>
       </>
     ),
+    roleCV: (
+      <>
+        <p>
+          I joined AVAMAE in the midst of the pandemic in a fully remote React
+          engineering role; I believe this meant that I had to rely heavily on
+          my communication skills to form close connections with the team. With
+          fast-paced client projects I quickly established myself as the go-to
+          developer. Within 6 months I had cemented my proficiencies in React,
+          Hooks, Redux, and TypeScript and began pushing both myself and my team
+          towards improving code robustness, uniformity and readability.
+        </p>
+        <p>
+          My time was split between a number of custom-built React interfaces,
+          one of which was written purely in <span className="pre">.js</span>{" "}
+          and <span className="pre">.jsx</span>; I created an upgrade plan to
+          upgrade the pre-Hooks React and Redux (Redux-Compose) codebase to
+          being Hook-capable and strongly-typed with TypeScript. This provided
+          extensive type definitions which enabled faster onboarding of junior
+          engineers as well as improved type-safety for future features. I was
+          able to do this with 300+ files, without project downtime, and whilst
+          responding to client requests.
+        </p>
+      </>
+    ),
     visible: true,
     link: "https://www.avamae.co.uk/",
   },
@@ -424,6 +488,8 @@ const PriorExperience: React.FC = () => {
   //  - timeline slider alongside roles to show dates
   const [rolesData, dropdown] = useResumeDropdown(PREVIOUS_ROLES);
   const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
+  const cvMode = useAppSelector((state) => state.toggle.cvMode);
+
   return (
     <section>
       <div className="DisplayFlex SmallGap JustifySpaceBetween">
@@ -452,7 +518,9 @@ const PriorExperience: React.FC = () => {
                   flexEvenly={!largerThanTablet}
                 />
               ))}
-              <div style={{ padding: "1rem 0rem" }}>{job.rolesDescription}</div>
+              <div style={{ padding: "1rem 0rem" }}>
+                {cvMode ? job.roleCV : job.roleResume}
+              </div>
             </div>
           )
       )}
@@ -577,15 +645,14 @@ const HobbiesAndInterests: React.FC = () => (
       </li>
       <li>An Eisenhower Matrix app written in Swift for iOS</li>
       <li>
-        A homemade Network-Attached Storage (NAS) device for sharing files
-        within my home Wi-Fi network
+        A Network-Attached Storage (NAS) device for sharing files within my home
+        network
       </li>
     </ul>
     <p>
       I also enjoy gaming, DIY, and bouldering. In 2024 I rekindled my passion
       for Scuba Diving and completed my PADI Open Water certification; this year
-      I intend to continue this and attain the Advanced Open Water
-      certification.
+      I intend to attain the Advanced certification.
     </p>
   </section>
 );

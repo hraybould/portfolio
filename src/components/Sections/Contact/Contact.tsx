@@ -7,9 +7,10 @@ import { useState, useEffect, useRef } from "react";
 import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
-import { PREFERS_DARK_MODE } from "appHelpers";
-// Not importing style as it doesn't work well with Dark Mode
+// NOTE: Not importing `reactjs-popup` style as it doesn't work well with Dark Mode
 // import "reactjs-popup/dist/index.css";
+import { PREFERS_DARK_MODE } from "appHelpers";
+// import { TopTags } from "./TopTags";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
 const EMAIL_SUBJECT = "Hi";
@@ -21,7 +22,6 @@ const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BOD
 interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
-  // Check if user prefers dark mode - for Stack Overflow flair
   const isDarkMode = useMedia(PREFERS_DARK_MODE);
 
   // ReactJS-Popup does not have fully working controlled state
@@ -161,7 +161,10 @@ export const Contact: React.FC<ContactProps> = () => {
           title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
           />
         </Link> */}
-        <Link href="https://stackexchange.com/users/20819824/harrison">
+        <Link
+          // className="NotForPrinting"
+          href="https://stackexchange.com/users/20819824/harrison"
+        >
           <img
             className="MarginAuto StackOverflowFlair"
             src={`https://stackexchange.com/users/flair/20819824.png?theme=${
@@ -180,44 +183,8 @@ export const Contact: React.FC<ContactProps> = () => {
           Different Question: https://meta.stackexchange.com/questions/361001/get-your-position-in-tag-league-top-x
           Working Query?      https://data.stackexchange.com/stackoverflow/query/50844/what-percentile-am-i-in-for-a-given-tag
         */}
-        {/* <TopTags isDarkMode={isDarkMode} /> */}
+        {/* <TopTags /> */}
       </div>
     </div>
-  );
-};
-
-const TOP_TAGS: string[][] = [
-  ["javascript", "reactjs", "typescript"],
-  ["css", "html"],
-];
-
-interface TopTagsProps {
-  isDarkMode: boolean;
-}
-const TopTags: React.FC<TopTagsProps> = ({ isDarkMode }) => {
-  return (
-    <>
-      {TOP_TAGS.map((group, i) => (
-        <div
-          key={`TOP_TAGS_GROUP_${i}`}
-          className="DisplayFlex FlexRow SmallGap"
-        >
-          {group.map((tag, j) => (
-            <div key={`TOP_TAGS_${i}_${tag}_${j}`}>
-              <Link href="https://stackoverflow-readme-profile.vercel.app/tags-league/css/users/15291770">
-                <img
-                  className="TopTagImg"
-                  // style={{ height: 34, padding: 1 }}
-                  src={`https://stackoverflow-readme-profile.johannchopin.fr/tags-league-ranking/${tag}/15291770?theme=${
-                    isDarkMode ? "dark" : "graywhite"
-                  }`}
-                  alt={`Harrison's SO ranking for ${tag}`}
-                />
-              </Link>
-            </div>
-          ))}
-        </div>
-      ))}
-    </>
   );
 };

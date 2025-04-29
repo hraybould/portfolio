@@ -9,4 +9,7 @@ export const LAPTOP_MIN_WIDTH = { minWidth: LAPTOP_BREAKPOINT };
 
 export const MODAL_PORTAL_ID = "ModalPortal";
 
+/**
+ * Media query for `useMedia` (from "use-media") to check for dark mode
+ */
 export const PREFERS_DARK_MODE = "(prefers-color-scheme: dark)";

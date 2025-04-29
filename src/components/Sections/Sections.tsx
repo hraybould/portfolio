@@ -1,17 +1,19 @@
 import { AboutMe } from "./AboutMe/AboutMe";
 import { Contact } from "./Contact/Contact";
 import { Section } from "./models";
-import { Resume } from "./Resume";
+import { Resume, ResumeSwitch } from "./Resume";
 import { Skills } from "./Skills/Skills";
+import { useAppSelector } from "app/hooks";
 
 export const SectionsBuilder: React.FC = () => {
+  const cvMode = useAppSelector((store) => store.toggle.cvMode);
   return (
     <div className="SectionsWrapper">
-      {ALL_SECTIONS.map(
-        (section) =>
-          section.sectionVisible && (
+      {ALL_SECTIONS.map((section, index) => {
+        if (section.sectionVisible) {
+          return (
             <section
-              key={`PAGE_SECTION_${section.titleText}`}
+              key={`PAGE_SECTION_${section.id}_${index}`}
               id={section.id}
               className={
                 section.sectionPrintable ? "IsPrintable" : "NotForPrinting"
@@ -19,13 +21,22 @@ export const SectionsBuilder: React.FC = () => {
             >
               <div className="SectionInner">
                 {section.titleVisible && (
-                  <h2 className="SectionHeading">{section.titleText}</h2>
+                  <div className="DisplayFlex JustifySpaceBetween">
+                    <h2 className="SectionHeading">
+                      {typeof section.titleText === "function"
+                        ? section.titleText(cvMode)
+                        : section.titleText}
+                    </h2>
+                    {section.titleComponent}
+                  </div>
                 )}
                 {section.sectionContent}
               </div>
             </section>
-          )
-      )}
+          );
+        }
+        return null;
+      })}
     </div>
   );
 };
@@ -50,7 +61,10 @@ export const ALL_SECTIONS: Section[] = [
   {
     id: "resume",
     titleVisible: true,
-    titleText: "Resume",
+    titleText: (passedBoolean: boolean) =>
+      passedBoolean ? "Curriculum Vitae" : "Resume",
+    navigationText: "CV & Resume",
+    titleComponent: <ResumeSwitch />,
     sectionContent: <Resume />,
     sectionVisible: true,
     sectionPrintable: true,

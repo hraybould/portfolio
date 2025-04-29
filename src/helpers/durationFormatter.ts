@@ -26,25 +26,23 @@ export const durationFormatter: DurationFormatterFunc = ({
     start,
     end,
   });
-  // More than 10 Years, do not specify
-  if (
-    !beSpecific &&
-    format &&
-    format.includes("years") &&
-    duration.years &&
-    duration.years > 9
-  ) {
-    return "10+ years";
+  if (!beSpecific && format && format.includes("years") && duration.years) {
+    if (duration.years >= 10) {
+      // More than 10 Years, do not specify
+      return "10+ years";
+    } else if (duration.years >= 5) {
+      // More than 5 years, don't specify months
+      return formatDuration(duration, { format: ["years"], delimiter });
+    } else if (duration.years >= 3 && duration.months && duration.months >= 6) {
+      // More than 3.5 years, round up and don't specify months
+      return formatDuration(
+        {
+          years: duration.years + 1,
+        },
+        { format: ["years"], delimiter }
+      );
+    }
   }
-  // More than 5 years, only specify months
-  if (
-    !beSpecific &&
-    format &&
-    format.includes("years") &&
-    duration.years &&
-    duration.years > 4
-  ) {
-    return formatDuration(duration, { format: ["years"], delimiter });
-  }
+  // Return fallback
   return formatDuration(duration, { format, delimiter });
 };

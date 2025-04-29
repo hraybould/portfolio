@@ -1,3 +1,4 @@
+import { useAppSelector } from "app/hooks";
 import { TABLET_MIN_WIDTH } from "appHelpers";
 import { NAVBAR_HEADER_ID } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
@@ -10,6 +11,7 @@ interface NavigationProps {}
 
 export const Navigation: React.FC<NavigationProps> = () => {
   const [navVisible, setNavVisible] = useState<boolean>(false);
+  const cvMode = useAppSelector((store) => store.toggle.cvMode);
   const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   const hideNavbar = () => {
     if (!largerThanTablet) {
@@ -47,19 +49,24 @@ export const Navigation: React.FC<NavigationProps> = () => {
       </div>
       <nav ref={ref} className={navVisible ? "NavVisible" : undefined}>
         <ul>
-          {ALL_SECTIONS.map(
-            (section) =>
-              section.sectionVisible && (
-                <li key={`NAV_LINK_${section.id}`}>
+          {ALL_SECTIONS.map((section, index) => {
+            if (section.sectionVisible) {
+              return (
+                <li key={`NAV_LINK_${section.id}_${index}`}>
                   <span
                     className="NavLink"
                     onClick={scrollIntoView(section.id)}
                   >
-                    {section.titleText}
+                    {section.navigationText ??
+                      (typeof section.titleText === "function"
+                        ? section.titleText(cvMode)
+                        : section.titleText)}
                   </span>
                 </li>
-              )
-          )}
+              );
+            }
+            return null;
+          })}
           {/* {ALL_SECTIONS.some((section) => section.sectionPrintable) && (
             <li className="NotRealNavLink">
               <span
