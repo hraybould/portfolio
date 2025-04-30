@@ -56,7 +56,7 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
     >
       {(state) => (
         <div
-          className={"ModalUnderlay " + state}
+          className={`ModalUnderlay ${state}`}
           onClick={(e) => e.stopPropagation()}
         >
           <div

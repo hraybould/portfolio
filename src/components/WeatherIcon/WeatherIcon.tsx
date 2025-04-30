@@ -87,17 +87,17 @@ export const WeatherIcon: React.FC = () => {
             })}
           </div>
         }
-        on={"hover"}
-        position={["bottom center", "top center"]}
+        on="hover"
+        position="bottom right"
         repositionOnResize
         closeOnDocumentClick
       >
         <div>
-          I live near Birmingham, the weather near me is currently:
+          The weather near me is:
           <br />
           {weatherCode.title} and {weatherData.temperature}&#x2103;
         </div>
-        <div className="SmallText">
+        <div className="AcknowledgementText SmallText">
           Meteorological data provided by:{" "}
           <Link href="https://open-meteo.com/">Open Meteo</Link>
         </div>

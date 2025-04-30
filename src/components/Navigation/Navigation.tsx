@@ -41,7 +41,7 @@ export const Navigation: React.FC<NavigationProps> = () => {
       <div className="HamburgerMenuWrapper">
         <GiHamburgerMenu
           size={25}
-          className={"Icon Btn NoPadding NoBorder"}
+          className="Icon Btn NoPadding NoBorder"
           onClick={() => {
             setNavVisible((p) => !p);
           }}

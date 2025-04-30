@@ -107,9 +107,9 @@ h6 {
 }
 
 .SmallText {
-  font-size: 90%;
+  font-size: 85%;
   @include media-min-width($largerThanTablet) {
-    font-size: 95%;
+    font-size: 90%;
   }
 }
 

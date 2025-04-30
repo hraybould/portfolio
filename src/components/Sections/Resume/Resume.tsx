@@ -435,19 +435,20 @@ const PREVIOUS_ROLES: JobRole[] = [
           interfaces for my client; one of which was written with few comments
           and no type definitions while the others were fully typed with
           TypeScript. I used my initiative and converted{" "}
-          <span className="pre">.js</span> and <span className="pre">.jsx</span>{" "}
-          files to TypeScript (<span className="pre">.ts</span> and{" "}
-          <span className="pre">.tsx</span>). I upgraded the code from pre-Hooks
-          React and Redux (Redux-Compose) to being Hook-capable and
-          strongly-typed with TypeScript. There were a number of reasons why I
-          did this, chief among which was that a junior engineer joined the team
-          and struggled to get to grips with the codebase. I had long felt that
-          TypeScript should be implemented and this catalysed the
-          transformation; I also found it very rewarding being able to support
-          someone in my team. Any new components were written in TypeScript and
-          I set about providing type definitions and converting the 300+ files;
-          all the while adding new features and functionality and responding to
-          client requests.
+          <span className="pre" children=".js" /> and{" "}
+          <span className="pre" children=".jsx" /> files to TypeScript (
+          <span className="pre" children=".ts" /> and{" "}
+          <span className="pre" children=".tsx" />
+          ). I upgraded the code from pre-Hooks React and Redux (Redux-Compose)
+          to being Hook-capable and strongly-typed with TypeScript. There were a
+          number of reasons why I did this, chief among which was that a junior
+          engineer joined the team and struggled to get to grips with the
+          codebase. I had long felt that TypeScript should be implemented and
+          this catalysed the transformation; I also found it very rewarding
+          being able to support someone in my team. Any new components were
+          written in TypeScript and I set about providing type definitions and
+          converting the 300+ files; all the while adding new features and
+          functionality and responding to client requests.
         </p>
       </>
     ),
@@ -464,8 +465,9 @@ const PREVIOUS_ROLES: JobRole[] = [
         </p>
         <p>
           My time was split between a number of custom-built React interfaces,
-          one of which was written purely in <span className="pre">.js</span>{" "}
-          and <span className="pre">.jsx</span>; I created an upgrade plan to
+          one of which was written purely in{" "}
+          <span className="pre" children=".js" /> and{" "}
+          <span className="pre" children=".jsx" />; I created an upgrade plan to
           upgrade the pre-Hooks React and Redux (Redux-Compose) codebase to
           being Hook-capable and strongly-typed with TypeScript. This provided
           extensive type definitions which enabled faster onboarding of junior

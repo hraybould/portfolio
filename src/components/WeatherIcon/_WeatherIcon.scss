@@ -1,3 +1,6 @@
 .WeatherDataWrapper {
   cursor: help;
 }
+.AcknowledgementText {
+  @include media-colour-scheme(color, $black65, $white80);
+}

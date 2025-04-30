@@ -80,7 +80,7 @@ export const Contact: React.FC<ContactProps> = () => {
             }}
             trigger={
               <span className="Btn NoBorder LargeText NotForPrinting">
-                <HiOutlineClipboardCopy className={"Icon"} />
+                <HiOutlineClipboardCopy className="Icon" />
               </span>
             }
             position={["bottom center", "top center"]}

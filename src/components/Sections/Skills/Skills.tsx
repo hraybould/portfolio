@@ -111,7 +111,7 @@ const SkillsSummary: React.FC = () => {
           onClick={() => {
             setModalOpen(true);
           }}
-          title={"Click to see more skills"}
+          title="Click to see more skills"
         >
           See All Skills
         </div>
@@ -119,7 +119,7 @@ const SkillsSummary: React.FC = () => {
       <Modal
         open={modalOpen}
         closeModal={closeModal}
-        title={"All Skills"}
+        title="All Skills"
         contentClassName="Content SkillsSection"
       >
         {Object.keys(ALL_SKILLS).map((skillGroup, groupIndex) => {
