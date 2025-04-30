@@ -1,3 +1,5 @@
+@use "constants" as *;
+
 /* Generic vendor prefix mixin for animation and transition properties
  * 
  * Usage:
@@ -18,10 +20,12 @@
  * }
 **/
 @mixin vendor-prefixed($property, $propertyContents) {
-  -o-#{$property}: $propertyContents;
-  -moz-#{$property}: $propertyContents;
-  -webkit-#{$property}: $propertyContents;
-  #{$property}: $propertyContents;
+  & {
+    -o-#{$property}: $propertyContents;
+    -moz-#{$property}: $propertyContents;
+    -webkit-#{$property}: $propertyContents;
+    #{$property}: $propertyContents;
+  }
 }
 
 // @mixin transition($transitionProperties) {
@@ -71,9 +75,11 @@
 // Adds in dark mode functionality for a given property
 // Namely used for background-color and color.
 @mixin media-colour-scheme($property, $lightMode, $darkMode) {
-  #{$property}: $lightMode;
-  @media screen and (prefers-color-scheme: dark) {
-    #{$property}: $darkMode;
+  & {
+    #{$property}: $lightMode;
+    @media screen and (prefers-color-scheme: dark) {
+      #{$property}: $darkMode;
+    }
   }
 }
 

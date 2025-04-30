@@ -1,3 +1,5 @@
+@use "/src/styles/core" as *;
+
 .ModalUnderlay {
   background: colourWithHexAlpha($black100, D0);
   height: 100%;
@@ -33,12 +35,6 @@
         align-items: center;
         border-top-left-radius: inherit;
         border-top-right-radius: inherit;
-        @include media-colour-scheme(
-          border-bottom,
-          1px solid $white60,
-          1px solid $black80
-        );
-        @include media-colour-scheme(background-color, $white90, $black80);
         height: 60px;
         padding: 10px 15px;
         @include media-min-width($largerThanMobile) {
@@ -47,6 +43,12 @@
         @include media-min-width($largerThanTablet) {
           padding: 10px 30px;
         }
+        @include media-colour-scheme(
+          border-bottom,
+          1px solid $white60,
+          1px solid $black80
+        );
+        @include media-colour-scheme(background-color, $white90, $black80);
         .Title {
           font-size: 2rem;
           font-weight: 400;
@@ -84,7 +86,6 @@
           align-items: center;
           justify-content: flex-end;
           gap: 10px;
-          @include media-colour-scheme(background-color, $white90, $black80);
           padding: 0px 15px;
           @include media-min-width($largerThanMobile) {
             padding: 0px 20px;
@@ -92,6 +93,7 @@
           @include media-min-width($largerThanTablet) {
             padding: 0px 30px;
           }
+          @include media-colour-scheme(background-color, $white90, $black80);
           .Btn {
             font-size: 1rem;
             min-width: 120px;

@@ -1,0 +1,15 @@
+/* Core SCSS
+ * 
+ * This is used to combine all the core variables and functions into one file
+ * This enables the component style to just import from one place like so:
+ * `@use "/src/styles/core" as *;`
+ * This reduces the amount of prefixing, it's usually not recommended unless
+ * for "stylesheets written by you"
+ * see: https://sass-lang.com/documentation/at-rules/use/
+ * 
+**/
+@forward "./constants";
+@forward "./colours";
+@forward "./mixins";
+@forward "./functions";
+@forward "./animations";
