@@ -92,11 +92,11 @@ export const WeatherIcon: React.FC = () => {
         repositionOnResize
         closeOnDocumentClick
       >
-        <div>
+        <>
           The weather near me is:
           <br />
           {weatherCode.title} and {weatherData.temperature}&#x2103;
-        </div>
+        </>
         <div className="AcknowledgementText SmallText">
           Meteorological data provided by:{" "}
           <Link href="https://open-meteo.com/">Open Meteo</Link>

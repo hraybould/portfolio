@@ -21,7 +21,7 @@ interface ResumeProps {}
 
 export const Resume: React.FC<ResumeProps> = () => {
   return (
-    <div>
+    <>
       {/* Personal Profile */}
       <PersonalProfile />
       {/* Key Skills - Resume */}
@@ -34,7 +34,9 @@ export const Resume: React.FC<ResumeProps> = () => {
       <Education />
       {/* Hobbies and Interests */}
       <HobbiesAndInterests />
-    </div>
+      {/* Print button */}
+      <PrintThisPage />
+    </>
   );
 };
 
@@ -520,7 +522,7 @@ const PriorExperience: React.FC = () => {
                   flexEvenly={!largerThanTablet}
                 />
               ))}
-              <div style={{ padding: "1rem 0rem" }}>
+              <div className="RoleInfo">
                 {cvMode ? job.roleCV : job.roleResume}
               </div>
             </div>
@@ -600,7 +602,7 @@ const Education: React.FC = () => {
       {educationData.map((institution, institutionIndex) => (
         <div
           key={`EDUCATION_INSTITUTION_${institutionIndex}`}
-          style={{ padding: "0.5rem 0" }}
+          className="RoleParent"
         >
           <ResumeHeading
             heading={institution.institutionName}
@@ -659,6 +661,25 @@ const HobbiesAndInterests: React.FC = () => (
   </section>
 );
 // Hobbies and Interests - END
+
+// Print page - START
+const PrintThisPage: React.FC = () => {
+  const cvMode = useAppSelector((store) => store.toggle.cvMode);
+  return (
+    <p className="NotForPrinting">
+      You've read this far, why not{" "}
+      <button
+        type="button"
+        className="Btn Link NoPadding NoBorder NoPrintDecoration "
+        onClick={window.print}
+      >
+        print this page
+      </button>{" "}
+      to download a copy of my {cvMode ? "CV" : "resume"}.
+    </p>
+  );
+};
+// Print page - START
 
 const formatDate = (date: Date) =>
   date.toLocaleString("default", {

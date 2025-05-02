@@ -16,11 +16,6 @@
     left: 50%;
     transform: translate(-50%, -50%);
     border-radius: $mediumBorderRadius;
-    // @include media-colour-scheme(
-    //   border,
-    //   1px solid $white90,
-    //   1px solid $black80
-    // );
     width: calc(100% - 20px);
     @include media-colour-scheme(background-color, $white95, $black90);
     @include media-min-width($largerThanTablet) {

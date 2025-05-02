@@ -56,7 +56,7 @@ export const Contact: React.FC<ContactProps> = () => {
         <div className="Btn ContactLink">
           <Link
             href={EMAIL_LINK_FULL}
-            style={{ textDecoration: "none" }}
+            additionalClassNames="additionalClassNames"
             hoverable={false}
           >
             Contact Me

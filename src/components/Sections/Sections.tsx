@@ -61,8 +61,16 @@ export const ALL_SECTIONS: Section[] = [
   {
     id: "resume",
     titleVisible: true,
-    titleText: (passedBoolean: boolean) =>
-      passedBoolean ? "Curriculum Vitae" : "Resume",
+    titleText: (passedBoolean: boolean) => (
+      <>
+        <span className="ForPrintOnly">
+          Harrison Raybould - {passedBoolean ? "CV" : "Resume"}
+        </span>
+        <span className="NotForPrinting">
+          {passedBoolean ? "Curriculum Vitae" : "Resume"}
+        </span>
+      </>
+    ),
     navigationText: "CV & Resume",
     titleComponent: <ResumeSwitch />,
     sectionContent: <Resume />,

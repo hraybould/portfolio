@@ -4,7 +4,7 @@ export type Section = {
   id: string;
   titleText:
     | (typeof SectionName)[number]
-    | ((passedBoolean: boolean) => string);
+    | ((passedBoolean: boolean) => React.ReactNode);
   navigationText?: (typeof SectionName)[number];
   titleVisible: boolean;
   titleComponent?: React.ReactNode;
