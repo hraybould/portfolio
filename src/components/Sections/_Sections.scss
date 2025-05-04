@@ -6,6 +6,25 @@
   //
   section {
     padding: 0rem 0rem 1rem 0rem;
+    @media screen {
+      .StickyTitle {
+        position: sticky;
+        z-index: 1;
+        top: $navbarHeight !important;
+        // Inherit needed for sticky headers
+        background-color: inherit;
+        &.IsSticky {
+          margin: 0 -1rem 0 -1rem;
+          padding: 0 1rem 0 1rem;
+          border-bottom: 1px solid;
+          @include media-colour-scheme(
+            border-bottom-color,
+            $textColour,
+            $white100
+          );
+        }
+      }
+    }
     .SectionHeading {
       margin-bottom: 0.5rem;
     }
@@ -15,15 +34,17 @@
     @media screen {
       padding: 1rem 1rem;
       min-height: calc(100vh - $navbarHeight);
-    }
-    &:nth-child(odd) {
-      @include media-colour-scheme(background-color, $white85, $black85);
-    }
-    &:nth-child(even) {
-      @include media-colour-scheme(background-color, $white80, $black80);
+      &:nth-child(odd) {
+        @include media-colour-scheme(background-color, $white85, $black85);
+      }
+      &:nth-child(even) {
+        @include media-colour-scheme(background-color, $white80, $black80);
+      }
     }
     .SectionInner {
       margin: auto;
+      // Inherit needed for sticky headers
+      background-color: inherit;
       @include media-min-width($largerThanLaptop) {
         max-width: 65vw;
       }

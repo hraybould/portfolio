@@ -22,8 +22,6 @@ const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BOD
 interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
-  const isDarkMode = useMedia(PREFERS_DARK_MODE);
-
   // ReactJS-Popup does not have fully working controlled state
   // Automatically close the modal after it opens
   const timeout = useRef<TimeoutRef>(null);
@@ -56,7 +54,7 @@ export const Contact: React.FC<ContactProps> = () => {
         <div className="Btn ContactLink">
           <Link
             href={EMAIL_LINK_FULL}
-            additionalClassNames="additionalClassNames"
+            additionalClassNames="NoTextDecoration"
             hoverable={false}
           >
             Contact Me
@@ -149,33 +147,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       <div className="DisplayFlex FlexColumn SmallGap">
-        {/* <Link href="https://stackoverflow.com/users/15291770/harrison">
-        <img
-        className="MarginAuto StackOverflowFlair"
-          src={`https://stackoverflow.com/users/flair/15291770.png?theme=${
-            isDarkMode ? "dark" : "light"
-          }`}
-          width="208"
-          height="58"
-          alt="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
-          title="Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers"
-          />
-        </Link> */}
-        <Link
-          // className="NotForPrinting"
-          href="https://stackexchange.com/users/20819824/harrison"
-        >
-          <img
-            className="MarginAuto StackOverflowFlair"
-            src={`https://stackexchange.com/users/flair/20819824.png?theme=${
-              isDarkMode ? "dark" : "light"
-            }`}
-            width="208"
-            height="58"
-            alt="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-            title="Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-          />
-        </Link>
+        <StackExchangeFlair combined />
         {/*
           NOTE: Tag Leagues is currently down, disabled until this is back up
           SEE: https://github.com/johannchopin/stackoverflow-readme-profile/issues/31 
@@ -186,5 +158,49 @@ export const Contact: React.FC<ContactProps> = () => {
         {/* <TopTags /> */}
       </div>
     </div>
+  );
+};
+
+interface StackExchangeFlairProps {
+  combined?: boolean;
+}
+
+const StackExchangeFlair: React.FC<StackExchangeFlairProps> = ({
+  combined = false,
+}) => {
+  const isDarkMode = useMedia(PREFERS_DARK_MODE);
+
+  const linkHref = combined
+    ? "https://stackexchange.com/users/20819824/harrison"
+    : "https://stackoverflow.com/users/15291770/harrison";
+
+  const imgSrc = `${
+    combined
+      ? "https://stackexchange.com/users/flair/20819824.png"
+      : "https://stackoverflow.com/users/flair/15291770.png"
+  }?theme=${isDarkMode ? "dark" : "light"}`;
+
+  const imgAlt = combined
+    ? "Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
+    : "Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers";
+
+  const imgTitle = combined
+    ? "Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
+    : "Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers";
+
+  return (
+    <Link
+      // className="NotForPrinting"
+      href={linkHref}
+    >
+      <img
+        className="MarginAuto StackOverflowFlair"
+        src={imgSrc}
+        width="208"
+        height="58"
+        alt={imgAlt}
+        title={imgTitle}
+      />
+    </Link>
   );
 };

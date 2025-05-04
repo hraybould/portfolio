@@ -138,6 +138,10 @@ h6 {
 }
 
 .Btn {
+  font-family: inherit;
+  padding: 0;
+  background: none;
+  border: none;
   &:not(.NoPadding) {
     padding: 0.25rem 0.5rem;
   }
@@ -154,6 +158,9 @@ h6 {
   }
   &.BtnCancel {
     @include media-colour-scheme(background-color, $white80, $black60);
+  }
+  &.BtnInlineAction {
+    text-decoration: underline;
   }
 }
 

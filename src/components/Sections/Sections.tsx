@@ -21,7 +21,12 @@ export const SectionsBuilder: React.FC = () => {
             >
               <div className="SectionInner">
                 {section.titleVisible && (
-                  <div className="DisplayFlex JustifySpaceBetween">
+                  <div
+                    className={`DisplayFlex JustifySpaceBetween ${
+                      // TODO: Make the sticky behaviour dynamic
+                      section.titleSticky ? "StickyTitle IsSticky" : ""
+                    }`}
+                  >
                     <h2 className="SectionHeading">
                       {typeof section.titleText === "function"
                         ? section.titleText(cvMode)
@@ -73,6 +78,7 @@ export const ALL_SECTIONS: Section[] = [
     ),
     navigationText: "CV & Resume",
     titleComponent: <ResumeSwitch />,
+    titleSticky: true,
     sectionContent: <Resume />,
     sectionVisible: true,
     sectionPrintable: true,

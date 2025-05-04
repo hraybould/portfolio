@@ -22,7 +22,7 @@ export const ResumeSwitch: React.FC<ResumeSwitchProps> = () => {
       </label>
       <Popup
         trigger={
-          <span className="Btn NoBorder LargeText NotForPrinting">
+          <span className="Btn NoBorder NoPadding LargeText NotForPrinting">
             <IoIosInformationCircle className="Icon" />
           </span>
         }

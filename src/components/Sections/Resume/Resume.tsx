@@ -670,7 +670,7 @@ const PrintThisPage: React.FC = () => {
       You've read this far, why not{" "}
       <button
         type="button"
-        className="Btn Link NoPadding NoBorder NoPrintDecoration "
+        className="Btn NoPadding NoBorder BtnInlineAction NoPrintDecoration"
         onClick={window.print}
       >
         print this page

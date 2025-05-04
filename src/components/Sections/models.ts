@@ -8,6 +8,7 @@ export type Section = {
   navigationText?: (typeof SectionName)[number];
   titleVisible: boolean;
   titleComponent?: React.ReactNode;
+  titleSticky?: boolean;
   sectionContent: React.ReactNode;
   sectionVisible: boolean;
   sectionPrintable: boolean;

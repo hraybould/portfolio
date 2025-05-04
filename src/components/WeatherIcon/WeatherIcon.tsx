@@ -81,7 +81,7 @@ export const WeatherIcon: React.FC = () => {
             className="WeatherDataWrapper DisplayFlex SmallGap CursorHelp"
             onClick={popupRef.current?.toggle}
           >
-            {largerThanTablet && <span>Weather near Birmingham:</span>}
+            {largerThanTablet && <span>Weather in Birmingham:</span>}
             {weatherCode[iconString]({
               size: 30,
             })}
