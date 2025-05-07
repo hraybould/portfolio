@@ -5,6 +5,8 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "app/store";
 import "styles/main.scss";
+// NOTE: Not importing `reactjs-popup` style as it doesn't work well with Dark Mode
+// import "reactjs-popup/dist/index.css";
 
 const container = document.getElementById("root");
 const root = ReactDom.createRoot(container!);

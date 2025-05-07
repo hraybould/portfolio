@@ -1,15 +1,12 @@
 import { BsGithub, BsStackOverflow, BsLinkedin } from "react-icons/bs";
 import { AiOutlineMail } from "react-icons/ai";
 import { HiOutlineClipboardCopy } from "react-icons/hi";
-import useMedia from "use-media";
 import { Link } from "components/Link";
 import { useState, useEffect, useRef } from "react";
 import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
-// NOTE: Not importing `reactjs-popup` style as it doesn't work well with Dark Mode
-// import "reactjs-popup/dist/index.css";
-import { PREFERS_DARK_MODE } from "appHelpers";
+import { StackExchangeFlair } from "./StackExchangeFlair";
 // import { TopTags } from "./TopTags";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
@@ -127,7 +124,7 @@ export const Contact: React.FC<ContactProps> = () => {
           </Link>
         </div>
       </div>
-      {/* Stack Overflow */}
+      {/* Stack Exchange / Stack Overflow */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth NotForPrinting">
         <div className="DisplayFlex SmallGap">
           <BsStackOverflow
@@ -158,49 +155,5 @@ export const Contact: React.FC<ContactProps> = () => {
         {/* <TopTags /> */}
       </div>
     </div>
-  );
-};
-
-interface StackExchangeFlairProps {
-  combined?: boolean;
-}
-
-const StackExchangeFlair: React.FC<StackExchangeFlairProps> = ({
-  combined = false,
-}) => {
-  const isDarkMode = useMedia(PREFERS_DARK_MODE);
-
-  const linkHref = combined
-    ? "https://stackexchange.com/users/20819824/harrison"
-    : "https://stackoverflow.com/users/15291770/harrison";
-
-  const imgSrc = `${
-    combined
-      ? "https://stackexchange.com/users/flair/20819824.png"
-      : "https://stackoverflow.com/users/flair/15291770.png"
-  }?theme=${isDarkMode ? "dark" : "light"}`;
-
-  const imgAlt = combined
-    ? "Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-    : "Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers";
-
-  const imgTitle = combined
-    ? "Profile for Harrison on Stack Exchange, a network of free, community-driven Q&amp;A sites"
-    : "Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers";
-
-  return (
-    <Link
-      // className="NotForPrinting"
-      href={linkHref}
-    >
-      <img
-        className="MarginAuto StackOverflowFlair"
-        src={imgSrc}
-        width="208"
-        height="58"
-        alt={imgAlt}
-        title={imgTitle}
-      />
-    </Link>
   );
 };
