@@ -16,6 +16,7 @@ import {
 import { durationFormatter } from "helpers/durationFormatter";
 import { ListItem, SimpleList } from "components/SimpleList";
 import { useAppSelector } from "app/hooks";
+import { CV_MODE } from "app/selectors";
 
 interface ResumeProps {}
 
@@ -99,24 +100,53 @@ const ResumeHeading: React.FC<ResumeHeadingProps> = ({
 };
 
 // Personal Profile - START
+
+const CV_PERSONAL_PROFILE: React.ReactNode = (
+  <>
+    <p>
+      Senior front-end JavaScript developer with deep expertise in React,
+      TypeScript, and modern web technologies, focused on building
+      high-performance, real-time user interfaces for data-intensive
+      applications. My recent experience developing a live sports-betting
+      platform—requiring ultra-low latency, high-frequency data updates, and
+      pixel-perfect UI design—translates directly to the demands of financial
+      trading systems such as day-trading or FX platforms. I've led front-end
+      initiatives within agile, cross-functional teams, collaborating closely
+      with backend engineers, product managers, and designers to deliver
+      scalable, maintainable solutions that balance performance with usability.
+      Proven ability to thrive in high-pressure, time-sensitive environments
+      where precision and speed are paramount.
+    </p>
+  </>
+);
+
+const RESUME_PERSONAL_PROFILE: React.ReactNode = (
+  <>
+    <p>
+      Senior front-end JavaScript developer with expertise in React and
+      TypeScript, focussed on building high-performance, real-time UIs for
+      data-driven applications. Experienced in leading front-end efforts on
+      low-latency platforms with streaming updates, including work directly
+      applicable to trading systems. Strong collaborator within cross-functional
+      teams, delivering scalable, high-fidelity interfaces in fast-paced,
+      high-stakes environments.
+    </p>
+  </>
+);
+
 /**
  * Introduction to Resume
  */
-const PersonalProfile: React.FC = () => (
-  <section>
-    <h3>Personal Profile</h3>
-    <p>
-      I'm an enthusiastic, intuitive, and highly motivated React Developer. My
-      strongest languages are JavaScript, HTML, and CSS; I have a firm grasp of
-      TypeScript, React, Redux, and Git. Having studied Physics at university, I
-      have advanced problem solving skills and work with a high attention to
-      detail. During my time as a fully-remote React engineer, I have honed my
-      communication and interpersonal skills; additionally I have furthered my
-      in customer/client focussed environments requiring both team-focussed and
-      independent delivery.
-    </p>
-  </section>
-);
+const PersonalProfile: React.FC = () => {
+  const cvMode = useAppSelector(CV_MODE);
+
+  return (
+    <section>
+      <h3>Personal Profile</h3>
+      {cvMode ? CV_PERSONAL_PROFILE : RESUME_PERSONAL_PROFILE}
+    </section>
+  );
+};
 // Personal Profile - END
 
 // Key Skills (Resume) - START
@@ -167,9 +197,18 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
   {
     itemInfo: (
       <>
+        Became the Lead Engineer for AVAMAE's largest project less than 2 years
+        after starting
+      </>
+    ),
+    visible: true,
+  },
+  {
+    itemInfo: (
+      <>
         Without outages or downtime, rewrote a live React app from JavaScript to
-        TypeScript. Converting lifecycle methods to Hooks and providing
-        extensive type definitions enabled safer, faster future development.
+        TypeScript; including converting lifecycle methods to Hooks and
+        providing extensive type definitions
       </>
     ),
     visible: true,
@@ -189,7 +228,7 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
       <>
         Lead development in key projects at The MTC such as: Additive
         Manufacturing (AM), and low-cost Industry 4.0 (I4.0) condition
-        monitoring.
+        monitoring
       </>
     ),
     visible: true,
@@ -205,7 +244,7 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
             2-year scheme within the first 6 months
           </>
         ),
-        visible: false,
+        visible: true,
       },
     ],
   },
@@ -216,7 +255,7 @@ const KEY_ACHIEVEMENTS: ListItem[] = [
         Senior Technician at Select (formerly Stormfront Retail)
       </>
     ),
-    visible: true,
+    visible: false,
   },
   {
     itemInfo: (
@@ -251,21 +290,22 @@ const KeyAchievements: React.FC = () => (
  * Summary of roles
  */
 type JobRole = {
-  // Company name
   companyName: string;
-  /** Optional name added because Stormfront changed its name */
+  /** Optional sub-title, added because Stormfront changed its name */
   subTitle?: string;
   // description: string
-  // Dates
+  /** Start date of role */
   start: Date;
+  /** End date of role */
   end?: Date;
-  // Roles in job
-  roles: Position[];
-  // Details about roles
+  positions: Position[];
+  /** The resume version of the role, this is shorter */
   roleResume: React.ReactNode;
+  /** The CV version of the role, this is longer */
   roleCV: React.ReactNode;
-  // Misc
+  /** Show/hide the role */
   visible: boolean;
+  /** Link to company website or further details */
   link: string;
 };
 
@@ -281,14 +321,13 @@ type Position = {
   // description: string;
 };
 
-// TODO: Dates and Descriptions
 const PREVIOUS_ROLES: JobRole[] = [
   {
     companyName: "Select",
     subTitle: "Formerly: Stormfront Retail",
     start: STARTED_STORMFRONT_RETAIL,
     end: STARTED_MTC,
-    roles: [
+    positions: [
       {
         positionName: "Team Member",
         end: new Date("2017-03-01"),
@@ -301,28 +340,28 @@ const PREVIOUS_ROLES: JobRole[] = [
     roleResume: (
       <>
         <p>
-          The positions held at Stormfront Retail were intensely customer facing
-          and, uniquely for a retail position, required high attention to detail
-          in order to efficiently diagnose issues for customers with their Apple
-          devices. In an effort to improve repair times, I produced an internal
-          training document for colleagues to refer to; its use lead to a
-          significant reduction in time taken to complete iPhone repairs and
-          replacements.
+          This was an intensely customer facing role; uniquely for a retail
+          position it required high attention to detail in order to efficiently
+          diagnose issues with customer devices. In an effort to improve repair
+          times, I wrote an internal document to help train staff; its use lead
+          to a significant reduction in repair lead times.
         </p>
       </>
     ),
     roleCV: (
       <>
         <p>
-          This was an intensely customer facing role; uniquely for a retail
-          position it required high attention to detail in order to efficiently
-          diagnose issues for customers with their Apple devices. In an effort
-          to improve repair times, I wrote an internal document to help train
-          staff, its use lead to a significant reduction in repair lead times.
+          The positions held at Stormfront Retail were intensely customer
+          facing. Uniquely for a retail position, it also required high
+          attention to detail in order to efficiently diagnose complex issues
+          with customer devices. In an effort to improve repair times, I
+          produced an internal training document for colleagues to refer to; its
+          use lead to a significant reduction in time taken to complete iPhone
+          repairs and replacements.
         </p>
       </>
     ),
-    visible: true,
+    visible: false,
     link: "https://uk.selectonline.com/",
   },
   {
@@ -330,7 +369,7 @@ const PREVIOUS_ROLES: JobRole[] = [
     subTitle: "The MTC",
     start: STARTED_MTC,
     end: STARTED_AVAMAE,
-    roles: [
+    positions: [
       {
         positionName: "Graduate Research Engineer",
         end: new Date("2018-03-01"),
@@ -344,8 +383,35 @@ const PREVIOUS_ROLES: JobRole[] = [
       <>
         <p>
           During my time at The MTC, I was involved in a number of projects,
-          such as Encompass and BluePlanet. I additionally held management
+          such as "Encompass" and "BluePlanet". I additionally held management
           responsibilities for a number of graduates in the team.
+        </p>
+        <p>
+          My involvement in Encompass included full-stack development with a
+          Python backend, using [Vanilla] JavaScript; this ignited my passion
+          for Web Development. I lead the design and development of the{" "}
+          <i>"Integrated Design Decision Support"</i> (IDDS) system that
+          interfaced with multiple databases and third parties. In 2019 In 2019
+          I had the opportunity to deliver a presentation at an international,
+          industry-leading engineering forum in Hannover, Germany.
+        </p>
+        <p>
+          During the course of the BluePlanet project, I developed an Industry
+          4.0 (I4.0), Internet of Things (IoT) solution to go on a
+          fully-autonomous crop-monitoring rover. Agricultural and telemetry was
+          reported data to an AWS instance hosting an IoT dashboarding platform.
+        </p>
+        <p></p>
+      </>
+    ),
+    roleCV: (
+      <>
+        <p>
+          I am immensely proud of the projects I contributed to at The MTC;
+          ranging from Industry 4.0 (I4.0) to Internet of Things (IoT) systems.
+          My most notable projects were "Encompass" and "BluePlanet". Later in
+          my role, I held management and mentoring roles for a number of
+          graduates within the team.
         </p>
         <p>
           My involvement in Encompass included full-stack development with a
@@ -353,16 +419,16 @@ const PREVIOUS_ROLES: JobRole[] = [
           was this project that ignited my passion for Web Development; I lead
           the design and development of the{" "}
           <i>"Integrated Design Decision Support"</i> (IDDS) system that
-          interfaced with multiple databases and external applications. In 2019
-          I had the opportunity to deliver a presentation at an industry-leading
-          forum in Hannover, Germany.
+          interfaced with multiple databases and third-party applications. In
+          2019 I had the opportunity to deliver a presentation at an
+          international, industry-leading engineering forum in Hannover,
+          Germany.
         </p>
         <p>
-          During the course of the BluePlanet project, I architected and
-          developed an Industry 4.0, Internet of Things (IoT) solution capable
-          of remotely reporting telemetry data from an agriculture monitoring
-          rover to an AWS instance hosting ThingsBoard - an IoT dashboarding
-          platform.
+          During the course of the BluePlanet project, I architected, developed,
+          and created an I4.0-IoT solution. A fully-autonomous crop-monitoring
+          rover reported agricultural and telemetry data to an AWS instance
+          hosting ThingsBoard - an IoT dashboarding platform.
         </p>
         <p>
           In addition to the aforementioned projects, I also produced a Python
@@ -371,31 +437,6 @@ const PREVIOUS_ROLES: JobRole[] = [
           including the <i>"AI Ecosystem"</i> - an internal demonstrator
           platform that collated and showcased the department's capabilities and
           success stories.
-        </p>
-      </>
-    ),
-    roleCV: (
-      <>
-        <p>
-          I am immensely proud of the projects I contributed to at The MTC;
-          ranging from Industry 4.0 to Internet of Things (IoT) systems.
-        </p>
-        <p>
-          My involvement in Encompass included full-stack development with a
-          Python backend, using [Vanilla] JavaScript, JQuery, HTML, and CSS. It
-          was this project that ignited my passion for Web Development; I lead
-          the design and development of the{" "}
-          <i>"Integrated Design Decision Support"</i> (IDDS) system that
-          interfaced with multiple databases and external applications. In 2019
-          I had the opportunity to deliver a presentation at an industry-leading
-          forum in Hannover, Germany.
-        </p>
-        <p>
-          During the course of the BluePlanet project, I architected and
-          developed an Industry 4.0, Internet of Things (IoT) solution capable
-          of remotely reporting telemetry data from an agriculture monitoring
-          rover to an AWS instance hosting ThingsBoard - an IoT dashboarding
-          platform.
         </p>
       </>
     ),
@@ -408,7 +449,7 @@ const PREVIOUS_ROLES: JobRole[] = [
     companyName: "AVAMAE Software Solutions",
     start: STARTED_AVAMAE,
     // end: new Date(),
-    roles: [
+    positions: [
       {
         positionName: "App Engineer",
         end: new Date("2023-04-01"),
@@ -421,61 +462,79 @@ const PREVIOUS_ROLES: JobRole[] = [
     roleResume: (
       <>
         <p>
-          Joining AVAMAE was not without its challenges, I joined a new business
-          in the midst of the pandemic which meant that I had to rely heavily on
-          my communication skills to form close connections with the team.
+          I joined AVAMAE in the midst of the pandemic which meant that I had to
+          rely heavily on my communication skills to form fast, close
+          connections with the team.
         </p>
         <p>
-          From the beginning I was thrown into a project with a fast-paced
-          client and quickly found myself the go-to developer of the project.
-          Within 6 months, I cemented my proficiencies in React, Hooks, Redux,
-          and TypeScript and began pushing both myself and the surrounding team
-          towards improving code robustness, uniformity and readability.
+          I quickly established myself as the go-to developer of the project and
+          set about improving code robustness, uniformity and readability.
         </p>
         <p>
-          My time has been split between a number of custom-built React
-          interfaces for my client; one of which was written with few comments
-          and no type definitions while the others were fully typed with
-          TypeScript. I used my initiative and converted{" "}
+          I have focussed largely on a number of custom-built React interfaces
+          for my client; one of which was written with few comments and no type
+          definitions while the others were at least partially typed with
+          TypeScript. In my mission to improve the quality of the project, I set
+          about converting some 300
           <span className="pre" children=".js" /> and{" "}
           <span className="pre" children=".jsx" /> files to TypeScript (
-          <span className="pre" children=".ts" /> and{" "}
+          <span className="pre" children=".ts" /> and
           <span className="pre" children=".tsx" />
-          ). I upgraded the code from pre-Hooks React and Redux (Redux-Compose)
-          to being Hook-capable and strongly-typed with TypeScript. There were a
-          number of reasons why I did this, chief among which was that a junior
-          engineer joined the team and struggled to get to grips with the
-          codebase. I had long felt that TypeScript should be implemented and
-          this catalysed the transformation; I also found it very rewarding
-          being able to support someone in my team. Any new components were
-          written in TypeScript and I set about providing type definitions and
-          converting the 300+ files; all the while adding new features and
-          functionality and responding to client requests.
+          ). I upgraded the project from a pre-Hooks React and Redux
+          (Redux-Compose) ecosystem, to Hook-capable and extensively-typed
+          TypeScript solution. One reason I did this was in an effort to help a
+          junior engineer get to drips with the project. I set about a plant to
+          convert the 300+ files and create the extensive type definitions; all
+          while adding new features and functionality and responding to client
+          requests.
+        </p>
+        <p>
+          The project itself required a low-latency, high-fidelity user
+          interface; capable of streaming realtime updates to the UI and
+          frequent state changes.
         </p>
       </>
     ),
     roleCV: (
       <>
         <p>
-          I joined AVAMAE in the midst of the pandemic in a fully remote React
-          engineering role; I believe this meant that I had to rely heavily on
-          my communication skills to form close connections with the team. With
-          fast-paced client projects I quickly established myself as the go-to
-          developer. Within 6 months I had cemented my proficiencies in React,
-          Hooks, Redux, and TypeScript and began pushing both myself and my team
-          towards improving code robustness, uniformity and readability.
+          Joining AVAMAE was not without its challenges, I joined a new business
+          in the midst of the pandemic which meant that I had to rely heavily on
+          my communication skills to form fast, close connections with the team.
         </p>
         <p>
-          My time was split between a number of custom-built React interfaces,
-          one of which was written purely in{" "}
+          From the beginning I was thrown into a project with a fast-paced
+          client with changing priorities. I quickly established myself as the
+          go-to developer of the project and within 6 months, I had cemented my
+          proficiencies in React, Hooks, Redux, and TypeScript; I began pushing
+          both myself and the surrounding team towards improving code
+          robustness, uniformity and readability.
+        </p>
+        <p>
+          My time has been split between a number of custom-built React
+          interfaces for my client; one of which was written with few comments
+          and no type definitions while the others were at least partially typed
+          with TypeScript. In my mission to improve the quality of the project,
+          I set about converting some 300
           <span className="pre" children=".js" /> and{" "}
-          <span className="pre" children=".jsx" />; I created an upgrade plan to
-          upgrade the pre-Hooks React and Redux (Redux-Compose) codebase to
-          being Hook-capable and strongly-typed with TypeScript. This provided
-          extensive type definitions which enabled faster onboarding of junior
-          engineers as well as improved type-safety for future features. I was
-          able to do this with 300+ files, without project downtime, and whilst
+          <span className="pre" children=".jsx" /> files to TypeScript (
+          <span className="pre" children=".ts" /> and
+          <span className="pre" children=".tsx" />
+          ). I upgraded the project from a pre-Hooks React and Redux
+          (Redux-Compose) ecosystem, to Hook-capable and extensively-typed
+          TypeScript solution. There were a number of reasons why I did this,
+          chief among which was that a junior engineer joined the team and
+          struggled to get to grips with the code. I had long felt that
+          TypeScript should be implemented and this catalysed that decision; I
+          started small, ensuring that any new components were written in
+          TypeScript then set about methodically creating the necessary type
+          definitions; all the while adding new features and functionality and
           responding to client requests.
+        </p>
+        <p>
+          The project itself required a low-latency, high-fidelity user
+          interface; capable of streaming realtime updates to the UI and
+          frequent state changes.
         </p>
       </>
     ),
@@ -492,7 +551,7 @@ const PriorExperience: React.FC = () => {
   //  - timeline slider alongside roles to show dates
   const [rolesData, dropdown] = useResumeDropdown(PREVIOUS_ROLES);
   const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
-  const cvMode = useAppSelector((state) => state.toggle.cvMode);
+  const cvMode = useAppSelector(CV_MODE);
 
   return (
     <section>
@@ -512,12 +571,12 @@ const PriorExperience: React.FC = () => {
                 end={job.end}
                 flexEvenly={!largerThanTablet}
               />
-              {job.roles.map((role, roleIndex) => (
+              {job.positions.map((position, positionIndex) => (
                 <ResumeHeading
-                  key={`JOB_ROLE_${roleIndex}`}
-                  heading={role.positionName}
-                  start={role.start ?? job.start}
-                  end={role.end ?? job.end}
+                  key={`JOB_ROLE_${positionIndex}`}
+                  heading={position.positionName}
+                  start={position.start ?? job.start}
+                  end={position.end ?? job.end}
                   smaller
                   flexEvenly={!largerThanTablet}
                 />
@@ -664,7 +723,7 @@ const HobbiesAndInterests: React.FC = () => (
 
 // Print page - START
 const PrintThisPage: React.FC = () => {
-  const cvMode = useAppSelector((store) => store.toggle.cvMode);
+  const cvMode = useAppSelector(CV_MODE);
   return (
     <p className="NotForPrinting">
       You've read this far, why not{" "}

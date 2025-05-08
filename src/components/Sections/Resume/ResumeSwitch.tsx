@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "app/hooks";
+import { CV_MODE } from "app/selectors";
 import { toggleMode } from "features/cv-resume/toggle-slice";
 import { useCallback } from "react";
 import Popup from "reactjs-popup";
@@ -7,7 +8,7 @@ import { IoIosInformationCircle } from "react-icons/io";
 interface ResumeSwitchProps {}
 
 export const ResumeSwitch: React.FC<ResumeSwitchProps> = () => {
-  const cvMode = useAppSelector((state) => state.toggle.cvMode);
+  const cvMode = useAppSelector(CV_MODE);
 
   const dispatch = useAppDispatch();
   const handleSwitch = useCallback(() => {

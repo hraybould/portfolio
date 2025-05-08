@@ -128,7 +128,7 @@ const parseSunriseSunset = (
   );
 
 /**
- * Parse the Weather Data to extract the data I want to use
+ * Parse the Weather Data to extract the subset to use
  */
 const parseWeatherData = (weatherData: SuccessResponse): ParsedWeatherData => {
   const parsedSunrise = parseSunriseSunset(weatherData.daily.sunrise[0]);

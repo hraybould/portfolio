@@ -1,12 +1,13 @@
+import { useAppSelector } from "app/hooks";
+import { CV_MODE } from "app/selectors";
 import { AboutMe } from "./AboutMe/AboutMe";
 import { Contact } from "./Contact/Contact";
 import { Section } from "./models";
 import { Resume, ResumeSwitch } from "./Resume";
 import { Skills } from "./Skills/Skills";
-import { useAppSelector } from "app/hooks";
 
 export const SectionsBuilder: React.FC = () => {
-  const cvMode = useAppSelector((store) => store.toggle.cvMode);
+  const cvMode = useAppSelector(CV_MODE);
   return (
     <div className="SectionsWrapper">
       {ALL_SECTIONS.map((section, index) => {

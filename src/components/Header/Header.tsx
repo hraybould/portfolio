@@ -36,7 +36,7 @@ export const Header: React.FC = () => {
             window.scrollTo({ top: 0 });
           } else {
             console.debug(
-              "You clicked the image, but I won't do anything until you've scrolled down some more!"
+              "You clicked the image, but this won't do anything until you've scrolled down some more!"
             );
           }
         }}

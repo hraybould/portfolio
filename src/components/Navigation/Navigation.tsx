@@ -1,4 +1,5 @@
 import { useAppSelector } from "app/hooks";
+import { CV_MODE } from "app/selectors";
 import { TABLET_MIN_WIDTH } from "appHelpers";
 import { NAVBAR_HEADER_ID } from "components/Header/models";
 import { ALL_SECTIONS } from "components/Sections/Sections";
@@ -11,7 +12,7 @@ interface NavigationProps {}
 
 export const Navigation: React.FC<NavigationProps> = () => {
   const [navVisible, setNavVisible] = useState<boolean>(false);
-  const cvMode = useAppSelector((store) => store.toggle.cvMode);
+  const cvMode = useAppSelector(CV_MODE);
   const largerThanTablet = useMedia(TABLET_MIN_WIDTH);
   const hideNavbar = () => {
     if (!largerThanTablet) {
