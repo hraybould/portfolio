@@ -1,2 +1,2 @@
 export { Resume } from "./Resume";
-export { ResumeSwitch } from "./ResumeSwitch";
+export { ResumeSwitch } from "./components/ResumeSwitch";

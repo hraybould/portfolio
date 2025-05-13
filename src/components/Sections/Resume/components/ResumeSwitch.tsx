@@ -29,7 +29,7 @@ export const ResumeSwitch: React.FC<ResumeSwitchProps> = () => {
         }
         on="hover"
         position="bottom right"
-        children="Switch between viewing (or printing) the the CV or Resume"
+        children="Switch between viewing (and printing) the the CV or Resume"
       />
     </div>
   );

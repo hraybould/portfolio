@@ -19,17 +19,23 @@
   h3 {
     margin: 0.5rem 0;
   }
-  .RoleParent {
-    padding: 0.5rem 0rem;
-  }
-  .RoleDate {
-    text-align: right !important;
-    span {
-      white-space: nowrap;
+  .RoleGroup {
+    .RoleTitle {
+      flex: 1 1 auto;
     }
-  }
-  .RoleInfo {
-    padding: 1rem 0rem;
+    .RoleDate {
+      text-align: right !important;
+      span {
+        white-space: nowrap;
+      }
+    }
+
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+    .RoleInfo {
+      padding: 1rem 0rem;
+    }
   }
 }
 
