@@ -1,3 +1,5 @@
+@use "/src/styles/core" as *;
+
 // Printing Logic
 .ForPrintOnly {
   display: none;
@@ -8,6 +10,14 @@
     margin: 1cm 1.5cm;
   }
   // General Classes - START
+  @include all-headings {
+    margin-bottom: 0 !important;
+  }
+  .SectionsWrapper {
+    section {
+      padding: 0rem 0rem 0.5rem 0rem;
+    }
+  }
   // Hide elements from being printed
   *.NotForPrinting {
     display: none;
@@ -24,12 +34,19 @@
   // Specific Overrides - START
   //
   // Reduce contact section's gap between elements when printing
-  .ContactSection {
-    gap: 1rem;
-  }
-  // Always show the same light-themed StackOverflow Flair
-  .StackOverflowFlair {
-    content: url("https://stackoverflow.com/users/flair/15291770.png?theme=light");
+  #contact-me {
+    .SectionHeading {
+      // Reduce contact class to h3 size (.MediumText)
+      font-size: 125%;
+    }
+    .ContactSection {
+      gap: 1rem;
+      margin-top: 0.5rem;
+      // Always show the same light-themed StackOverflow Flair
+      .StackOverflowFlair {
+        content: url("https://stackoverflow.com/users/flair/15291770.png?theme=light");
+      }
+    }
   }
   // Specific Overrides - END
 }

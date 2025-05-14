@@ -28,7 +28,7 @@ export const Resume: React.FC<ResumeProps> = () => {
       {/* Personal Profile */}
       <PersonalProfile />
       {/* Key Skills - Resume */}
-      <KeyResumeSkills />
+      <KeyResumeSkills cvMode={cvMode} />
       {/* Key Achievements */}
       <KeyAchievements cvMode={cvMode} />
       {/* Prior Experience */}
@@ -87,10 +87,14 @@ const PersonalProfile: React.FC = () => {
 // Personal Profile - END
 
 // Key Skills (Resume) - START
+
+interface KeyResumeSkillsProps {
+  cvMode: RootState["toggle"]["cvMode"];
+}
 /**
  *
  */
-const KeyResumeSkills: React.FC = () => (
+const KeyResumeSkills: React.FC<KeyResumeSkillsProps> = ({ cvMode }) => (
   <section className="ForPrintOnly">
     <h3>Key Skills</h3>
     <SimpleList
@@ -108,7 +112,7 @@ const KeyResumeSkills: React.FC = () => (
             {durationFormatter({
               start: skill.start,
               end: skill.end,
-              format: ["years"],
+              format: cvMode ? ["years", "months"] : ["years"],
               delimiter: ", ",
             })}
           </>
