@@ -87,7 +87,7 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       {/* GitHub */}
-      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth NotForPrinting">
+      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
           <BsGithub
             className="LargeText Icon"

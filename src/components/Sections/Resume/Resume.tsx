@@ -35,6 +35,11 @@ export const Resume: React.FC<ResumeProps> = () => {
       <PriorExperience />
       {/* Education */}
       <Education cvMode={cvMode} />
+      {/*
+          NOTE: Deliberate break here when print CV
+          REASON: When printing the CV version, the heading shows on a previous page
+      */}
+      {cvMode && <br className="ForPrintOnly" />}
       {/* Hobbies and Interests */}
       <HobbiesAndInterests />
       {/* Print button */}
