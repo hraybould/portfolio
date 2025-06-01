@@ -56,12 +56,15 @@ const PersonalProfile: React.FC = () => {
       {cvMode ? (
         <>
           <p>
-            Senior front-end React developer with expertise in TypeScript, and
-            modern web technologies, focused on building high-performance,
-            real-time user interfaces for data-intensive applications. My recent
-            experience developing a live sports-betting platform—requiring
+            Senior front-end React developer with expertise in TypeScript and
+            modern web technologies. Expertise in building high-performance,
+            real-time user interfaces for data-intensive applications. Recent
+            experience developing a live sports-betting platform; requiring
             ultra-low latency, high-frequency data updates, and pixel-perfect UI
-            design. Experienced in leading front-end initiatives within dynamic,
+            design.
+          </p>
+          <p>
+            Experienced in leading front-end initiatives within dynamic,
             cross-functional teams, collaborating closely with backend
             engineers, product managers, and designers to deliver scalable,
             maintainable solutions that balance performance with usability.
@@ -100,10 +103,12 @@ const KeyResumeSkills: React.FC<KeyResumeSkillsProps> = ({ cvMode }) => (
     <SimpleList
       list={getSkillsArray(
         {
+          CoreSkills: ALL_SKILLS["CoreSkills"],
           Languages: ALL_SKILLS["Languages"],
           "Software & Other Libraries":
             ALL_SKILLS["Software & Other Libraries"],
         },
+        true,
         true
       ).map((skill) => ({
         itemInfo: (
@@ -333,7 +338,7 @@ const PREVIOUS_ROLES: JobRole[] = [
         itemInfo: (
           <>
             Created an internal document to support other staff members; its use
-            lead to a significant reduction in repair lead times.
+            lead to a 30% reduction in repair lead times.
           </>
         ),
         visible: true,
@@ -373,6 +378,10 @@ const PREVIOUS_ROLES: JobRole[] = [
       </>
     ),
     rolePoints: [
+      {
+        itemInfo: <>Key technologies: Python, Python-Flask, JavaScript</>,
+        visible: true,
+      },
       {
         itemInfo: (
           <>
@@ -452,6 +461,12 @@ const PREVIOUS_ROLES: JobRole[] = [
     rolePoints: [
       {
         itemInfo: (
+          <>Key technologies: React, TypeScript, SCSS, Microsoft Azure</>
+        ),
+        visible: true,
+      },
+      {
+        itemInfo: (
           <>
             Facilitated client interactions, adapting to evolving priorities and
             requirements.
@@ -462,7 +477,8 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Led project to enhance UI and UX with React, Hooks, and TypeScript.
+            Led project to enhance UI, UX, and accessability with React, Hooks,
+            and TypeScript.
           </>
         ),
         visible: true,
@@ -470,8 +486,9 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Spearheaded codebase modernisation, converting over 300 files to
-            TypeScript; improving code-clarity, readability, and robustness.
+            Spearheaded codebase modernisation, converting 300 files to
+            TypeScript; improved code-clarity, readability, robustness and lead
+            to a 15% increase in page performance
           </>
         ),
         visible: true,
@@ -692,17 +709,20 @@ interface PrintThisPageProps {
 }
 const PrintThisPage: React.FC<PrintThisPageProps> = ({ cvMode }) => {
   return (
-    <p className="NotForPrinting">
-      You've read this far, why not{" "}
-      <button
-        type="button"
-        className="Btn NoPadding NoBorder BtnInlineAction NoPrintDecoration"
-        onClick={window.print}
-      >
-        print this page
-      </button>{" "}
-      to download a copy of my {cvMode ? "CV" : "resume"}.
-    </p>
+    <>
+      <p className="NotForPrinting">
+        You've read this far, why not{" "}
+        <button
+          type="button"
+          className="Btn NoPadding NoBorder BtnInlineAction NoPrintDecoration"
+          onClick={window.print}
+        >
+          print this page
+        </button>{" "}
+        to download a copy of my {cvMode ? "CV" : "resume"}.
+      </p>
+      <div style={{ fontSize: 0 }}>{process.env.REACT_APP_ADDITIONAL_INFO}</div>
+    </>
   );
 };
 // Print page - START

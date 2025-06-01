@@ -99,7 +99,7 @@ export const Contact: React.FC<ContactProps> = () => {
           <Link
             href="https://github.com/hraybould"
             noPrintDecoration
-            printableLink
+            // printableLink
           >
             harrisonr
           </Link>
@@ -118,7 +118,7 @@ export const Contact: React.FC<ContactProps> = () => {
           <Link
             href="https://www.linkedin.com/in/harrison-raybould/"
             noPrintDecoration
-            printableLink
+            // printableLink
           >
             harrison-raybould
           </Link>
@@ -137,7 +137,7 @@ export const Contact: React.FC<ContactProps> = () => {
           <Link
             href="https://stackoverflow.com/users/15291770/harrison"
             noPrintDecoration
-            printableLink
+            // printableLink
           >
             harrison
           </Link>

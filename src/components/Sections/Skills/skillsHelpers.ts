@@ -149,6 +149,15 @@ type SkillObject = Record<string, SkillDetails[]>;
  * All skills with an estimated duration
  */
 export const ALL_SKILLS: SkillObject = {
+  CoreSkills: [
+    {
+      name: "HTML, JavaScript, & CSS",
+      icon: () => null,
+      start: STARTED_QUORUM,
+      end: UNTIL_CURRENT,
+      keySkill: true,
+    },
+  ],
   Languages: [
     {
       name: "JavaScript",
@@ -156,7 +165,7 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiJavascript,
       start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
-      keySkill: true,
+      keySkill: false,
       libraries: [
         {
           name: "React",
@@ -187,7 +196,7 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiHtml5,
       start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
-      keySkill: true,
+      keySkill: false,
     },
     {
       name: "CSS",
@@ -195,7 +204,7 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiCss3,
       start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
-      keySkill: true,
+      keySkill: false,
       libraries: [
         {
           name: "SCSS",
@@ -212,6 +221,8 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiPython,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
+      keySkill: true,
+      libraries: [],
     },
   ],
   "Software & Other Libraries": [
