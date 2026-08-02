@@ -123,6 +123,10 @@ const SkillsSummary: React.FC = () => {
         contentClassName="Content SkillsSection"
       >
         {Object.keys(ALL_SKILLS).map((skillGroup, groupIndex) => {
+          // Skip "core skills" here as it duplicated HTML, CSS, etc.
+          if (skillGroup === "CoreSkills") {
+            return null;
+          }
           let skillsInGroup: SkillDetails[] = [];
           ALL_SKILLS[skillGroup].forEach(pushToResult(skillsInGroup));
           return (

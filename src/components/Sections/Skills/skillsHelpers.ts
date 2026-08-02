@@ -35,6 +35,7 @@ import {
   SiVisualstudiocode,
   SiWindows,
 } from "react-icons/si";
+import { FaCode } from "react-icons/fa";
 import {
   STARTED_STORMFRONT_RETAIL,
   STARTED_MTC,
@@ -151,8 +152,8 @@ type SkillObject = Record<string, SkillDetails[]>;
 export const ALL_SKILLS: SkillObject = {
   CoreSkills: [
     {
-      name: "HTML, JavaScript, & CSS",
-      icon: () => null,
+      name: "HTML, JS, CSS",
+      icon: FaCode,
       start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
       keySkill: true,

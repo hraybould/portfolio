@@ -61,12 +61,12 @@ const PersonalProfile: React.FC = () => {
       {cvMode ? (
         <>
           <p>
-            Senior front-end React developer with expertise in TypeScript and
-            modern web technologies. Expertise in building high-performance,
-            real-time user interfaces for data-intensive applications. Recent
-            experience developing a live sports-betting platform; requiring
-            ultra-low latency, high-frequency data updates, and pixel-perfect UI
-            design.
+            A Senior front-end React developer with deep expertise in React,
+            TypeScript and other modern web technologies. Expertise in building
+            high-performance, real-time user interfaces for data-intensive
+            applications. Recent experience developing financial and sporting
+            applications requiring ultra-low latency, high-frequency data
+            updates, and pixel-perfect UI design.
           </p>
           <p>
             Experienced in leading front-end initiatives within dynamic,
@@ -80,12 +80,12 @@ const PersonalProfile: React.FC = () => {
       ) : (
         <>
           <p>
-            Senior front-end React developer with expertise in TypeScript,
-            focused on building high-performance, real-time UIs for data-driven
-            applications. Experienced in leading front-end efforts on
-            low-latency platforms with streaming updates. A strong collaborator
-            within cross-functional teams, delivering scalable, high-fidelity
-            interfaces in fast-paced, high-stakes environments.
+            A senior front-end React developer with deep expertise in React and
+            TypeScript; capable of building high-performance, real-time UIs for
+            data-driven applications. Experienced in leading cross-functional
+            teams to deliver robust, low-latency platforms, and a strong
+            collaborator delivering scalable, high-fidelity interfaces in
+            fast-paced, high-stakes environments.
           </p>
         </>
       )}
@@ -164,8 +164,8 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Without outages or downtime, rewrote a live React app from JavaScript to
-        TypeScript; including converting lifecycle methods to Hooks and
+        Without outages or downtime, migrated a live React app from JavaScript
+        to TypeScript; including upgrading lifecycle methods to Hooks and
         providing extensive type definitions
       </>
     ),
@@ -456,11 +456,12 @@ const PREVIOUS_ROLES: JobRole[] = [
     ],
     overview: (
       <>
-        Joined in the midst of the pandemic which required strong communication
-        skills in order to quickly form close-knit connections with the team.
-        This role cemented proficiencies in React, Hooks, Redux, and TypeScript.
-        The project here required excellent time-management and flexibility in
-        order to meet the demands of the role and client.
+        Joined in the midst of the pandemic requiring strong communication
+        skills in order to quickly form close bonds with the team. This role
+        cemented proficiencies in React, Hooks, Redux, TypeScript, and gave
+        exposure to React Native. The projects here have required excellent
+        time-management and flexibility in order to meet the demands of the role
+        and clients.
       </>
     ),
     rolePoints: [
@@ -473,7 +474,7 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Facilitated client interactions, adapting to evolving priorities and
+            Facilitated client engagement, adapting to evolving priorities and
             requirements.
           </>
         ),
