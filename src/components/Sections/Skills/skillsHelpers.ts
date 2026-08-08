@@ -108,6 +108,7 @@ export const getSkillsArray = (
   if (sortByTimeFrame) {
     sortSkillsByTime(skills);
   }
+  skills.sort((a, b) => (a.orderNumber || 99) - (b.orderNumber || 99));
   return skills;
 };
 
@@ -141,6 +142,7 @@ export type SkillDetails = {
   end: Date;
   // stillInterestedIn: "Yes" | "No" | "Actively working on"
   keySkill?: boolean;
+  orderNumber?: number;
 };
 type SkillObject = Record<string, SkillDetails[]>;
 
@@ -148,6 +150,7 @@ type SkillObject = Record<string, SkillDetails[]>;
 
 /**
  * All skills with an estimated duration
+ * NOTE: An additional order number for some parts
  */
 export const ALL_SKILLS: SkillObject = {
   CoreSkills: [
@@ -157,6 +160,7 @@ export const ALL_SKILLS: SkillObject = {
       start: STARTED_QUORUM,
       end: UNTIL_CURRENT,
       keySkill: true,
+      orderNumber: 3,
     },
   ],
   Languages: [
@@ -174,6 +178,7 @@ export const ALL_SKILLS: SkillObject = {
           start: STARTED_REACT,
           end: UNTIL_CURRENT,
           keySkill: true,
+          orderNumber: 1,
         },
         {
           name: "TypeScript",
@@ -181,6 +186,7 @@ export const ALL_SKILLS: SkillObject = {
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
+          orderNumber: 2,
         },
         {
           name: "React Native",
@@ -208,12 +214,13 @@ export const ALL_SKILLS: SkillObject = {
       keySkill: false,
       libraries: [
         {
-          name: "SCSS",
-          subName: "Dart Sass",
+          name: "Dart Sass",
+          subName: "SCSS",
           icon: SiSass,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
           keySkill: true,
+          orderNumber: 4,
         },
       ],
     },
@@ -222,7 +229,8 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiPython,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
-      keySkill: true,
+      keySkill: false,
+      orderNumber: 6,
       libraries: [],
     },
   ],
@@ -234,6 +242,7 @@ export const ALL_SKILLS: SkillObject = {
       start: STARTED_AVAMAE,
       end: UNTIL_CURRENT,
       keySkill: true,
+      orderNumber: 5,
     },
     {
       name: "React-Router",
@@ -295,6 +304,7 @@ export const ALL_SKILLS: SkillObject = {
       start: STARTED_MTC,
       end: UNTIL_CURRENT,
       keySkill: true,
+      orderNumber: 6,
     },
     {
       name: "RabbitMQ",

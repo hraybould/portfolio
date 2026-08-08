@@ -7,6 +7,8 @@ import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
 import { StackExchangeFlair } from "./StackExchangeFlair";
+import { useAppSelector } from "app/hooks";
+import { CV_MODE } from "app/selectors";
 // import { TopTags } from "./TopTags";
 
 const EMAIL_ADDRESS = "h_c_raybould@hotmail.com";
@@ -19,6 +21,8 @@ const EMAIL_LINK_FULL = `${EMAIL_LINK}?subject=${EMAIL_SUBJECT}&body=${EMAIL_BOD
 interface ContactProps {}
 
 export const Contact: React.FC<ContactProps> = () => {
+  const cvMode = useAppSelector(CV_MODE);
+
   // ReactJS-Popup does not have fully working controlled state
   // Automatically close the modal after it opens
   const timeout = useRef<TimeoutRef>(null);
@@ -87,24 +91,26 @@ export const Contact: React.FC<ContactProps> = () => {
         </div>
       </div>
       {/* GitHub */}
-      <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
-        <div className="DisplayFlex SmallGap">
-          <BsGithub
-            className="LargeText Icon"
-            title="A link to Harrison Raybould GitHub profile"
-          />
-          GitHub:
+      {cvMode && (
+        <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
+          <div className="DisplayFlex SmallGap">
+            <BsGithub
+              className="LargeText Icon"
+              title="A link to Harrison Raybould GitHub profile"
+            />
+            GitHub:
+          </div>
+          <div className="RightAligned">
+            <Link
+              href="https://github.com/hraybould"
+              noPrintDecoration
+              // printableLink
+            >
+              harrisonr
+            </Link>
+          </div>
         </div>
-        <div className="RightAligned">
-          <Link
-            href="https://github.com/hraybould"
-            noPrintDecoration
-            // printableLink
-          >
-            harrisonr
-          </Link>
-        </div>
-      </div>
+      )}
       {/* LinkedIn */}
       <div className="DisplayFlex FlexRow SmallGap JustifySpaceBetween FullWidth">
         <div className="DisplayFlex SmallGap">
@@ -143,17 +149,19 @@ export const Contact: React.FC<ContactProps> = () => {
           </Link>
         </div>
       </div>
-      <div className="DisplayFlex FlexColumn SmallGap">
-        <StackExchangeFlair combined />
-        {/*
+      {cvMode && (
+        <div className="DisplayFlex FlexColumn SmallGap">
+          <StackExchangeFlair combined />
+          {/*
           NOTE: Tag Leagues is currently down, disabled until this is back up
           SEE: https://github.com/johannchopin/stackoverflow-readme-profile/issues/31 
 
           Different Question: https://meta.stackexchange.com/questions/361001/get-your-position-in-tag-league-top-x
           Working Query?      https://data.stackexchange.com/stackoverflow/query/50844/what-percentile-am-i-in-for-a-given-tag
         */}
-        {/* <TopTags /> */}
-      </div>
+          {/* <TopTags /> */}
+        </div>
+      )}
     </div>
   );
 };

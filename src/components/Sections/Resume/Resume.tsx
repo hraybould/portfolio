@@ -53,12 +53,23 @@ export const Resume: React.FC<ResumeProps> = () => {
  * Introduction to Resume
  */
 const PersonalProfile: React.FC = () => {
-  const cvMode = useAppSelector(CV_MODE);
+  // const cvMode = useAppSelector(CV_MODE);
 
   return (
     <section>
       <h3>Personal Profile</h3>
-      {cvMode ? (
+      <p>
+        Senior Front-End Developer and technical lead with expertise in React
+        and TypeScript; a proven track record of building high-performance,
+        real-time interfaces for data-intensive industries including finance and
+        sports betting. Experienced in leading cross-functional teams and
+        delivering robust UIs that stay fast under high-frequency data updates
+        and strict low-latency demands. Comfortable owning front-end
+        architecture, producing pixel-perfect designs, and optimising
+        performance while working closely with backend engineers, designers, and
+        product teams to ship scalable, maintainable solutions under pressure.
+      </p>
+      {/* {cvMode ? (
         <>
           <p>
             A Senior front-end React developer with deep expertise in React,
@@ -88,7 +99,7 @@ const PersonalProfile: React.FC = () => {
             fast-paced, high-stakes environments.
           </p>
         </>
-      )}
+      )} */}
     </section>
   );
 };
@@ -144,18 +155,9 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Developed and distributed a React Native app to both Apple and Android
-        app stores
-      </>
-    ),
-    cvVisible: true,
-    resumeVisible: true,
-  },
-  {
-    itemInfo: (
-      <>
         Became a Lead Engineer for AVAMAE's largest project less than 2 years
-        after starting
+        after starting, encompassing architecting solutions and managing client
+        relationships
       </>
     ),
     cvVisible: true,
@@ -164,9 +166,9 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Without outages or downtime, migrated a live React app from JavaScript
-        to TypeScript; including upgrading lifecycle methods to Hooks and
-        providing extensive type definitions
+        Without outages or downtime, migrated a 300-file live React app from
+        JavaScript to TypeScript, including upgrading lifecycle methods to Hooks
+        and providing extensive type definitions
       </>
     ),
     cvVisible: true,
@@ -175,9 +177,10 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Represented The Manufacturing Technology Centre (The MTC) by presenting
-        at the International Conference on Additive Manufacturing, EMO Hannover
-        2019
+        Developed and distributed a React Native app to both Apple and Android
+        app stores, wrapping an existing web platform with native features and
+        navigating strict sports betting regulations and store compliance
+        requirements
       </>
     ),
     cvVisible: true,
@@ -186,13 +189,33 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Lead development in key projects at The MTC such as: Additive
-        Manufacturing (AM), and low-cost Industry 4.0 (I4.0) condition
-        monitoring
+        Presented at the International Conference on Additive Manufacturing, EMO
+        Hannover 2019, representing The Manufacturing Technology Centre (The
+        MTC)
       </>
     ),
     cvVisible: true,
     resumeVisible: true,
+  },
+  {
+    itemInfo: (
+      <>
+        Authored a HM Government white paper on Industry 4.0 (I4.0), drawing
+        from technical research at The MTC
+      </>
+    ),
+    cvVisible: true,
+    resumeVisible: true,
+  },
+  {
+    itemInfo: (
+      <>
+        Led development in key projects at The MTC such as: Additive
+        Manufacturing (AM) and low-cost Industry 4.0 (I4.0)
+      </>
+    ),
+    cvVisible: true,
+    resumeVisible: false,
     subList: [
       {
         itemInfo: <>Obtained Level 1 Vibration Analyst from RMS Solutions</>,
@@ -229,8 +252,8 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
       <>Graduated from Exeter University with a 2:1 BSc Physics (Hons.)</>
     ),
 
-    cvVisible: true,
-    resumeVisible: true,
+    cvVisible: false,
+    resumeVisible: false,
   },
   {
     itemInfo: (
@@ -239,7 +262,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
         Form
       </>
     ),
-    cvVisible: true,
+    cvVisible: false,
     resumeVisible: false,
   },
 ];
@@ -689,21 +712,26 @@ const Education: React.FC<EducationProps> = ({ cvMode }) => {
 const HobbiesAndInterests: React.FC = () => (
   <section>
     <h3>Hobbies and Interests</h3>
-    <p>
+    {/* <p>
       Passionate about powerlifting, DIY, scuba diving, and small-scale
       programming projects:
-    </p>
+    </p> */}
     <ul>
-      <li>A Visual Studio Code (VS Code) extension</li>
-      <li>
-        An Apple HomeKit-compatible smart thermostat controlled by Node-Red on a
-        Raspberry Pi
-      </li>
-      <li>An Eisenhower Matrix app written in Swift for iOS</li>
-      <li>
-        A Network-Attached Storage (NAS) device for sharing files within my home
-        network
-      </li>
+      <li>Scuba diving (PADI Open Water certified)</li>
+      <li>Powerlifting and running</li>
+      <li>Small-scale home-programming projects:</li>
+      <ul>
+        <li>Visual Studio Code (VS Code) extension</li>
+        <li>
+          Apple HomeKit-compatible smart thermostat with Node-Red on a Raspberry
+          Pi
+        </li>
+        <li>Eisenhower Matrix app written in Swift for iOS</li>
+        <li>
+          Network-Attached Storage (NAS) device for sharing files within my home
+          network
+        </li>
+      </ul>
     </ul>
   </section>
 );
