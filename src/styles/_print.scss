@@ -7,6 +7,7 @@
 @media print {
   // Set page settings
   @page {
+    // NOTE: Sometimes changing this will fit onto 2 pages instead
     margin: 1cm 1.5cm;
   }
   // General Classes - START

@@ -219,7 +219,7 @@ export const ALL_SKILLS: SkillObject = {
           icon: SiSass,
           start: STARTED_AVAMAE,
           end: UNTIL_CURRENT,
-          keySkill: true,
+          keySkill: false,
           orderNumber: 4,
         },
       ],

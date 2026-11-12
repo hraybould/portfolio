@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  LEFT_AVAMAE,
   STARTED_AVAMAE,
   STARTED_MTC,
   STARTED_STORMFRONT_RETAIL,
@@ -38,8 +39,9 @@ export const Resume: React.FC<ResumeProps> = () => {
       {/*
           NOTE: Deliberate break here when print CV
           REASON: When printing the CV version, the heading shows on a previous page
+          NOTE: This may no longer be required
       */}
-      {cvMode && <br className="ForPrintOnly" />}
+      {/* {cvMode && <br className="ForPrintOnly" />} */}
       {/* Hobbies and Interests */}
       <HobbiesAndInterests />
       {/* Print button */}
@@ -60,7 +62,7 @@ const PersonalProfile: React.FC = () => {
       <h3>Personal Profile</h3>
       {/* Either Lead or Senior */}
       <p>
-        A Senior Frontend Developer with expertise in React and TypeScript; a
+        A Lead Frontend Developer with expertise in React and TypeScript; a
         proven track record of mentoring and leadership within high-performing
         cross-functional teams that build performant, real-time, and data-rich
         interfaces for sport and financial industries. Comfortable architecting
@@ -471,7 +473,7 @@ const PREVIOUS_ROLES: JobRole[] = [
   {
     companyName: "AVAMAE Software Solutions",
     start: STARTED_AVAMAE,
-    // end: new Date(),
+    end: LEFT_AVAMAE,
     positions: [
       {
         positionName: "App Engineer",
@@ -764,7 +766,9 @@ const PrintThisPage: React.FC<PrintThisPageProps> = ({ cvMode }) => {
         </button>{" "}
         to download a copy of my {cvMode ? "CV" : "resume"}.
       </p>
-      <div style={{ fontSize: 0 }}>{process.env.REACT_APP_ADDITIONAL_INFO}</div>
+      {/* <div className="AdditionalInfo">
+        {process.env.REACT_APP_ADDITIONAL_INFO}
+      </div> */}
     </>
   );
 };

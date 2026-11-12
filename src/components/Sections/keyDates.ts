@@ -8,3 +8,6 @@ export const STARTED_MTC = new Date("2017-09-23");
 
 /** Started at AVAMAE Software Solutions Ltd (ended at MTC) */
 export const STARTED_AVAMAE = new Date("2021-05-05");
+
+/** Left AVAMAE Software Solutions Ltd */
+export const LEFT_AVAMAE = new Date("2026-11-10");
