@@ -58,16 +58,16 @@ const PersonalProfile: React.FC = () => {
   return (
     <section>
       <h3>Personal Profile</h3>
+      {/* Either Lead or Senior */}
       <p>
-        Senior Front-End Developer and technical lead with expertise in React
-        and TypeScript; a proven track record of building high-performance,
-        real-time interfaces for data-intensive industries including finance and
-        sports betting. Experienced in leading cross-functional teams and
-        delivering robust UIs that stay fast under high-frequency data updates
-        and strict low-latency demands. Comfortable owning front-end
-        architecture, producing pixel-perfect designs, and optimising
-        performance while working closely with backend engineers, designers, and
-        product teams to ship scalable, maintainable solutions under pressure.
+        A Senior Frontend Developer with expertise in React and TypeScript; a
+        proven track record of mentoring and leadership within high-performing
+        cross-functional teams that build performant, real-time, and data-rich
+        interfaces for sport and financial industries. Comfortable architecting
+        projects across the full stack to produce pixel-perfect UIs, and
+        optimising performance while working closely with clients, backend
+        engineers, and product teams to ship scalable, maintainable solutions
+        under pressure.
       </p>
       {/* {cvMode ? (
         <>
@@ -155,9 +155,9 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Became a Lead Engineer for AVAMAE's largest project less than 2 years
-        after starting, encompassing architecting solutions and managing client
-        relationships
+        Became the Lead Engineer for AVAMAE's largest project in under 2 years,
+        encompassing client relations, architecting solutions, and leading a
+        team of 6 engineers
       </>
     ),
     cvVisible: true,
@@ -167,8 +167,9 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
     itemInfo: (
       <>
         Without outages or downtime, migrated a 300-file live React app from
-        JavaScript to TypeScript, including upgrading lifecycle methods to Hooks
-        and providing extensive type definitions
+        JavaScript to TypeScript, modernised lifecycle methods to Hooks and
+        provided extensive type definitions and documentation to aid onboarding
+        and future development
       </>
     ),
     cvVisible: true,
@@ -179,8 +180,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
       <>
         Developed and distributed a React Native app to both Apple and Android
         app stores, wrapping an existing web platform with native features and
-        navigating strict sports betting regulations and store compliance
-        requirements
+        navigated strict sports betting regulatory and compliance requirements
       </>
     ),
     cvVisible: true,
@@ -191,7 +191,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
       <>
         Presented at the International Conference on Additive Manufacturing, EMO
         Hannover 2019, representing The Manufacturing Technology Centre (The
-        MTC)
+        MTC) and the <i>"Encompass"</i> project
       </>
     ),
     cvVisible: true,
@@ -200,7 +200,7 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
   {
     itemInfo: (
       <>
-        Authored a HM Government white paper on Industry 4.0 (I4.0), drawing
+        Authored an HM Government whitepaper on Industry 4.0 (I4.0), drawing
         from technical research at The MTC
       </>
     ),
@@ -231,8 +231,8 @@ const KEY_ACHIEVEMENTS: KeyAchievement[] = [
           </>
         ),
 
-        cvVisible: true,
-        resumeVisible: true,
+        cvVisible: false,
+        resumeVisible: false,
       },
     ],
   },
@@ -281,6 +281,7 @@ const convertKeyAchievements =
 interface KeyAchievementsProps {
   cvMode: RootState["toggle"]["cvMode"];
 }
+
 /**
  * Summary of key achievements over recent years
  */
@@ -366,7 +367,7 @@ const PREVIOUS_ROLES: JobRole[] = [
         itemInfo: (
           <>
             Created an internal document to support other staff members; its use
-            lead to a 30% reduction in repair lead times.
+            led to a 30% reduction in repair lead times.
           </>
         ),
         visible: true,
@@ -398,23 +399,16 @@ const PREVIOUS_ROLES: JobRole[] = [
     ],
     overview: (
       <>
-        Contributed to a wide range of projects from Industry 4.0 (I4.0) to
-        Internet of Things (IoT) systems; notable projects include "Encompass",
-        "BluePlanet", and "AI Ecosystem". Later in the role, held management and
-        mentoring roles for a number of graduates within the team helping to
-        onboard and develop their skills.
+        Applied research and full-stack engineering across Industry 4.0 and IoT
+        projects for industry and government-backed initiatives.
       </>
     ),
     rolePoints: [
       {
-        itemInfo: <>Key technologies: Python, Python-Flask, JavaScript</>,
-        visible: true,
-      },
-      {
         itemInfo: (
           <>
-            Mentored graduate engineers, fostering a collaborative team
-            environment and skill development.
+            Key technologies: Python, Flask, JavaScript, AWS, SQL and no-SQL
+            databases
           </>
         ),
         visible: true,
@@ -422,9 +416,8 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Led full-stack development for the Encompass project, building an{" "}
-            <i>"Integrated Design Decision Support"</i> (IDDS) system that
-            handled third-party integrations.
+            Mentored 3 graduate engineers, onboarding them and fostering a
+            collaborative team environment and skill development
           </>
         ),
         visible: true,
@@ -432,9 +425,11 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Presented expertise on Encompass and Additive Manufacturing at an
-            international, industry-leading engineering forum in Hannover,
-            Germany.
+            Led full-stack development for the publicly-funded{" "}
+            <i>"Encompass"</i> project, building an{" "}
+            <i>"Integrated Design Decision Support"</i> (IDDS) system to track
+            and iterate Additive Manufacturing processes, improving confidence
+            and adoption while cutting waste for manufacturers
           </>
         ),
         visible: true,
@@ -442,9 +437,19 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Architected and developed a low-code I4.0-IoT solution for
-            "BluePlanet". A fully-autonomous crop-monitoring rover reported
-            agricultural and telemetry data to AWS.
+            Presented on <i>"Encompass"</i> and Additive Manufacturing at the
+            International Conference on Additive Manufacturing, EMO 2019 in
+            Hannover, Germany
+          </>
+        ),
+        visible: true,
+      },
+      {
+        itemInfo: (
+          <>
+            Architected and developed a low-code I4.0-IoT solution for{" "}
+            <i>"BluePlanet"</i>, a fully-autonomous crop-monitoring rover
+            project that reported agricultural and telemetry data to AWS
           </>
         ),
         visible: true,
@@ -453,8 +458,8 @@ const PREVIOUS_ROLES: JobRole[] = [
         itemInfo: (
           <>
             Created a Python Web-App template that became the basis for many
-            projects including the <i>"AI Ecosystem"</i>
-            which showcased the department's capabilities and success stories.
+            projects including the <i>"AI Ecosystem"</i> which showcased the
+            department's capabilities and success stories.
           </>
         ),
         visible: true,
@@ -479,26 +484,20 @@ const PREVIOUS_ROLES: JobRole[] = [
     ],
     overview: (
       <>
-        Joined in the midst of the pandemic requiring strong communication
-        skills in order to quickly form close bonds with the team. This role
-        cemented proficiencies in React, Hooks, Redux, TypeScript, and gave
-        exposure to React Native. The projects here have required excellent
-        time-management and flexibility in order to meet the demands of the role
-        and clients.
+        Front-end ownership and delivery for data-sensitive applications in
+        finance and sports betting. Projects demanded fast iteration and close
+        client collaboration under tight delivery timelines and evolving
+        priorities. Led architecture decisions and collaborating across multiple
+        projects working in multidisciplinary teams as well as leading a team of
+        6; providing code-reviews, mentoring, and peer assessments
       </>
     ),
     rolePoints: [
       {
         itemInfo: (
-          <>Key technologies: React, TypeScript, SCSS, Microsoft Azure</>
-        ),
-        visible: true,
-      },
-      {
-        itemInfo: (
           <>
-            Facilitated client engagement, adapting to evolving priorities and
-            requirements.
+            Key technologies: React, TypeScript, Redux, Dart-Sass/SCSS,
+            React-Native, HighCharts, AI-assisted development
           </>
         ),
         visible: true,
@@ -506,8 +505,26 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Led project to enhance UI, UX, and accessability with React, Hooks,
-            and TypeScript.
+            Facilitated client relations, gathering requirements to architect
+            and deliver according to evolving priorities
+          </>
+        ),
+        visible: false,
+      },
+      {
+        itemInfo: (
+          <>
+            Mentored 5-10 junior engineers, improving onboarding speed and code
+            familiarity
+          </>
+        ),
+        visible: true,
+      },
+      {
+        itemInfo: (
+          <>
+            Led projects to enhance UI, UX, and accessibility through component
+            redesign with React, Hooks, and TypeScript
           </>
         ),
         visible: true,
@@ -516,8 +533,8 @@ const PREVIOUS_ROLES: JobRole[] = [
         itemInfo: (
           <>
             Spearheaded codebase modernisation, converting 300 files to
-            TypeScript; improved code-clarity, readability, robustness and lead
-            to a 15% increase in page performance
+            TypeScript, improving documentation, readability, and stability,
+            leading to a 15% increase in page performance
           </>
         ),
         visible: true,
@@ -525,17 +542,8 @@ const PREVIOUS_ROLES: JobRole[] = [
       {
         itemInfo: (
           <>
-            Mentored junior engineers to improve onboarding rate and code
-            familiarity.
-          </>
-        ),
-        visible: true,
-      },
-      {
-        itemInfo: (
-          <>
-            Built and maintained low-latency, high-frequency UIs to address
-            client needs.
+            Built and maintained scalable, low-latency, high-frequency UIs for
+            real-time data-focussed platforms
           </>
         ),
         visible: true,
@@ -544,6 +552,7 @@ const PREVIOUS_ROLES: JobRole[] = [
     visible: true,
     link: "https://www.avamae.co.uk/",
   },
+  // TODO: New job
 ];
 
 /**
@@ -558,7 +567,7 @@ const PriorExperience: React.FC = () => {
   return (
     <section>
       <div className="DisplayFlex SmallGap JustifySpaceBetween">
-        <h3>Prior Experience</h3>
+        <h3>Experience</h3>
         <div>{dropdown}</div>
       </div>
       {rolesData.map(
@@ -634,7 +643,7 @@ const PAST_EDUCATION: EducationalInstitutions[] = [
     end: new Date("2013-06-01"),
     modules: [
       {
-        title: "A-Level",
+        title: "A-Level:",
         subTitle: "A-Levels: A*AAC",
         notableGrades: [
           "Mathematics - A*",
@@ -644,7 +653,7 @@ const PAST_EDUCATION: EducationalInstitutions[] = [
         ],
       },
       {
-        title: "GCSE",
+        title: "GCSE:",
         subTitle: "GCSEs: 11 A-grades, 3 B-grades",
         notableGrades: [
           "11 A-grades (including English, Maths, all Sciences, and ICT)",
@@ -677,7 +686,7 @@ const Education: React.FC<EducationProps> = ({ cvMode }) => {
         >
           <ResumeHeading
             heading={institution.institutionName}
-            subTitle={institution.subTitle}
+            subTitle={cvMode ? institution.subTitle : undefined}
             start={institution.start}
             end={institution.end}
           />

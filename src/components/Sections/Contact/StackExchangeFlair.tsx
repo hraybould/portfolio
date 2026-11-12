@@ -30,12 +30,10 @@ export const StackExchangeFlair: React.FC<StackExchangeFlairProps> = ({
     : "Profile for Harrison Raybould on Stack Overflow, Q&amp;A for professional and enthusiast programmers";
 
   return (
-    <Link
-      // className="NotForPrinting"
-      href={linkHref}
-    >
+    <Link className="NotForPrinting" href={linkHref}>
       <img
         className="MarginAuto StackOverflowFlair"
+        crossOrigin="anonymous"
         src={imgSrc}
         width="208"
         height="58"

@@ -229,7 +229,7 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiPython,
       start: STARTED_MTC,
       end: STARTED_AVAMAE,
-      keySkill: false,
+      keySkill: true,
       orderNumber: 6,
       libraries: [],
     },
@@ -241,7 +241,7 @@ export const ALL_SKILLS: SkillObject = {
       icon: SiRedux,
       start: STARTED_AVAMAE,
       end: UNTIL_CURRENT,
-      keySkill: true,
+      keySkill: false,
       orderNumber: 5,
     },
     {

@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from "react";
 import { TimeoutRef } from "topLevelModels";
 import Popup from "reactjs-popup";
 import { PopupActions } from "reactjs-popup/dist/types";
-import { StackExchangeFlair } from "./StackExchangeFlair";
+// import { StackExchangeFlair } from "./StackExchangeFlair";
 import { useAppSelector } from "app/hooks";
 import { CV_MODE } from "app/selectors";
 // import { TopTags } from "./TopTags";
@@ -151,7 +151,8 @@ export const Contact: React.FC<ContactProps> = () => {
       </div>
       {cvMode && (
         <div className="DisplayFlex FlexColumn SmallGap">
-          <StackExchangeFlair combined />
+          {/* NOTE: Flair is currently disabled until cross-origin issues are resolved */}
+          {/* <StackExchangeFlair combined /> */}
           {/*
           NOTE: Tag Leagues is currently down, disabled until this is back up
           SEE: https://github.com/johannchopin/stackoverflow-readme-profile/issues/31 
